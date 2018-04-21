@@ -2,7 +2,6 @@
 
 ```bash
 npm install
-cp ormconfig.json.dist ormconfig.json
 ```
 
 ## Running the app

@@ -390,5 +390,4 @@ Temporary Items
 docker-compose.yml
 .env
 
-ormconfig.*
-!ormconfig.json.dist
+.env
