@@ -1,7 +1,7 @@
 {
-  "name": "nest-typescript-starter",
-  "version": "1.0.0",
-  "description": "Nest TypeScript starter repository",
+  "name": "myway-back",
+  "version": "0.1.0",
+  "description": "",
   "license": "MIT",
   "scripts": {
     "format": "prettier --write \"**/*.ts\"",
@@ -18,9 +18,12 @@
     "@nestjs/core": "^4.5.10",
     "@nestjs/microservices": "^4.5.8",
     "@nestjs/testing": "^4.5.5",
+    "@nestjs/typeorm": "^2.0.0",
     "@nestjs/websockets": "^4.5.8",
+    "mysql": "^2.15.0",
     "reflect-metadata": "^0.1.12",
     "rxjs": "^5.5.6",
+    "typeorm": "^0.2.0",
     "typescript": "^2.6.2"
   },
   "devDependencies": {
