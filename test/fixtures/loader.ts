@@ -1,10 +1,9 @@
 import * as fs from 'fs';
 import * as yaml from 'js-yaml';
-import { Connection } from 'typeorm';
+import { getConnection } from 'typeorm';
 
 export async function loadFixtures(
   name: string,
-  connection: Connection,
 ): Promise<any> {
   let items: any[] = [];
   try {
@@ -19,6 +18,8 @@ export async function loadFixtures(
   if (!items) {
     return;
   }
+
+  const connection = getConnection();
 
   items.forEach(async (item: any) => {
     const entityName = Object.keys(item)[0];

@@ -16,9 +16,7 @@ describe('CampaignController (e2e)', () => {
     app = moduleFixture.createNestApplication();
     await app.init();
 
-    const testConnection = getConnection();
-
-    await loadFixtures('campaigns', testConnection);
+    await loadFixtures('campaigns');
   });
 
   it('/GET /campaigns', () => {
