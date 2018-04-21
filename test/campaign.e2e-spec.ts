@@ -1,9 +1,10 @@
 import {INestApplication} from '@nestjs/common';
 import {Test} from '@nestjs/testing';
 import request from 'supertest';
-import {AppModule} from 'back/src/app.module';
+import {AppModule} from '../src/app.module';
+import {loadFixtures} from './fixtures/loader';
+import {getConnection} from 'typeorm';
 
-// TOO
 describe('CampaignController (e2e)', () => {
     let app: INestApplication;
 
@@ -14,6 +15,10 @@ describe('CampaignController (e2e)', () => {
 
         app = moduleFixture.createNestApplication();
         await app.init();
+
+        const testConnection = getConnection();
+
+        await loadFixtures('campaigns', testConnection);
     });
 
     it('/GET /campaigns', () => {
@@ -21,7 +26,20 @@ describe('CampaignController (e2e)', () => {
             .get('/campaigns')
             .expect(200)
             .expect([
-                {},
+                {
+                    id: 1,
+                    name: 'first_campaign',
+                    description: '',
+                    isSuspended: false,
+                    isReleased: true,
+                },
+                {
+                    id: 2,
+                    name: 'second_campaign',
+                    description: '',
+                    isSuspended: false,
+                    isReleased: false,
+                },
             ]);
     });
 });
