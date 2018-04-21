@@ -1,19 +1,15 @@
-import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('campaigns')
 export class Campaign {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn() id: number;
 
-    @Column({length: 500})
-    name: string;
+  @Column({ length: 500 })
+  name: string;
 
-    @Column('text')
-    description: string;
+  @Column('text') description: string;
 
-    @Column()
-    isSuspended: boolean;
+  @Column() isSuspended: boolean;
 
-    @Column()
-    isReleased: boolean;
+  @Column() isReleased: boolean;
 }
