@@ -12,8 +12,8 @@ export function getOrmConfig() {
     settings = {
       host: 'localhost',
       port: 3306,
-      username: 'root',
-      password: '',
+      username: 'myway_test',
+      password: 'myway_test',
       database: 'myway_test',
       dropSchema: true,
       synchronize: true,
