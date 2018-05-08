@@ -1,13 +1,14 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { CompetitionController } from './controllers/competition.controller';
 import { Competition } from './entities/competition.entity';
-import { CompetitionService } from './services/competition.service';
 import { Instance } from './entities/instance.entity';
 import { Submission } from './entities/submission.entity';
-import { CompetitionController } from './controllers/competition.controller';
+import { Team } from './entities/team.entity';
+import { CompetitionService } from './services/competition.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Competition, Instance, Submission])],
+  imports: [TypeOrmModule.forFeature([Competition, Instance, Submission, Team])],
   components: [CompetitionService],
   controllers: [CompetitionController],
 })

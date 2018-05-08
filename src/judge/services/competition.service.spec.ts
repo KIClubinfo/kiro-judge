@@ -21,7 +21,7 @@ describe('CompetitionService', () => {
     app = await Test.createTestingModule({
       components: [
         CompetitionService,
-        { provide: 'CampaignRepository', useValue: mockedRepository },
+        { provide: 'CompetitionRepository', useValue: mockedRepository },
       ],
     }).compile();
   });

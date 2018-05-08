@@ -1,8 +1,9 @@
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { User } from '../../auth/entities/user.entity';
 import { Competition } from './competition.entity';
 
-@Entity('instances')
-export class Instance {
+@Entity('teams')
+export class Team {
   @PrimaryGeneratedColumn() id: number;
 
   @CreateDateColumn()
@@ -18,4 +19,7 @@ export class Instance {
 
   @ManyToOne((type) => Competition)
   competition: Competition;
+
+  @ManyToMany((type) => User, (user) => user.teams)
+  members: User[];
 }
