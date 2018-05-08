@@ -1,15 +1,11 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('campaigns')
-export class Campaign {
+@Entity('instances')
+export class Instance {
   @PrimaryGeneratedColumn() id: number;
 
   @Column({ length: 500 })
   name: string;
 
   @Column('text') description: string;
-
-  @Column() isSuspended: boolean;
-
-  @Column() isReleased: boolean;
 }

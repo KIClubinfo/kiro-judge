@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CollectModule } from './collect/collect.module';
+import { JudgeModule } from './judge/judge.module';
 import { getOrmConfig } from './database.config';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(getOrmConfig()), CollectModule],
+  imports: [TypeOrmModule.forRoot(getOrmConfig()), JudgeModule],
   controllers: [],
   components: [],
 })

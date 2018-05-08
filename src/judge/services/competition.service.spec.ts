@@ -1,19 +1,17 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { Repository } from 'typeorm';
-import { Campaign } from '../entities/campaign.entity';
-import { CampaignService } from './campaign.service';
+import { Competition } from '../entities/competition.entity';
+import { CompetitionService } from './competition.service';
 
-describe('CampaignService', () => {
+describe('CompetitionService', () => {
   let app: TestingModule;
 
-  const RepositoryMock = jest.fn<Repository<Campaign>>(() => ({
+  const RepositoryMock = jest.fn<Repository<Competition>>(() => ({
     find: jest.fn(() => [
       {
         id: 1,
-        name: 'first_campaign',
+        name: 'Super competition',
         desc: '',
-        isSuspended: false,
-        isReleased: true,
       },
     ]),
   }));
@@ -22,15 +20,15 @@ describe('CampaignService', () => {
   beforeAll(async () => {
     app = await Test.createTestingModule({
       components: [
-        CampaignService,
+        CompetitionService,
         { provide: 'CampaignRepository', useValue: mockedRepository },
       ],
     }).compile();
   });
 
-  describe('root', () => {
-    it('should return "Hello World!"', async () => {
-      const campaignService = app.get<CampaignService>(CampaignService);
+  describe('findAll', () => {
+    it('should return repository\'s find result', async () => {
+      const campaignService = app.get<CompetitionService>(CompetitionService);
       expect(await campaignService.findAll()).toEqual(mockedRepository.find());
       expect(mockedRepository.find).toHaveBeenCalled();
     });
