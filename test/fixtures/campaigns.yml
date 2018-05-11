@@ -1,8 +1,0 @@
-fixtures:
-    - Campaign:
-        id: 1
-        name: first_campaign
-        isReleased: true
-    - Campaign:
-        id: 2
-        name: second_campaign

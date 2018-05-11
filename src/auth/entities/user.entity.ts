@@ -11,14 +11,17 @@ export class User {
   @UpdateDateColumn()
   updatedAt: string;
 
-  @Column({ length: 500 })
-  name: string;
+  @Column()
+  email: string;
 
-  @Column('text') description: string;
+  @Column()
+  password: string;
 
-  @Column() isSuspended: boolean;
+  @Column()
+  firstName: string;
 
-  @Column() isReleased: boolean;
+  @Column()
+  lastName: string;
 
   @ManyToMany((type) => Team, (team) => team.members)
   teams: Team[];

@@ -1,4 +1,4 @@
-export function getOrmConfig() {
+function getOrmConfig() {
   let settings;
   if (process.env.NODE_ENV !== 'test') {
     settings = {
@@ -12,9 +12,9 @@ export function getOrmConfig() {
     settings = {
       host: 'localhost',
       port: 3306,
-      username: 'myway_test',
-      password: 'myway_test',
-      database: 'myway_test',
+      username: 'scoreboard_test',
+      password: 'scoreboard_test',
+      database: 'scoreboard_test',
       dropSchema: true,
       synchronize: true,
       logging: 'error',
@@ -24,9 +24,9 @@ export function getOrmConfig() {
   return Object.assign(
     {
       type: 'mysql',
-      entities: [__dirname + '/**/**.entity.ts'],
-      migrations: [__dirname + '/migrations/**/*.ts'],
-      subscribers: [__dirname + '/**/**.subscriber.ts'],
+      entities: [__dirname + '/src/**/**.entity.ts'],
+      migrations: [__dirname + '/src/migrations/**/*.ts'],
+      subscribers: [__dirname + '/src/**/**.subscriber.ts'],
       synchronize: false,
       logging: true,
       maxQueryExecutionTime: 1000,
@@ -36,3 +36,5 @@ export function getOrmConfig() {
     settings,
   );
 }
+
+module.exports = getOrmConfig();

@@ -1,10 +1,11 @@
 {
-  "name": "myway-back",
+  "name": "scoreboard-back",
   "version": "0.1.0",
   "description": "",
   "license": "MIT",
   "scripts": {
     "format": "prettier --write \"**/*.ts\"",
+    "fixtures:load": "ts-node ./scripts/load-fixtures.ts",
     "start": "ts-node -r tsconfig-paths/register src/main.ts",
     "start:dev": "nodemon",
     "prestart:prod": "rm -rf dist && tsc",
@@ -12,7 +13,7 @@
     "test": "jest",
     "test:cov": "jest --coverage",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "typeorm": "typeorm"
+    "typeorm": "ts-node ./node_modules/.bin/typeorm"
   },
   "dependencies": {
     "@nestjs/common": "^4.5.9",
@@ -21,7 +22,10 @@
     "@nestjs/testing": "^4.5.5",
     "@nestjs/typeorm": "^2.0.0",
     "@nestjs/websockets": "^4.5.8",
+    "jsonwebtoken": "^8.2.1",
     "mysql": "^2.15.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
     "reflect-metadata": "^0.1.12",
     "rxjs": "^5.5.6",
     "typeorm": "^0.2.0",
@@ -33,12 +37,12 @@
     "@types/js-yaml": "^3.11.1",
     "@types/node": "^9.3.0",
     "@types/supertest": "^2.0.4",
-    "jest": "^21.2.1",
+    "jest": "^22.4.0",
     "js-yaml": "^3.11.0",
-    "nodemon": "^1.14.1",
+    "nodemon": "^1.17.4",
     "prettier": "^1.11.1",
     "supertest": "^3.0.0",
-    "ts-jest": "^21.2.4",
+    "ts-jest": "^22.4.6",
     "ts-node": "^4.1.0",
     "tsconfig-paths": "^3.1.1",
     "tslint": "5.3.2"

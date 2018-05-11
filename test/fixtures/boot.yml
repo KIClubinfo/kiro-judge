@@ -1,0 +1,12 @@
+fixtures:
+    - User:
+        id: 1
+        email: me@example.com
+        firstName: Test
+        lastName: User
+
+    - User:
+        id: 2
+        email: you@example.com
+        firstName: Dummy
+        lastName: User
