@@ -1,0 +1,43 @@
+.layout-container {
+  padding: 30px;
+}
+
+.fill-remaining-space {
+  /* This fills the remaining space, by using flexbox.
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
+.mat-subheader {
+  padding: 0 16px;
+}
+
+mat-sidenav {
+  padding-top: 1.5em;
+  width: 250px;
+}
+
+mat-sidenav h3 {
+  margin: 1.5em 0 0.66em 0;
+}
+
+mat-sidenav .mat-nav-list {
+  padding: 0;
+}
+
+mat-sidenav .mat-nav-list .mat-list-item {
+  font-size: 14px;
+  height: 42px;
+}
+
+mat-sidenav .mat-nav-list .mat-list-item.active-link {
+   background: rgba(0,0,0,.04);
+ }
+
+mat-sidenav .mat-nav-list .mat-list-item .mat-icon {
+  padding-right: 32px;
+}
+
+mat-sidenav-container {
+  min-height: calc(100% - 64px);
+}

@@ -1,0 +1,40 @@
+<mat-toolbar color="primary">
+  <span>Online Judge</span>
+
+  <!-- This fills the remaining space of the current row -->
+  <span class="fill-remaining-space"></span>
+
+  <span>Right Aligned Text</span>
+</mat-toolbar>
+
+
+
+
+<mat-sidenav-container>
+  <mat-sidenav mode="side" opened="true">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/" routerLinkActive>
+        <mat-icon>home</mat-icon>
+        Home
+      </a>
+      <a mat-list-item routerLink="/competitions/0">
+        <mat-icon>group_work</mat-icon>
+        Compete
+      </a>
+      <a mat-list-item routerLink="/competitions/0/scoreboard">
+        <mat-icon>trending_up</mat-icon>
+        Scoreboard
+      </a>
+      <a mat-list-item routerLink="/teams/0">
+        <mat-icon>people</mat-icon>
+        My Team
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="layout-container">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
