@@ -1,6 +1,8 @@
 import {
   MatButtonModule,
-  MatCheckboxModule, MatDialogModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatDialogModule,
   MatDividerModule,
   MatFormFieldModule,
   MatIconModule,
@@ -28,6 +30,7 @@ const elementModules = [
   MatDividerModule,
   MatProgressSpinnerModule,
   MatDialogModule,
+  MatCardModule,
 ];
 
 @NgModule({

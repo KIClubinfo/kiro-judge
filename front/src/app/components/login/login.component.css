@@ -1,0 +1,16 @@
+.login-form-wrapper {
+  height: 100%;
+  width: 100%;
+}
+
+.login-form-wrapper .login-form {
+  position: absolute;
+  width: 350px;
+  height: 300px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  text-align: center;
+}

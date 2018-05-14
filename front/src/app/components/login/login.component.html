@@ -1,0 +1,31 @@
+<div class="login-form-wrapper">
+  <div class="login-form">
+    <h1>
+      Online Judge
+    </h1>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <h3>
+            Login
+          </h3>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form class="example-form" fxLayout="row wrap" (submit)="login()">
+          <mat-form-field fxFlex="100%">
+            <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
+          </mat-form-field>
+          <mat-form-field fxFlex="100%">
+            <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
+          </mat-form-field>
+        </form>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="login()">
+          Login
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

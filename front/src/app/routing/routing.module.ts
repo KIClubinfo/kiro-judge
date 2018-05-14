@@ -7,12 +7,21 @@ import { CompetitionDetailsComponent } from '../components/competition-details/c
 import { CompetitionResolver } from './competition.resolver';
 import { TeamResolver } from './team.resolver';
 import { CompetitionLeaderboardComponent } from '../components/competition-leaderboard/competition-leaderboard.component';
+import { AuthGuard } from '../services/auth.guard';
+import { LoginComponent } from '../components/login/login.component';
 
 
 const routes = [
   {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
     path: '',
     component: LayoutComponent,
+    canActivate: [
+      AuthGuard,
+    ],
     children: [
       {
         path: '',

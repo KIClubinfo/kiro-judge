@@ -15,6 +15,10 @@ import {
 } from './components/competition-details/competition-details.component';
 import { CompetitionLeaderboardComponent } from './components/competition-leaderboard/competition-leaderboard.component';
 import { TeamDetailsComponent } from './components/team-details/team-details.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './services/auth.guard';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +29,7 @@ import { TeamDetailsComponent } from './components/team-details/team-details.com
     UploadInstanceSolutionDialogComponent,
     CompetitionLeaderboardComponent,
     TeamDetailsComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,11 +38,15 @@ import { TeamDetailsComponent } from './components/team-details/team-details.com
     AppMaterialModule,
     FlexLayoutModule,
     RoutingModule,
+    HttpClientModule,
   ],
   entryComponents: [
     UploadInstanceSolutionDialogComponent,
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    AuthGuard,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
