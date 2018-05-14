@@ -4,4 +4,5 @@ export interface IInstance {
   updatedAt: string;
   name: string;
   description: string;
+  inputUrl: string;
 }

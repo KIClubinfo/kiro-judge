@@ -9,8 +9,11 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { RoutingModule } from './routing/routing.module';
-import { CompetitionDetailsComponent } from './components/competition-details/competition-details.component';
-import { CompetitionScoreboardComponent } from './components/competition-scoreboard/competition-scoreboard.component';
+import {
+  CompetitionDetailsComponent,
+  UploadInstanceSolutionDialogComponent,
+} from './components/competition-details/competition-details.component';
+import { CompetitionLeaderboardComponent } from './components/competition-leaderboard/competition-leaderboard.component';
 import { TeamDetailsComponent } from './components/team-details/team-details.component';
 
 @NgModule({
@@ -19,7 +22,8 @@ import { TeamDetailsComponent } from './components/team-details/team-details.com
     HomeComponent,
     LayoutComponent,
     CompetitionDetailsComponent,
-    CompetitionScoreboardComponent,
+    UploadInstanceSolutionDialogComponent,
+    CompetitionLeaderboardComponent,
     TeamDetailsComponent,
   ],
   imports: [
@@ -29,6 +33,9 @@ import { TeamDetailsComponent } from './components/team-details/team-details.com
     AppMaterialModule,
     FlexLayoutModule,
     RoutingModule,
+  ],
+  entryComponents: [
+    UploadInstanceSolutionDialogComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

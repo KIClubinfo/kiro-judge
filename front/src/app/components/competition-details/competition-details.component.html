@@ -25,10 +25,14 @@
       <span> {{ instance.description }} </span>
     </p>
 
-    <button mat-icon-button
-            matTooltip="Download instance {{ instance.name }} input"
+    <button mat-raised-button
             (click)="downloadInstanceInput(instance)">
-      <mat-icon>get_app</mat-icon>
+      Download input
+    </button>
+
+    <button mat-raised-button
+            (click)="uploadInstanceSolution(instance)">
+      Upload solution
     </button>
   </mat-list-item>
 </mat-list>

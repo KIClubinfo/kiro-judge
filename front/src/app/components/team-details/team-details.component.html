@@ -1,3 +1,56 @@
+<h1>
+  My Team
+</h1>
+
 <p>
-  team-details works!
+  <strong>Name:</strong> {{ team.name }}
 </p>
+<p>
+  {{ team.description }}
+</p>
+
+
+
+<h3>
+  Members
+</h3>
+
+<mat-list class="instance-list">
+  <mat-list-item *ngFor="let member of team.members; let last = last">
+    <mat-icon mat-list-icon>
+      person
+    </mat-icon>
+    <h3 matLine>
+      {{ member.firstName }} {{ member.lastName }}
+    </h3>
+    <p matLine>
+      {{ member.email }}
+    </p>
+    <mat-divider *ngIf="!last"></mat-divider>
+  </mat-list-item>
+</mat-list>
+
+<h3>
+  Submissions
+</h3>
+
+<mat-list class="instance-list">
+  <mat-list-item *ngFor="let submission of team.submissions; let last = last">
+    <mat-icon mat-list-icon *ngIf="submission.score !== null && submission.score >= 0">
+      done
+    </mat-icon>
+    <mat-icon mat-list-icon *ngIf="submission.score === -1">
+      error_outline
+    </mat-icon>
+    <mat-icon mat-list-icon *ngIf="submission.score === null">
+      autorenew
+    </mat-icon>
+    <h3 matLine>
+      Instance {{ submission.instance.name }}
+    </h3>
+    <p matLine>
+      Submitted on: {{ submission.createdAt }} / Score: {{ submission.score ? submission.score : 'Not yet computed' }}
+    </p>
+    <mat-divider *ngIf="!last"></mat-divider>
+  </mat-list-item>
+</mat-list>

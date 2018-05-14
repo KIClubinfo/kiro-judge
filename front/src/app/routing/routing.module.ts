@@ -5,8 +5,8 @@ import { HomeComponent } from '../components/home/home.component';
 import { TeamDetailsComponent } from '../components/team-details/team-details.component';
 import { CompetitionDetailsComponent } from '../components/competition-details/competition-details.component';
 import { CompetitionResolver } from './competition.resolver';
-import { TeamResolver } from '../components/team-details/team.resolver';
-import { CompetitionScoreboardComponent } from '../components/competition-scoreboard/competition-scoreboard.component';
+import { TeamResolver } from './team.resolver';
+import { CompetitionLeaderboardComponent } from '../components/competition-leaderboard/competition-leaderboard.component';
 
 
 const routes = [
@@ -32,8 +32,8 @@ const routes = [
                 component: CompetitionDetailsComponent,
               },
               {
-                path: 'scoreboard',
-                component: CompetitionScoreboardComponent,
+                path: 'leaderboard',
+                component: CompetitionLeaderboardComponent,
               },
             ]
           },

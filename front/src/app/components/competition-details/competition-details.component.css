@@ -1,5 +1,5 @@
 .instance-list {
-  max-width: 400px;
+  max-width: 800px;
 }
 
 h3 {
@@ -8,4 +8,9 @@ h3 {
 
 .subject-button {
   margin: 1.5em 0;
+}
+
+.mat-raised-button {
+  min-width: inherit;
+  margin-left: 0.5em;
 }
