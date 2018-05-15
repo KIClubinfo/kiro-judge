@@ -18,7 +18,7 @@ function forceDownload(href) {
 }
 
 
-@Component({
+@Injectable({
   selector: 'app-upload-instance-solution-dialog',
   templateUrl: 'upload-instance-solution-dialog.html',
 })
@@ -36,7 +36,7 @@ export class UploadInstanceSolutionDialogComponent {
 }
 
 
-@Component({
+@Injectable({
   selector: 'app-competition-details',
   templateUrl: './competition-details.component.html',
   styleUrls: ['./competition-details.component.css'],

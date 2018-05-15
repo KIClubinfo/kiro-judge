@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 
-@Component({
+@Injectable({
   templateUrl: './competition-leaderboard.component.html',
   styleUrls: ['./competition-leaderboard.component.css']
 })

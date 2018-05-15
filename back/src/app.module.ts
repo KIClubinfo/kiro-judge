@@ -1,16 +1,16 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import ormConfig from '../ormconfig';
 import { AuthModule } from './auth/auth.module';
-import { getOrmConfig } from '../ormconfig';
 import { JudgeModule } from './judge/judge.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot(getOrmConfig()),
+    TypeOrmModule.forRoot(ormConfig),
     AuthModule,
     JudgeModule,
   ],
   controllers: [],
-  components: [],
+  providers: [],
 })
 export class AppModule {}

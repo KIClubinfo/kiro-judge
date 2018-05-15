@@ -21,7 +21,7 @@ export async function loadFixtures(
 
   const connection = getConnection();
 
-  items.forEach(async (item: any) => {
+  await items.forEach(async (item: any) => {
     const entityName = Object.keys(item)[0];
     const data = item[entityName];
     const repo = connection.getRepository(entityName);

@@ -10,3 +10,15 @@ fixtures:
         email: you@example.com
         firstName: Dummy
         lastName: User
+
+    - Competition:
+        id: 1
+        name: 'KIRO 2018'
+        description: 'Super concours'
+        subjectUrl: 'https://google.fr/favicon.ico'
+
+    - Team:
+        id: 1
+        name: Best TEAM
+        competition: 1
+        members: [1, 2]

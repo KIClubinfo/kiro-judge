@@ -9,7 +9,7 @@ import { CompetitionService } from './services/competition.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Competition, Instance, Submission, Team])],
-  components: [CompetitionService],
+  providers: [CompetitionService],
   controllers: [CompetitionController],
 })
 export class JudgeModule {}

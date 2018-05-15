@@ -1,6 +1,7 @@
-import { Column, CreateDateColumn, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { User } from '../../auth/entities/user.entity';
 import { Competition } from './competition.entity';
+import { Submission } from './submission.entity';
 
 @Entity('teams')
 export class Team {
@@ -22,4 +23,7 @@ export class Team {
 
   @ManyToMany((type) => User, (user) => user.teams)
   members: User[];
+
+  @OneToMany((type) => Submission, (submission) => submission.team)
+  submissions: Submission[];
 }
