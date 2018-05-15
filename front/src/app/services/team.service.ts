@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { ITeam } from '../interfaces/team.interface';
+import { HttpClient } from '@angular/common/http';
 
-@Injectable({
-  providedIn: 'root'
-})
+
+@Injectable({ providedIn: 'root' })
 export class TeamService {
-  getAll(): Observable<ITeam[]> {
-    return of([]);
+
+  constructor(private http: HttpClient) { }
+
+  getTeam(id: number): Observable<ITeam> {
+    return this.http.get<ITeam>(`/teams/${id}`);
   }
 }

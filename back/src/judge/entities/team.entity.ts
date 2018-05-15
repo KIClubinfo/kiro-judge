@@ -21,9 +21,9 @@ export class Team {
   @ManyToOne((type) => Competition)
   competition: Competition;
 
-  @ManyToMany((type) => User, (user) => user.teams)
+  @ManyToMany((type) => User, (user) => user.teams, { eager: true })
   members: User[];
 
-  @OneToMany((type) => Submission, (submission) => submission.team)
+  @OneToMany((type) => Submission, (submission) => submission.team, { eager: true })
   submissions: Submission[];
 }

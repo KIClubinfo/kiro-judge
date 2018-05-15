@@ -9,6 +9,7 @@ import { TeamResolver } from './team.resolver';
 import { CompetitionLeaderboardComponent } from '../components/competition-leaderboard/competition-leaderboard.component';
 import { AuthGuard } from '../services/auth.guard';
 import { LoginComponent } from '../components/login/login.component';
+import { CompetitionLeaderboardResolver } from './competition-leaderboard.resolver';
 
 
 const routes = [
@@ -43,6 +44,9 @@ const routes = [
               {
                 path: 'leaderboard',
                 component: CompetitionLeaderboardComponent,
+                resolve: {
+                  leaderboard: CompetitionLeaderboardResolver,
+                }
               },
             ]
           },
@@ -77,6 +81,7 @@ const routes = [
   exports: [ RouterModule ],
   providers: [
     CompetitionResolver,
+    CompetitionLeaderboardResolver,
     TeamResolver,
   ],
 })

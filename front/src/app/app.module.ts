@@ -15,10 +15,13 @@ import {
 } from './components/competition-details/competition-details.component';
 import { CompetitionLeaderboardComponent } from './components/competition-leaderboard/competition-leaderboard.component';
 import { TeamDetailsComponent } from './components/team-details/team-details.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth.guard';
 import { LoginComponent } from './components/login/login.component';
+import { CompetitionService } from './services/competition.service';
+import { TeamService } from './services/team.service';
+import { AuthInterceptor } from './services/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -44,8 +47,11 @@ import { LoginComponent } from './components/login/login.component';
     UploadInstanceSolutionDialogComponent,
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     AuthService,
     AuthGuard,
+    CompetitionService,
+    TeamService,
   ],
   bootstrap: [AppComponent]
 })

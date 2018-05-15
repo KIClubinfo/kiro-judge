@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ITeam } from '../../interfaces/team.interface';
 
-@Injectable({
+@Component({
   selector: 'app-team-details',
   templateUrl: './team-details.component.html',
   styleUrls: ['./team-details.component.css']

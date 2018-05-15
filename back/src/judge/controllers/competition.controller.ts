@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { CompetitionService } from '../services/competition.service';
 
 @Controller('competitions')
@@ -8,5 +8,15 @@ export class CompetitionController {
   @Get()
   async findAll() {
     return this.competitionService.findAll();
+  }
+
+  @Get(':id')
+  async findOne(@Param('id') id) {
+    return this.competitionService.findOne(id);
+  }
+
+  @Get(':id/leaderboard')
+  async getLeaderboard(@Param('id') id) {
+    return this.competitionService.getLeaderboard(id);
   }
 }

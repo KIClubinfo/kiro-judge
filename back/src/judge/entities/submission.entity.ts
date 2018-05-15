@@ -17,6 +17,6 @@ export class Submission {
   @ManyToOne((type) => Team)
   team: Team;
 
-  @ManyToOne((type) => Instance)
+  @ManyToOne((type) => Instance, { eager: true })
   instance: Instance;
 }

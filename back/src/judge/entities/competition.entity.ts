@@ -16,6 +16,8 @@ export class Competition {
 
   @Column('text') description: string;
 
-  @OneToMany((type) => Instance, (instance) => instance.competition)
+  @Column() subjectUrl: string;
+
+  @OneToMany((type) => Instance, (instance) => instance.competition, { eager: true })
   instances: Instance[];
 }
