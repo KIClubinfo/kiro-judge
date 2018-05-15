@@ -21,15 +21,15 @@ export async function loadFixtures(
 
   const connection = getConnection();
 
-  await items.forEach(async (item: any) => {
+  await Promise.all(items.map((item: any) => {
     const entityName = Object.keys(item)[0];
     const data = item[entityName];
     const repo = connection.getRepository(entityName);
-    await repo
+    return repo
       .createQueryBuilder()
       .insert()
       .into(entityName)
       .values(data)
       .execute();
-  });
+  }));
 }
