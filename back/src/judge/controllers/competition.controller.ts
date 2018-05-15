@@ -1,7 +1,9 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, NotFoundException, Param, UseGuards } from '@nestjs/common';
 import { CompetitionService } from '../services/competition.service';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('competitions')
+@UseGuards(AuthGuard('jwt'))
 export class CompetitionController {
   constructor(private readonly competitionService: CompetitionService) {}
 
@@ -12,11 +14,19 @@ export class CompetitionController {
 
   @Get(':id')
   async findOne(@Param('id') id) {
-    return this.competitionService.findOne(id);
+    try {
+      return await this.competitionService.findOne(id);
+    } catch (e) {
+      throw new NotFoundException(e);
+    }
   }
 
   @Get(':id/leaderboard')
   async getLeaderboard(@Param('id') id) {
-    return this.competitionService.getLeaderboard(id);
+    try {
+      return await this.competitionService.getLeaderboard(id);
+    } catch (e) {
+      throw new NotFoundException(e);
+    }
   }
 }

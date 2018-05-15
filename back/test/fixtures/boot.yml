@@ -2,12 +2,14 @@ fixtures:
     - User:
         id: 1
         email: me@example.com
+        password: $2a$10$i2IMtlEdKtAAWyHu7r6.feOJgdhZLki/JcS3ymOhyDR4PuEIHo0wm
         firstName: Test
         lastName: User
 
     - User:
         id: 2
         email: you@example.com
+        password: $2a$10$i2IMtlEdKtAAWyHu7r6.feOJgdhZLki/JcS3ymOhyDR4PuEIHo0wm
         firstName: Dummy
         lastName: User
 
@@ -17,8 +19,33 @@ fixtures:
         description: 'Super concours'
         subjectUrl: 'https://google.fr/favicon.ico'
 
+    - Instance:
+        id: 1
+        name: Instance 1
+        description: Easy one
+        inputUrl: 'https://google.fr/favicon.ico'
+        competition: 1
+
+    - Instance:
+        id: 2
+        name: Instance 2
+        description: Tougher
+        inputUrl: 'https://google.fr/favicon.ico'
+        competition: 1
+
     - Team:
         id: 1
         name: Best TEAM
         competition: 1
-        members: [1, 2]
+
+    - Submission:
+        id: 1
+        instance: 1
+        team: 1
+        score: 6
+
+    - Submission:
+        id: 1
+        instance: 2
+        team: 1
+        score: null

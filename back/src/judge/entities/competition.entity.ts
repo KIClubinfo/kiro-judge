@@ -18,6 +18,6 @@ export class Competition {
 
   @Column() subjectUrl: string;
 
-  @OneToMany((type) => Instance, (instance) => instance.competition, { eager: true })
+  @OneToMany((type) => Instance, (instance) => instance.competition)
   instances: Instance[];
 }

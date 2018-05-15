@@ -1,4 +1,14 @@
-import { Column, CreateDateColumn, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 import { User } from '../../auth/entities/user.entity';
 import { Competition } from './competition.entity';
 import { Submission } from './submission.entity';
@@ -21,9 +31,10 @@ export class Team {
   @ManyToOne((type) => Competition)
   competition: Competition;
 
-  @ManyToMany((type) => User, (user) => user.teams, { eager: true })
+  @ManyToMany((type) => User, (user) => user.teams)
+  @JoinTable()
   members: User[];
 
-  @OneToMany((type) => Submission, (submission) => submission.team, { eager: true })
+  @OneToMany((type) => Submission, (submission) => submission.team)
   submissions: Submission[];
 }

@@ -1,42 +1,34 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { IUser } from '../interfaces/user.interface';
-
-export interface IJWT {
-  accessToken: string;
-  expiresAt: number;
-}
+import { IJWTPayload } from '../../../../back/src/auth/interfaces/jwt-payload.interface';
 
 const STORAGE_KEY = 'judge_jwt';
 
 @Injectable()
 export class AuthService {
-  // Store authentication data
-  currentUser: IUser;
-  jwt: IJWT;
-  authenticated: boolean;
+  private currentUser: IUser;
+  private jwtPayload: IJWTPayload;
+  private authenticated: boolean;
 
   constructor(private router: Router) {
-    const jwt = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    const jwt: IJWTPayload = JSON.parse(localStorage.getItem(STORAGE_KEY));
     // Check session to restore login if not expired
-    if (jwt && Date.now() < jwt.expiresAt) {
+    if (jwt && Date.now() < jwt.exp) {
       this.authenticated = true;
-      this.jwt = jwt;
+      this.jwtPayload = jwt;
     }
   }
 
-  login(username, password) {
-    this._setSession({
-      accessToken: 'TOTO',
-      expiresAt: Date.now() + 1000 * 1000,
-    }, null);
+  login(jwtPayload: IJWTPayload, userProfile?: IUser) {
+    this._setSession(jwtPayload, userProfile);
     this.router.navigate(['/']);
   }
 
-  private _setSession(jwtToken: IJWT, profile: IUser) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(jwtToken));
+  private _setSession(jwtPayload: IJWTPayload, profile: IUser) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(jwtPayload));
     this.authenticated = true;
-    this.jwt = jwtToken;
+    this.jwtPayload = jwtPayload;
     this.currentUser = profile;
   }
 
@@ -44,12 +36,24 @@ export class AuthService {
     // Remove auth data and update login status
     localStorage.removeItem(STORAGE_KEY);
     this.authenticated = false;
-    this.jwt = undefined;
+    this.jwtPayload = undefined;
     this.currentUser = undefined;
     this.router.navigate(['/login']);
   }
 
-  get isLoggedIn(): boolean {
-    return this.authenticated && Date.now() < this.jwt.expiresAt;
+  isLoggedIn(): boolean {
+    return this.authenticated && Date.now() < this.jwtPayload.exp;
+  }
+
+  getCurrentUser(): IUser {
+    return this.currentUser;
+  }
+
+  getCurrentCompetitionId(): number {
+    return this.jwtPayload.competitionId;
+  }
+
+  getCurrentTeamId(): number {
+    return this.jwtPayload.competitionId;
   }
 }

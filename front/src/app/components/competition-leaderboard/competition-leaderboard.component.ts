@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
-import { ITeamRanking } from '../../interfaces/team-ranking.interface';
+import { ITeamRanking } from '../../../../../back/src/judge/interfaces/team-ranking.interface';
 
 @Component({
   templateUrl: './competition-leaderboard.component.html',

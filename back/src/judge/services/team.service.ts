@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Team } from '../entities/team.entity';
@@ -11,14 +11,10 @@ export class TeamService {
   ) {}
 
   async findAll(): Promise<Team[]> {
-    return await this.teamRepository.find();
+    return this.teamRepository.find();
   }
 
   async findOne(id): Promise<Team> {
-    try {
-      return await this.teamRepository.findOneOrFail(id);
-    } catch (e) {
-      throw new NotFoundException(e);
-    }
+    return this.teamRepository.findOneOrFail(id, { relations: ['members', 'submissions', 'submissions.instance']});
   }
 }

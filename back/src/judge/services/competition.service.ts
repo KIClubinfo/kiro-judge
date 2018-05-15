@@ -1,8 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Competition } from '../entities/competition.entity';
-import { ITeamRanking } from '../../../../front/src/app/interfaces/team-ranking.interface';
+import { ITeamRanking } from '../interfaces/team-ranking.interface';
 
 @Injectable()
 export class CompetitionService {
@@ -12,15 +12,11 @@ export class CompetitionService {
   ) {}
 
   async findAll(): Promise<Competition[]> {
-    return await this.competitionRepository.find();
+    return this.competitionRepository.find();
   }
 
   async findOne(id): Promise<Competition> {
-    try {
-      return await this.competitionRepository.findOneOrFail(id);
-    } catch (e) {
-      throw new NotFoundException(e);
-    }
+    return this.competitionRepository.findOneOrFail(id, { relations: ['instances']});
   }
 
   async getLeaderboard(id): Promise<ITeamRanking[]> {

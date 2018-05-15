@@ -7,12 +7,16 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./layout.component.css']
 })
 export class LayoutComponent implements OnInit {
+  competitionId: number;
+  teamId: number;
 
   constructor(
     private authService: AuthService,
   ) { }
 
   ngOnInit() {
+    this.competitionId = this.authService.getCurrentCompetitionId();
+    this.teamId = this.authService.getCurrentTeamId();
   }
 
   logout() {

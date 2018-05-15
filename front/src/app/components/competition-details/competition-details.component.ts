@@ -15,6 +15,8 @@ function forceDownload(href) {
   document.body.appendChild(anchorElement);
   anchorElement.click();
   document.body.removeChild(anchorElement);
+
+  // window.open(href, '_blank');
 }
 
 

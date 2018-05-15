@@ -12,11 +12,11 @@ export class Submission {
   @UpdateDateColumn()
   updatedAt: string;
 
-  @Column('float') score: number;
+  @Column({ type: 'float', nullable: true }) score: number;
 
-  @ManyToOne((type) => Team)
+  @ManyToOne((type) => Team, { nullable: false })
   team: Team;
 
-  @ManyToOne((type) => Instance, { eager: true })
+  @ManyToOne((type) => Instance, { nullable: false })
   instance: Instance;
 }
