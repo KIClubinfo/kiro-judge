@@ -8,16 +8,15 @@ import { User } from '../entities/user.entity';
 export class AuthService {
   constructor(private readonly userService: UserService) {}
 
-  async createToken(user: User) {
+  async createToken(user: User, extraClaims: {teamId, competitionId}) {
     const payload: IJWTPayload = {
-      email: 'user@email.com',
-      teamId: 1,
-      competitionId: 1,
+      ...extraClaims,
+      email: user.email,
     };
     return jwt.sign(payload, 'secretKey', { expiresIn: 3600 });
   }
 
-  async validateUser(payload: IJWTPayload): Promise<any> {
+  async validateUser(payload: IJWTPayload): Promise<User> {
     return await this.userService.findOneByEmail(payload.email);
   }
 }

@@ -1,18 +1,4 @@
 fixtures:
-    - User:
-        id: 1
-        email: me@example.com
-        password: $2a$10$i2IMtlEdKtAAWyHu7r6.feOJgdhZLki/JcS3ymOhyDR4PuEIHo0wm
-        firstName: Test
-        lastName: User
-
-    - User:
-        id: 2
-        email: you@example.com
-        password: $2a$10$i2IMtlEdKtAAWyHu7r6.feOJgdhZLki/JcS3ymOhyDR4PuEIHo0wm
-        firstName: Dummy
-        lastName: User
-
     - Competition:
         id: 1
         name: 'KIRO 2018'
@@ -37,6 +23,18 @@ fixtures:
         id: 1
         name: Best TEAM
         competition: 1
+        members:
+          - email: you@example.com
+            # hash for "password"
+            password: $2a$10$i2IMtlEdKtAAWyHu7r6.feOJgdhZLki/JcS3ymOhyDR4PuEIHo0wm
+            firstName: Dummy
+            lastName: User
+
+          - email: me@example.com
+            # hash for "password"
+            password: $2a$10$i2IMtlEdKtAAWyHu7r6.feOJgdhZLki/JcS3ymOhyDR4PuEIHo0wm
+            firstName: Test
+            lastName: User
 
     - Submission:
         id: 1

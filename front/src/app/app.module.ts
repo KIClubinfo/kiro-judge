@@ -22,6 +22,7 @@ import { LoginComponent } from './components/login/login.component';
 import { CompetitionService } from './services/competition.service';
 import { TeamService } from './services/team.service';
 import { AuthInterceptor } from './services/auth.interceptor';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { AuthInterceptor } from './services/auth.interceptor';
     AuthGuard,
     CompetitionService,
     TeamService,
+    UserService,
   ],
   bootstrap: [AppComponent]
 })

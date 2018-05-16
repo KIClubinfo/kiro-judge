@@ -31,7 +31,8 @@ export class Team {
   @ManyToOne((type) => Competition)
   competition: Competition;
 
-  @ManyToMany((type) => User, (user) => user.teams)
+  // FIXME SHOULD NOT CASCADE
+  @ManyToMany((type) => User, (user) => user.teams, { cascade: true })
   @JoinTable()
   members: User[];
 

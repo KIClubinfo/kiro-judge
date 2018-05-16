@@ -19,6 +19,6 @@ export class UserService {
   }
 
   async findOneByEmail(email): Promise<User> {
-    return this.userRepository.findOneOrFail({ email });
+    return this.userRepository.findOneOrFail({ email }, { relations: ['teams', 'teams.competition']});
   }
 }

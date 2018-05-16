@@ -1,4 +1,14 @@
-import { Body, Controller, Get, NotFoundException, Param, Post, UnauthorizedException, UseGuards } from '@nestjs/common';
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  Get,
+  NotFoundException,
+  Param,
+  Post,
+  UnauthorizedException,
+  UseGuards,
+} from '@nestjs/common';
 import { UserService } from '../services/user.service';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from '../services/auth.service';
@@ -42,6 +52,17 @@ export class UserController {
       throw new UnauthorizedException();
     }
 
-    return this.authService.createToken(user);
+    if (user.teams.length !== 1) {
+      throw new BadRequestException('Must have exactly one team!');
+    }
+
+    const team = user.teams[0];
+
+    return {
+      token: await this.authService.createToken(user, {
+        teamId: team.id,
+        competitionId: team.competition.id,
+      }),
+    };
   }
 }
