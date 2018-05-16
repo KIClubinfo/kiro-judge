@@ -23,6 +23,7 @@ import { CompetitionService } from './services/competition.service';
 import { TeamService } from './services/team.service';
 import { AuthInterceptor } from './services/auth.interceptor';
 import { UserService } from './services/user.service';
+import { SubmissionService } from './services/submission.service';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { UserService } from './services/user.service';
     CompetitionService,
     TeamService,
     UserService,
+    SubmissionService,
   ],
   bootstrap: [AppComponent]
 })

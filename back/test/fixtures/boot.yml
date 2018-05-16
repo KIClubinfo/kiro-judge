@@ -49,7 +49,7 @@ fixtures:
     - Submission:
         instance: 2
         team: 1
-        score: null
+        error: HARD ERROR
 
     - Submission:
         instance: 1

@@ -30,16 +30,14 @@ export class SubmissionService {
     const kiroSolution = new KiroSolution(solutionString);
 
     let lastException: Error;
-    let score: number;
     try {
       checkSolution(kiroInstance, kiroSolution);
-      score = evaluateSolution(kiroInstance, kiroSolution);
+      submission.score = evaluateSolution(kiroInstance, kiroSolution);
     } catch (exception) {
       lastException = new UnprocessableEntityException(exception.message);
-      score = -1;
+      submission.error = exception.message;
     } finally {
-      submission.score = score;
-      submission = await this.submissionRepository.create(submission);
+      submission = await this.submissionRepository.save(submission);
     }
 
     if (!lastException) {

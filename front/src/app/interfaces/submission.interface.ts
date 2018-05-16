@@ -8,4 +8,5 @@ export interface ISubmission {
   team?: ITeam;
   instance: IInstance;
   score: number;
+  error: string;
 }

@@ -36,20 +36,20 @@
 
 <mat-list class="instance-list">
   <mat-list-item *ngFor="let submission of team.submissions; let last = last">
-    <mat-icon mat-list-icon *ngIf="submission.score !== null && submission.score >= 0">
+    <mat-icon mat-list-icon *ngIf="submission.score !== null && submission.error === null">
       done
     </mat-icon>
-    <mat-icon mat-list-icon *ngIf="submission.score === -1">
+    <mat-icon mat-list-icon *ngIf="submission.error !== null">
       error_outline
     </mat-icon>
-    <mat-icon mat-list-icon *ngIf="submission.score === null">
+    <mat-icon mat-list-icon *ngIf="submission.score === null && submission.error === null">
       autorenew
     </mat-icon>
     <h3 matLine>
       Instance {{ submission.instance.name }}
     </h3>
     <p matLine>
-      Submitted on: {{ submission.createdAt | date:'medium' }} / Score: {{ submission.score ? submission.score : 'not yet computed' }}
+      Submitted on: {{ submission.createdAt | date:'medium' }} / {{ submission.error ? 'Error: ' + submission.error : 'Score: ' + submission.score }}
     </p>
     <mat-divider *ngIf="!last"></mat-divider>
   </mat-list-item>

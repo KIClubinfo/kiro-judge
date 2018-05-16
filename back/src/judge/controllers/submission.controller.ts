@@ -13,7 +13,6 @@ export class SubmissionController {
     @Body() dto: SubmissionCreationDto,
     @Req() request,
   ) {
-    console.log(dto);
     // if (!request.user.teams.find((team) => team.id === teamId)) {
     //   throw new ForbiddenException();
     // }

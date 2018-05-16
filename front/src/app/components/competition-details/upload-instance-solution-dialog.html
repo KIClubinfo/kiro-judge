@@ -3,7 +3,7 @@
 </h1>
 <div mat-dialog-content>
   <p>Uploading for instance: {{ data.instance.name }}</p>
-  <input type="file" [(ngModel)]="data.solution">
+  <input type="file" #file (change)="onFileSelected(file)">
 </div>
 <div mat-dialog-actions>
   <button mat-button mat-dialog-close>

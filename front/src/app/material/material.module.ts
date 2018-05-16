@@ -10,6 +10,7 @@ import {
   MatListModule,
   MatProgressSpinnerModule,
   MatSidenavModule,
+  MatSnackBarModule,
   MatTableModule,
   MatToolbarModule,
   MatTooltipModule,
@@ -31,6 +32,7 @@ const elementModules = [
   MatProgressSpinnerModule,
   MatDialogModule,
   MatCardModule,
+  MatSnackBarModule,
 ];
 
 @NgModule({

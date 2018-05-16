@@ -1,8 +1,12 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ICompetition } from '../../interfaces/competition.interface';
 import { IInstance } from '../../interfaces/instance.interface';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
+import { SubmissionService } from '../../services/submission.service';
+import { AuthService } from '../../services/auth.service';
+import { finalize } from 'rxjs/operators';
+import { ISubmission } from '../../interfaces/submission.interface';
 
 function forceDownload(href) {
   const filename = href.substring(href.lastIndexOf('/') + 1);
@@ -25,15 +29,47 @@ function forceDownload(href) {
   templateUrl: 'upload-instance-solution-dialog.html',
 })
 export class UploadInstanceSolutionDialogComponent {
+  @ViewChild('file')
+  private fileInput;
+
+  private file: File;
 
   constructor(
+    private submissionService: SubmissionService,
+    private authService: AuthService,
+    public snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<UploadInstanceSolutionDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {}
 
+  onFileSelected() {
+    this.file = this.fileInput.nativeElement.files[0];
+  }
+
   onSubmitSolution() {
-    console.log(this.data.solution);
-    this.dialogRef.close();
+    if (!this.file) {
+      return this.dialogRef.close();
+    }
+
+    const fileReader = new FileReader();
+    fileReader.readAsText(this.file, 'UTF-8');
+    fileReader.onload = (evt) => {
+      this.submissionService.create(
+        this.data.instance.id,
+        this.authService.getCurrentTeamId(),
+        evt.target.result,
+      ).subscribe((submission: ISubmission) => {
+        this.snackBar.open(`Score: ${submission.score}`, null, {
+          duration: 3000,
+        });
+        return this.dialogRef.close();
+      }, (response) => {
+        this.snackBar.open(response.error.message, null, {
+          duration: 3000,
+        });
+        return this.dialogRef.close();
+      });
+    };
   }
 }
 

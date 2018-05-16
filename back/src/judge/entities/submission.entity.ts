@@ -12,7 +12,9 @@ export class Submission {
   @UpdateDateColumn()
   updatedAt: string;
 
-  @Column({ type: 'float', nullable: true }) score: number;
+  @Column({ type: 'float', nullable: true, default: null }) score: number;
+
+  @Column({ nullable: true, default: null }) error: string;
 
   @ManyToOne((type) => Team, { nullable: false })
   team: Team;
