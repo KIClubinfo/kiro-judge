@@ -1,0 +1,425 @@
+fixtures:
+    - Competition:
+        id: 1
+        name: 'KIRO 2018'
+        description: "Bienvenue sur le Judge System du KIRO 2018 ! Vous trouverez ici le sujet et les instances de cette session à télécharger. C'est également ici que vous pourrez envoyer vos solutions et consulter le scoreboard de la compétition."
+        subjectUrl: '/competitions/1/download'
+
+    - Instance:
+        id: 1
+        name: Exemple
+        description: Toute petite instance pour prendre en main le sujet.
+        inputUrl: '/instances/1/download'
+        competition: 1
+
+    - Instance:
+        id: 2
+        name: Aéroports régionaux
+        description: Une petite instance pour tester les algorithmes.
+        inputUrl: '/instances/2/download'
+        competition: 1
+
+    - Instance:
+        id: 3
+        name: Aéroports nationaux
+        description: Une instance de taille moyenne.
+        inputUrl: '/instances/3/download/'
+        competition: 1
+
+    - Instance:
+        id: 4
+        name: Aéroports internationaux
+        description: Une très très grosse instance !
+        inputUrl: '/instances/4/download'
+        competition: 1
+
+    - Team:
+        id: 1
+        name: Centaure
+        competition: 1
+        members:
+          - lastName: Bernhard
+            firstName: Thomas
+            email: thomas.bernhard@eleves.enpc.fr
+            plainpassword: 6YMwFpPdrZ
+            category: 1a
+            password: $2b$10$2AskvZzm73EJXOeZLM310uYkpoNNEJH4kZgvOQhvNvscZSxTVARpm
+    
+          - lastName: Perez
+            firstName: Alexandre
+            email: alexandre.perez@eleves.enpc.fr
+            plainpassword: sMf0sepbnZ
+            category: 1a
+            password: $2b$10$rjZzapx2mSM/g2Ukg/dWuOh7fFoCISm2yWgrcTinpH6ijB/8b5II2
+    
+          - lastName: Eudes
+            firstName: Antoine
+            email: antoine.eudes@gmail.com
+            plainpassword: 5vXb15Wr9J
+            category: 1a
+            password: $2b$10$NEy1mpg/ucg7.zTGBmu3Z.cWsE3gGupsMS5KEEwidwVQPb2/kNPfS
+    
+    - Team:
+        id: 2
+        name: CMD
+        competition: 1
+        members:
+          - lastName: Martin
+            firstName: Paul
+            email: paul.martin@eleves.enpc.fr
+            plainpassword: oNV4GIWMy2
+            category: 1a
+            password: $2b$10$dg0B3ElE929ssKUpgngWLuf8d.Od5aZEiy2HXpMWfdYyANmz.HYfa
+    
+          - lastName: Collin
+            firstName: Sasha
+            email: sasha.collin@eleves.enpc.fr
+            plainpassword: xgtZGu9oio
+            category: 1a
+            password: $2b$10$1JDsIpGOM/SqvpjEWRIGx.lron834SC41NeIcjyFiKjGBfHlOp1lm
+    
+          - lastName: Diai
+            firstName: Samuel
+            email: samuel.diai@eleves.enpc.fr
+            plainpassword: 7SXFSKCJcm
+            category: 1a
+            password: $2b$10$xIqkpMBpvVzGa0Dg/bW80eybiBtKNdTVuWlt1AbqxP6VqNOlPAitC
+    
+    - Team:
+        id: 3
+        name: Eastern Dragon
+        competition: 1
+        members:
+          - lastName: LIU
+            firstName: Kang
+            email: kang.liu@eleves.enpc.fr
+            plainpassword: LzWB8SjDq4
+            category: 2a
+            password: $2b$10$gbUoeYiPO2uOK3v8oVgX9OoiZO6K.ZNP96duV.g7VD8P.QXvANxZ.
+    
+          - lastName: Wu
+            firstName: Jiabin
+            email: jiabin.wu@eleves.enpc.fr
+            plainpassword: tQ9Dm9ZXXP
+            category: 2a
+            password: $2b$10$gHhMe9rELy6mg64sTo.TyO.NMPVkroRSrFerhdLk3HM8RAL4SeQSG
+    
+          - lastName: Li
+            firstName: Zijie
+            email: zijie.liu@eleves.enpc.fr
+            plainpassword: q1wYaZzYZW
+            category: 2a
+            password: $2b$10$k9N1zkYSo6jfdamAaTLLju0NQz5tofs5AhVIOLwffdFKgWO7TMQVy
+    
+    - Team:
+        id: 4
+        name: ExtensionsGaloisiennes
+        competition: 1
+        members:
+          - lastName: Vanlaer
+            firstName: Youval
+            email: youval@vanlaer.fr
+            plainpassword: xUUSCT5JwX
+            category: 1a
+            password: $2b$10$czig6tKrwX6f3oaKmZxehuCuNgAvRPbsAp6MzfAYsX.p6rmdNA.gu
+    
+          - lastName: Grellier
+            firstName: Léonard
+            email: leonard.grellier@eleves.enpc.fr
+            plainpassword: jmhyEhLkoi
+            category: 1a
+            password: $2b$10$5vZLXHrBybq6Ddb2HYyuOuUrw3aCS.xUQP.pE7xqfrxtlQZXbOZ5.
+    
+          - lastName: Graive
+            firstName: Martin
+            email: martin.graive@eleves.enpc.fr
+            plainpassword: 6sRp0uNljM
+            category: 1a
+            password: $2b$10$UfF.DluW0MUlUgqKwvLcR.BwwNebqjMWX40kVKJ1xTyNVscrpEkpu
+    
+    - Team:
+        id: 5
+        name: G.O.D.
+        competition: 1
+        members:
+          - lastName: Duval
+            firstName: Maxime
+            email: maxime.duval@eleves.enpc.fr
+            plainpassword: qI7T4dhrik
+            category: 2a
+            password: $2b$10$4/L5goGRnO7GBTCyVTWkZuT.zkLU2oh36HIG9ojhIN36ngKATUGMW
+    
+          - lastName: Orhan
+            firstName: Mathieu
+            email: mathieu.orhan@eleves.enpc.fr
+            plainpassword: v762UHVM2c
+            category: 2a
+            password: $2b$10$S9aywf7xwvUSnjaN2HcGc.2N8pVBBYcbKQ3fNOeTMpeb0DVLiHDz.
+    
+          - lastName: Ginoulhac
+            firstName: Raphael
+            email: raphael.ginoulhac@eleves.enpc.fr
+            plainpassword: MNCdfNSdl2
+            category: 2a
+            password: $2b$10$Mxkbb1XvU9PDD5DTllhwF.Vutw92zsvGrugz9DSOgH87ZHBNvljh6
+    
+    - Team:
+        id: 6
+        name: GI is the new IMI
+        competition: 1
+        members:
+          - lastName: Viel
+            firstName: Théo
+            email: theo.viel@eleves.enpc.fr
+            plainpassword: DFcgCPmSsr
+            category: 2a
+            password: $2b$10$aKjrLDymecCbLwBic36.COLcMQH0zEoW2K5aic7ouAhIdf8MiXMOi
+    
+          - lastName: Déchamps
+            firstName: Bastien
+            email: bastien.dechamps@eleves.enpc.fr
+            plainpassword: UeFSPEOoNR
+            category: 2a
+            password: $2b$10$zbWFZt8kPxraf2XlyDz7f.GIYPi1/ceYDvDVYdGVfKDwb..bkcwam
+    
+          - lastName: Villard
+            firstName: Pierre-François
+            email: pierre-francois.villard@eleves.enpc.fr
+            plainpassword: kris2wEpqq
+            category: 2a
+            password: $2b$10$RhCZwbC4iraznPkjnaul1Oj1vDQJ8aAFQq9NOEj.6XC/F9uaruuXi
+    
+    - Team:
+        id: 7
+        name: Hugo
+        competition: 1
+        members:
+          - lastName: Alimov
+            firstName: Gaspard
+            email: gaspard.alimov@eleves.enpc.fr
+            plainpassword: 1CulzF1H6U
+            category: 1a
+            password: $2b$10$tGqu5oc3YGMev08WDIWQmuIPKTcTygPpUez4/6aT2b5s0zeUDK.bG
+    
+          - lastName: De Roux
+            firstName: Nicolas
+            email: nicolas.de-roux@eleves.enpc.fr
+            plainpassword: IK87lNlrAO
+            category: 1a
+            password: $2b$10$CnAY3ikopF9G.X8x.Y5tCe7y5V6VLeVoGmj1MU9KJMsrpps9flT52
+    
+          - lastName: Le Magueresse
+            firstName: Malo
+            email: malo.le-magueresse@eleves.enpc.fr
+            plainpassword: MRSqeDbjMT
+            category: 1a
+            password: $2b$10$kasSOHH2Q6gx0F1h5p.KruQtldr0qNVB9I7v/X4YxmeDasTAXFdIu
+    
+    - Team:
+        id: 8
+        name: Krypton
+        competition: 1
+        members:
+          - lastName: BEGHDADI
+            firstName: Houssein
+            email: elhoussein1998@gmail.com
+            plainpassword: hhntUeNSu9
+            category: 1a
+            password: $2b$10$AkRBOacj/SINfPKIyxOYBew8m4MBXR2i7Sls/bcpRXZDZK9GWgi86
+    
+          - lastName: LAFARGUE
+            firstName: Arnaud
+            email: arnaud.lafargue@eleves.enpc.fr
+            plainpassword: CtUTFd8pvl
+            category: 1a
+            password: $2b$10$0k3.fN8KYY3WbxO9.WpFteje2ZBTS9ZSsGSdtoyZOLE7EMbVf/rTm
+    
+          - lastName: DUONG
+            firstName: Song
+            email: song-phuc.duong@eleves.enpc.fr
+            plainpassword: FWyW3o9mtF
+            category: 1a
+            password: $2b$10$oLn9MtyKvRcnmCwnfNe5GucadZrqjc0aqQ2eagKTwxVSE8tbGWvfC
+    
+    - Team:
+        id: 9
+        name: Les codeurs fous
+        competition: 1
+        members:
+          - lastName: Moreau
+            firstName: terry
+            email: terry.moreau@ensg.eu
+            plainpassword: hfxP6t2cJi
+            category: ext
+            password: $2b$10$ZS1LfxyB4QCtZxu30VCf0uTQa.nQsnaf29i/.heWrobCGZlC56f0u
+    
+          - lastName: Chen-yen-su
+            firstName: Eva
+            email: eva.chen-yen-su@ensg.eu
+            plainpassword: UZODRzr03o
+            category: ext
+            password: $2b$10$OGOumnllU5GkkKV4t6V5yu2bgNQN2PSFg8.ukpOO7CYfIB48Xr4da
+    
+          - lastName: Coatseliou
+            firstName: Alexis
+            email: alexis.coatseliou@ensg.eu
+            plainpassword: nrX7RLqG48
+            category: ext
+            password: $2b$10$Nv3zwvrBr2fvQw6g55Hip.vpTl5Vb9DKV2ineUtG9iMR0B51X69VG
+    
+    - Team:
+        id: 10
+        name: Les derniers
+        competition: 1
+        members:
+          - lastName: Spinat
+            firstName: Quentin
+            email: quentin.spinat@eleves.enpc.fr
+            plainpassword: WHSkAsyhpr
+            category: 1a
+            password: $2b$10$aYIY.0bfyHeBGXhvsvUxlOyjBb0lkN6p/2TE9pvqiHKeIwaF1k14W
+    
+          - lastName: Lasuen
+            firstName: Clément
+            email: clement.lasuen@eleves.enpc.fr
+            plainpassword: yFOj8Uzn9U
+            category: 1a
+            password: $2b$10$d6oxQ80jWvRbApmWIAQuNeDpv2XYqQ5uSSGA.Jin7fumbN4shaJvK
+    
+          - lastName: Schmitt
+            firstName: Jean-Christophe
+            email: jean-christophe.schmitt@eleves.enpc.fr
+            plainpassword: ykfS2Vxmwu
+            category: 1a
+            password: $2b$10$mvm3NcO3TftrxQ5G5/QXuOzyTmxQ2iEon//6cbDOL1mXhTAldhh/a
+    
+    - Team:
+        id: 11
+        name: MAF assure 
+        competition: 1
+        members:
+          - lastName: Moreau
+            firstName: Matthieu
+            email: matthieu.moreau@eleves.enpc.fr
+            plainpassword: moObkHJNBg
+            category: 2a
+            password: $2b$10$XvJwpOyZINoleVqQO1rSH.MhHfuOZs8YUfZvhy.wAo7rXMm8MzC3q
+    
+          - lastName: De Reviers
+            firstName: Antoine
+            email: antoine.de-reviers-de-mauny@eleves.enpc.fr
+            plainpassword: 56yNslviiC
+            category: 2a
+            password: $2b$10$dtOBW3JSO7SD82PRCxnOt.IiD3zjndueABtj17kVbQMz7xyChtww2
+    
+          - lastName: Lespagnol
+            firstName: Fabien
+            email: fabien.lespagnol@eleves.enpc.fr
+            plainpassword: Qv1yS5lFFw
+            category: 2a
+            password: $2b$10$cj1hzkEuJ/XOEnhDbv1oqOFmYYmlzerRYxnJGB66UdSg0zudu0JL6
+    
+    - Team:
+        id: 12
+        name: magie.monasse
+        competition: 1
+        members:
+          - lastName: Campo
+            firstName: Yannis
+            email: campo.yannis@gmail.com
+            plainpassword: kGkCkNbXz4
+            category: 1a
+            password: $2b$10$VC/z/G1fcgtLe.PupAN5VuSbBluAU7ra54LzmuwKoX8HEhcIQzMvK
+    
+          - lastName: Brunod Indrigo
+            firstName: Luca
+            email: luca.brunod.indrigo@gmail.com
+            plainpassword: d4J032YH56
+            category: 1a
+            password: $2b$10$pGpXxPmWf/O.H1vZftuBMOW8Cce/idLcpeVCkY9kxa48o5VHXz22m
+    
+          - lastName: Baty
+            firstName: Léo
+            email: leo.baty@laposte.net
+            plainpassword: Ks9jd41u69
+            category: 1a
+            password: $2b$10$USOlerptIiQ.cNcKJSUlfePFdV1uDPp68qHxRj1rt8dIjnI5RMHgC
+    
+    - Team:
+        id: 13
+        name: The zeROs Guillotine Cutter
+        competition: 1
+        members:
+          - lastName: Andres
+            firstName: Hervé
+            email: herve.andres@eleves.enpc.fr
+            plainpassword: 1OoRGq5jCy
+            category: 2a
+            password: $2b$10$fCYQgeh4QD3E4M8ZSh5rFOqV2zjXdSd3OSyJLkVevejgMEQq7NciS
+    
+          - lastName: Roux
+            firstName: Matthieu
+            email: matthieu.roux@eleves.enpc.fr
+            plainpassword: T09I5jDyTH
+            category: 2a
+            password: $2b$10$.hlZAq7jzagQUBzNh37Z6e2AO9jNzXDyL9svM5Oa9lS7wdSnjhZYm
+    
+          - lastName: Augé
+            firstName: Marc-Antoine
+            email: marc-antoine.auge@eleves.enpc.fr
+            plainpassword: KwY8Wbxck4
+            category: 2a
+            password: $2b$10$LShxv49bOdSOee4iISMDqudzBlW4G.iSWthJfCNn6eMTJZgA77lJC
+    
+    - Team:
+        id: 14
+        name: Turtle on the Chaussée !
+        competition: 1
+        members:
+          - lastName: Khalil
+            firstName: Iyes
+            email: iyes.khalil@eleves.enpc.fr
+            plainpassword: 3TKWqbAzSQ
+            category: 1a
+            password: $2b$10$GDbW8DKiRC1An/c0bL3bqepoLdunjQ7t4uKvHto4mbNAppL4EtTiK
+    
+          - lastName: Lauréat
+            firstName: Jérémy
+            email: jeremy.lauret@eleves.enpc.fr
+            plainpassword: MtHCFD7Eu6
+            category: 1a
+            password: $2b$10$gKf9lTRwiqYGXF/iklS/auVc/WGzx6B8gNlYpsW8CnkoFL11gn4Ha
+    
+          - lastName: Segerie
+            firstName: Charbel-raphaël
+            email: charbel-raphael.segerie@enpc.fr
+            plainpassword: DATzLJh9QH
+            category: 1a
+            password: $2b$10$yZ9WxVlFiYE970qIq2QVJOA7glyFe74nEfOj.d9he5err9/RKvzP6
+    
+    - Team:
+        id: 15
+        name: VicTeam
+        competition: 1
+        members:
+          - lastName: Bodor
+            firstName: Hamza
+            email: hamza.bodor@eleves.enpc.fr
+            plainpassword: xuSY0IUMUd
+            category: 1a
+            password: $2b$10$ofIIxkszcqm2fCsTtTlGOeHswXDxS/nuqnxDhampM2IyZSIkgEOAa
+    
+          - lastName: MARRAKCHI BENAZZOUZ
+            firstName: Mouad
+            email: mouad.marrakchi-benazzouz@eleves.enpc.fr
+            plainpassword: F6IrcO28KN
+            category: 1a
+            password: $2b$10$FD1PIxftBD2PflK8GyYvCuyDyEULNFA22TcRpVnYdhJcnpLnSq/8C
+    
+          - lastName: ALAMI MESSAOUDI
+            firstName: Wissam
+            email: wissam.alami-messaoudi@eleves.enpc.fr
+            plainpassword: 1wT1sqGj2w
+            category: 1a
+            password: $2b$10$GoYHu6TqQ5iFJ0Yh3hcEpuHWzT6Q4bxJgRgUXbt7lvrRwo2sqIGDu
+
