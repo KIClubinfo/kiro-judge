@@ -36,14 +36,32 @@ fixtures:
             firstName: Test
             lastName: User
 
+    - Team:
+        id: 2
+        name: Second TEAM
+        competition: 1
+
     - Submission:
-        id: 1
         instance: 1
         team: 1
         score: 6
 
     - Submission:
-        id: 1
         instance: 2
         team: 1
         score: null
+
+    - Submission:
+        instance: 1
+        team: 1
+        score: 66
+
+    - Submission:
+        instance: 2
+        team: 1
+        score: 3
+
+    - Submission:
+        instance: 2
+        team: 1
+        score: 33

@@ -21,11 +21,15 @@ export async function loadFixtures(
 
   const connection = getConnection();
 
-  await Promise.all(items.map((item: any) => {
-    const entityName = Object.keys(item)[0];
-    const data = item[entityName];
-    const entity = connection.getRepository(entityName).create(data);
-    console.log(entity);
-    return connection.manager.save(entity);
-  }));
+  for (const item of items) {
+    await loadItem(connection, item);
+  }
+}
+
+async function loadItem(connection, item: any) {
+  const entityName = Object.keys(item)[0];
+  const data = item[entityName];
+  const entity = connection.getRepository(entityName).create(data);
+  // console.log(entity);
+  return connection.manager.save(entity);
 }
