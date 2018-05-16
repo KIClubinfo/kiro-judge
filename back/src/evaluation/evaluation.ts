@@ -53,6 +53,12 @@ export function checkSolution(
         }
     }
 
+    // planes and rotations must have same length
+    // normally always ok, but just in case
+    if(planes.length != rotations.length) {
+        throw "Weird error : planes and rotations must have same length, please contact an admin.";
+    }
+
     return true;
 }
 
@@ -61,7 +67,33 @@ export function evaluateSolution(
     instance: Instance,
     solution: Solution
 ): number {
+    const V = instance.V;
+    const B = instance.B;
+    const legsPlanesCosts = instance.legs;
+    const planes = solution.planes;
+    const rotations = solution.rotations;
 
-    return 0;
+    // per leg cost with planned plane
+    let legsCost = 0;
+    for(let k in planes) {
+        let i = Number(k);
+        let plane = planes[i];
+        let planeArrayId = plane-1;
+        let rotation = rotations[i];
+        for(let leg of rotation) {
+            let legArrayId = leg-1;
+            legsCost += legsPlanesCosts[legArrayId][planeArrayId];
+        }
+    }
+    // TODO check for unmaintened planes
+    
+    // not done legs
+    const doneLegs = rotations.reduce((acc, val) => acc.concat(val));
+    const doneLegsCost = Math.abs(doneLegs.length - V) * B
+
+    // total cost
+    let cost = legsCost + doneLegsCost;
+
+    return cost;
 }
 
