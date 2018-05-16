@@ -1,42 +1,37 @@
 fixtures:
     - Competition:
-        id: 1
+        id: 2
         name: 'KIRO 2018'
         description: "Bienvenue sur le Judge System du KIRO 2018 ! Vous trouverez ici le sujet et les instances de cette session à télécharger. C'est également ici que vous pourrez envoyer vos solutions et consulter le scoreboard de la compétition."
-        subjectUrl: '/competitions/1/download'
 
     - Instance:
-        id: 1
+        id: 11
         name: Exemple
         description: Toute petite instance pour prendre en main le sujet.
-        inputUrl: '/instances/1/download'
-        competition: 1
+        competition: 2
 
     - Instance:
-        id: 2
+        id: 12
         name: Aéroports régionaux
         description: Une petite instance pour tester les algorithmes.
-        inputUrl: '/instances/2/download'
-        competition: 1
+        competition: 2
 
     - Instance:
-        id: 3
+        id: 13
         name: Aéroports nationaux
         description: Une instance de taille moyenne.
-        inputUrl: '/instances/3/download/'
-        competition: 1
+        competition: 2
 
     - Instance:
-        id: 4
+        id: 14
         name: Aéroports internationaux
         description: Une très très grosse instance !
-        inputUrl: '/instances/4/download'
-        competition: 1
+        competition: 2
 
     - Team:
         id: 1
         name: Centaure
-        competition: 1
+        competition: 2
         members:
           - lastName: Bernhard
             firstName: Thomas
@@ -62,7 +57,7 @@ fixtures:
     - Team:
         id: 2
         name: CMD
-        competition: 1
+        competition: 2
         members:
           - lastName: Martin
             firstName: Paul
@@ -88,7 +83,7 @@ fixtures:
     - Team:
         id: 3
         name: Eastern Dragon
-        competition: 1
+        competition: 2
         members:
           - lastName: LIU
             firstName: Kang
@@ -114,7 +109,7 @@ fixtures:
     - Team:
         id: 4
         name: ExtensionsGaloisiennes
-        competition: 1
+        competition: 2
         members:
           - lastName: Vanlaer
             firstName: Youval
@@ -140,7 +135,7 @@ fixtures:
     - Team:
         id: 5
         name: G.O.D.
-        competition: 1
+        competition: 2
         members:
           - lastName: Duval
             firstName: Maxime
@@ -166,7 +161,7 @@ fixtures:
     - Team:
         id: 6
         name: GI is the new IMI
-        competition: 1
+        competition: 2
         members:
           - lastName: Viel
             firstName: Théo
@@ -192,7 +187,7 @@ fixtures:
     - Team:
         id: 7
         name: Hugo
-        competition: 1
+        competition: 2
         members:
           - lastName: Alimov
             firstName: Gaspard
@@ -218,7 +213,7 @@ fixtures:
     - Team:
         id: 8
         name: Krypton
-        competition: 1
+        competition: 2
         members:
           - lastName: BEGHDADI
             firstName: Houssein
@@ -244,7 +239,7 @@ fixtures:
     - Team:
         id: 9
         name: Les codeurs fous
-        competition: 1
+        competition: 2
         members:
           - lastName: Moreau
             firstName: terry
@@ -270,7 +265,7 @@ fixtures:
     - Team:
         id: 10
         name: Les derniers
-        competition: 1
+        competition: 2
         members:
           - lastName: Spinat
             firstName: Quentin
@@ -296,7 +291,7 @@ fixtures:
     - Team:
         id: 11
         name: MAF assure 
-        competition: 1
+        competition: 2
         members:
           - lastName: Moreau
             firstName: Matthieu
@@ -322,7 +317,7 @@ fixtures:
     - Team:
         id: 12
         name: magie.monasse
-        competition: 1
+        competition: 2
         members:
           - lastName: Campo
             firstName: Yannis
@@ -348,7 +343,7 @@ fixtures:
     - Team:
         id: 13
         name: The zeROs Guillotine Cutter
-        competition: 1
+        competition: 2
         members:
           - lastName: Andres
             firstName: Hervé
@@ -374,7 +369,7 @@ fixtures:
     - Team:
         id: 14
         name: Turtle on the Chaussée !
-        competition: 1
+        competition: 2
         members:
           - lastName: Khalil
             firstName: Iyes
@@ -400,7 +395,7 @@ fixtures:
     - Team:
         id: 15
         name: VicTeam
-        competition: 1
+        competition: 2
         members:
           - lastName: Bodor
             firstName: Hamza
@@ -423,3 +418,20 @@ fixtures:
             category: 1a
             password: $2b$10$GoYHu6TqQ5iFJ0Yh3hcEpuHWzT6Q4bxJgRgUXbt7lvrRwo2sqIGDu
 
+    - Team:
+        name: Admins
+        competition: 2
+        members:
+          - lastName: Desforges
+            firstName: Guillaume
+            email: guillaume.desforges@eleves.enpc.fr
+            plainpassword: jprfxq8Ouo
+            category: 2a
+            password: $2a$10$DzIjCaawDNGWketY5VAt7.oMGDoLMnbTvpBqp2JhovV2sYlJ9rGuO
+
+          - lastName: Trezzini
+            firstName: Louis
+            email: louis.trezzini@eleves.enpc.fr
+            plainpassword: MqGOiLhAf9
+            category: 2a
+            password: $2a$10$u.9JPJlwgRSS8YJrH.nfLeMQRknzd2KpymLNhneMLg1zF2YCkTN/6
