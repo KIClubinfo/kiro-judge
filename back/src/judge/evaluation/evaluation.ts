@@ -14,7 +14,6 @@ export function checkSolution(
     // 1. check declared planes
     //   a. integer
     if (planes.some((plane) => !Number.isInteger(plane))) {
-        console.log(planes);
         throw new Error('A plane has a index that is not an integer !');
     }
     //   b. no duplicates
@@ -32,7 +31,7 @@ export function checkSolution(
         throw new Error('A leg has a index that is not an integer !');
     }
     //   b. bounds
-    if (rotations.some((rotation) => rotation.some((leg) => leg <= 0 || leg > V))) {
+    if (rotations.some((rotation) => rotation.length != 0 && rotation.some((leg) => leg <= 0 || leg > V))) {
         throw new Error('A leg has an index out of bounds ! (0 < v <= V)');
     }
     //   c. legs in a rotation must follow in the graph
@@ -44,7 +43,6 @@ export function checkSolution(
             }
             const leg = rotation[i];
             const legNext = rotation[i + 1];
-            // console.log(leg, legNext);
             const correspondenceExists = correspondences.some((a) => a[0] === leg && a[1] === legNext);
             if (!correspondenceExists) {
                 throw new Error('A rotation has two legs following one each other that are not supposed to !');
@@ -67,30 +65,55 @@ export function evaluateSolution(
 ): number {
     const V = instance.V;
     const B = instance.B;
+    const K = instance.K;
+    const G = instance.G;
     const legsPlanesCosts = instance.legs;
     const planes = solution.planes;
     const rotations = solution.rotations;
 
     // per leg cost with planned plane
     let legsCost = 0;
-    for (const k in planes) {
-        const i = Number(k);
-        const plane = planes[i];
+    let unmaintainedCost = 0;
+    for (const i in planes) {
+        const p = Number(i);
+        const plane = planes[p];
         const planeArrayId = plane - 1;
-        const rotation = rotations[i];
-        for (const leg of rotation) {
+        const rotation = rotations[p];
+        let state = 0;
+        for (const j in rotation) {
+            const l = Number(j);
+            const leg = rotation[l];
             const legArrayId = leg - 1;
-            legsCost += legsPlanesCosts[legArrayId][planeArrayId];
+            
+            const legCost = legsPlanesCosts[legArrayId][planeArrayId];
+            legsCost += legCost;
+
+            // if not the first leg
+            if (l > 0) {
+                const previousLeg = rotation[l-1];
+                const correspondence = instance.correspondences.find(x => x[0] == previousLeg && x[1] == leg);
+                const night = correspondence[2];
+                const time = correspondence[3];
+                if (night == 1) {
+                    state = 0;
+                } else {
+                    state += time;
+                    if (state >= K) {
+                        unmaintainedCost += G;
+                    }
+                }
+            }
         }
     }
-    // TODO check for unmaintened planes
 
     // not done legs
     const doneLegs = rotations.reduce((acc, val) => acc.concat(val));
-    const doneLegsCost = Math.abs(doneLegs.length - V) * B;
+    const singleDoneLegs = new Set(doneLegs);
+    const notDoneLegsCost = Math.abs(singleDoneLegs.size - V) * B;
+    const repeatedLegsCost = [...singleDoneLegs].map(leg => doneLegs.filter(x => x == leg).length - 1).reduce((acc, val) => acc + val) * B;
 
     // total cost
-    const cost = legsCost + doneLegsCost;
+    const cost = legsCost + unmaintainedCost + notDoneLegsCost + repeatedLegsCost;
 
     return cost;
 }

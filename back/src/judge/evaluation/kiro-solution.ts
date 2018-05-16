@@ -12,6 +12,6 @@ export class KiroSolution {
 
         // planes rotations
         this.planes = splitLines.map((splitLine) => Number(splitLine[1]));
-        this.rotations = splitLines.map((splitLine) => splitLine.slice(3).map(Number));
+        this.rotations = splitLines.map((splitLine) => splitLine.slice(3).filter(x => x != '').map(Number));
     }
 }

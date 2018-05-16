@@ -3,35 +3,41 @@ fixtures:
         id: 1
         name: 'KIRO 2018'
         description: "Bienvenue sur le Judge System du KIRO 2018 ! Vous trouverez ici le sujet et les instances de cette session à télécharger. C'est également ici que vous pourrez envoyer vos solutions et consulter le scoreboard de la compétition."
-        subjectUrl: '/competitions/1/download'
 
     - Instance:
         id: 1
         name: Exemple
         description: Toute petite instance pour prendre en main le sujet.
-        inputUrl: '/instances/1/download'
         competition: 1
+        startScore: 700000
 
     - Instance:
         id: 2
         name: Aéroports régionaux
         description: Une petite instance pour tester les algorithmes.
-        inputUrl: '/instances/2/download'
         competition: 1
+        startScore: 121000
 
     - Instance:
         id: 3
         name: Aéroports nationaux
         description: Une instance de taille moyenne.
-        inputUrl: '/instances/3/download/'
         competition: 1
+        startScore: 286000
 
     - Instance:
         id: 4
-        name: Aéroports internationaux
+        name: Aéroports continentaux
         description: Une très très grosse instance !
-        inputUrl: '/instances/4/download'
         competition: 1
+        startScore: 816000
+
+    - Instance:
+        id: 5
+        name: Aéroports internationaux
+        description: Vraiment une très, très grosse instance !!!
+        competition: 1
+        startScore: 4207000
 
     - Team:
         id: 1
