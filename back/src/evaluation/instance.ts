@@ -8,7 +8,6 @@ export class Instance {
     B: number;
     K: number;
     G: number;
-    M: Array<number>;
     legs: Array<Array<number>>;
     correspondences: Array<Array<number>>;
 
@@ -20,8 +19,8 @@ export class Instance {
         // First line is metadata
         let line = lines[0];
         let metadatas = line.split(' ');
-        if(metadatas.length < 14) {
-            throw "Not enough metadata in instance, must be at least 14.";
+        if(metadatas.length != 12) {
+            throw "Wrong metadata length in instance, must be 12.";
         }
         this.V = Number(metadatas[1]); // V legs
         this.A = Number(metadatas[3]); // A correspondencies
@@ -29,11 +28,6 @@ export class Instance {
         this.B = Number(metadatas[7]); // B cost for not doing a leg
         this.K = Number(metadatas[9]); // K frequency to base
         this.G = Number(metadatas[11]); // G cost for flying without maintenance
-        this.M = metadatas.slice(13).map(Number); // M list of starting maintenance levels
-
-        if(this.M.length != this.P) {
-            throw "Not enough maintenance levels, must equal P.";
-        }
         
         // [1, 1+V[ lines are legs
         this.legs = lines.slice(1, 1+this.V).map(function (line) {
