@@ -1,4 +1,4 @@
-import { Controller, Get, NotFoundException, Param, Response, UseGuards } from '@nestjs/common';
+import { Controller, ForbiddenException, Get, NotFoundException, Param, Response, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Competition } from '../entities/competition.entity';
 import { Loader } from '../evaluation/loader';
@@ -41,6 +41,10 @@ export class CompetitionController {
       throw new NotFoundException(e);
     }
 
-    response.download(Loader.getSubjectPath(`subject_${competition.id}.pdf`));
+    if (new Date() < competition.startDate) {
+      throw new ForbiddenException();
+    }
+
+    response.download(Loader.getSubjectPath(competition.filename));
   }
 }

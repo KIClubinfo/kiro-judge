@@ -10,7 +10,7 @@ export class InstanceService {
     private readonly instanceRepository: Repository<Instance>,
   ) {}
 
-  async findOne(id): Promise<Instance> {
-    return this.instanceRepository.findOneOrFail(id);
+  async findOne(id: number): Promise<Instance> {
+    return this.instanceRepository.findOneOrFail(id, { relations: ['competition'] });
   }
 }

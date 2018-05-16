@@ -6,6 +6,8 @@ export interface ICompetition {
   updatedAt: string;
   name: string;
   description: string;
-  subjectUrl: string;
+  startDate: string;
+  freezeDate: string;
+  endDate: string;
   instances: IInstance[];
 }

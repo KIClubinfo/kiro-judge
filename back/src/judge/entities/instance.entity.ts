@@ -16,6 +16,8 @@ export class Instance {
 
   @Column('text') description: string;
 
+  @Column() filename: string;
+
   @ManyToOne((type) => Competition, { nullable: false })
   competition: Competition;
 }

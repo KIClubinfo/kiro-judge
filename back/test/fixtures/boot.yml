@@ -3,20 +3,20 @@ fixtures:
         id: 1
         name: 'KIRO 2018'
         description: 'Super concours'
-        subjectUrl: 'https://google.fr/favicon.ico'
+        startDate: '2018-05-16T21:00:00.000Z'
+        freezeDate: '2018-05-16T21:11:00.000Z'
+        endDate: '2018-05-16T21:15:00.000Z'
 
     - Instance:
         id: 1
         name: Instance 1
         description: Easy one
-        inputUrl: 'https://google.fr/favicon.ico'
         competition: 1
 
     - Instance:
         id: 2
         name: Instance 2
         description: Tougher
-        inputUrl: 'https://google.fr/favicon.ico'
         competition: 1
 
     - Team:
@@ -41,10 +41,15 @@ fixtures:
         name: Second TEAM
         competition: 1
 
+    - Team:
+        id: 3
+        name: Third TEAM
+        competition: 1
+
     - Submission:
         instance: 1
         team: 1
-        score: 6
+        score: 666
 
     - Submission:
         instance: 2
@@ -59,7 +64,7 @@ fixtures:
     - Submission:
         instance: 2
         team: 1
-        score: 3
+        score: 333
 
     - Submission:
         instance: 2

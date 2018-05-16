@@ -1,4 +1,4 @@
-import { Controller, Get, NotFoundException, Param, Response, UseGuards } from '@nestjs/common';
+import { Controller, ForbiddenException, Get, NotFoundException, Param, Response, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Instance } from '../entities/instance.entity';
 import { InstanceService } from '../services/instance.service';
@@ -18,6 +18,10 @@ export class InstanceController {
       throw new NotFoundException(e);
     }
 
-    response.download(Loader.getInstancePath(`instance_${instance.id}.in`));
+    if (new Date() < instance.competition.startDate) {
+      throw new ForbiddenException();
+    }
+
+    response.download(Loader.getInstancePath(instance.filename));
   }
 }

@@ -1,48 +1,40 @@
 fixtures:
     - Competition:
-        id: 1
+        $ref: $compet
         name: 'KIRO 2018'
-        description: "Bienvenue sur le Judge System du KIRO 2018 ! Vous trouverez ici le sujet et les instances de cette session à télécharger. C'est également ici que vous pourrez envoyer vos solutions et consulter le scoreboard de la compétition."
+        description: "Bienvenue sur le Judge System du KIRO 2018 ! Vous trouverez ici le sujet et les instances de cette session à télécharger. C'est également ici que vous pourrez envoyer vos solutions et consulter le leaderboard de la compétition."
+        startDate: '2018-05-16T21:00:00.000Z'
+        freezeDate: '2018-05-16T21:11:00.000Z'
+        endDate: '2018-05-16T21:15:00.000Z'
+        filename: kiro2018.pdf
 
     - Instance:
-        id: 1
         name: Exemple
         description: Toute petite instance pour prendre en main le sujet.
-        competition: 1
-        startScore: 700000
+        competition: $compet
+        filename: instance_S.in
 
     - Instance:
-        id: 2
         name: Aéroports régionaux
         description: Une petite instance pour tester les algorithmes.
-        competition: 1
-        startScore: 121000
+        competition: $compet
+        filename: instance_M.in
 
     - Instance:
-        id: 3
         name: Aéroports nationaux
         description: Une instance de taille moyenne.
-        competition: 1
-        startScore: 286000
+        competition: $compet
+        filename: instance_L.in
 
     - Instance:
-        id: 4
-        name: Aéroports continentaux
-        description: Une très très grosse instance !
-        competition: 1
-        startScore: 816000
-
-    - Instance:
-        id: 5
         name: Aéroports internationaux
-        description: Vraiment une très, très grosse instance !!!
-        competition: 1
-        startScore: 4207000
+        description: Une très très grosse instance !
+        competition: $compet
+        filename: instance_XXL.in
 
     - Team:
-        id: 1
         name: Centaure
-        competition: 1
+        competition: $compet
         members:
           - lastName: Bernhard
             firstName: Thomas
@@ -66,9 +58,8 @@ fixtures:
             password: $2b$10$NEy1mpg/ucg7.zTGBmu3Z.cWsE3gGupsMS5KEEwidwVQPb2/kNPfS
     
     - Team:
-        id: 2
         name: CMD
-        competition: 1
+        competition: $compet
         members:
           - lastName: Martin
             firstName: Paul
@@ -92,9 +83,8 @@ fixtures:
             password: $2b$10$xIqkpMBpvVzGa0Dg/bW80eybiBtKNdTVuWlt1AbqxP6VqNOlPAitC
     
     - Team:
-        id: 3
         name: Eastern Dragon
-        competition: 1
+        competition: $compet
         members:
           - lastName: LIU
             firstName: Kang
@@ -118,9 +108,8 @@ fixtures:
             password: $2b$10$k9N1zkYSo6jfdamAaTLLju0NQz5tofs5AhVIOLwffdFKgWO7TMQVy
     
     - Team:
-        id: 4
         name: ExtensionsGaloisiennes
-        competition: 1
+        competition: $compet
         members:
           - lastName: Vanlaer
             firstName: Youval
@@ -144,9 +133,8 @@ fixtures:
             password: $2b$10$UfF.DluW0MUlUgqKwvLcR.BwwNebqjMWX40kVKJ1xTyNVscrpEkpu
     
     - Team:
-        id: 5
         name: G.O.D.
-        competition: 1
+        competition: $compet
         members:
           - lastName: Duval
             firstName: Maxime
@@ -170,9 +158,8 @@ fixtures:
             password: $2b$10$Mxkbb1XvU9PDD5DTllhwF.Vutw92zsvGrugz9DSOgH87ZHBNvljh6
     
     - Team:
-        id: 6
         name: GI is the new IMI
-        competition: 1
+        competition: $compet
         members:
           - lastName: Viel
             firstName: Théo
@@ -196,9 +183,8 @@ fixtures:
             password: $2b$10$RhCZwbC4iraznPkjnaul1Oj1vDQJ8aAFQq9NOEj.6XC/F9uaruuXi
     
     - Team:
-        id: 7
         name: Hugo
-        competition: 1
+        competition: $compet
         members:
           - lastName: Alimov
             firstName: Gaspard
@@ -222,9 +208,8 @@ fixtures:
             password: $2b$10$kasSOHH2Q6gx0F1h5p.KruQtldr0qNVB9I7v/X4YxmeDasTAXFdIu
     
     - Team:
-        id: 8
         name: Krypton
-        competition: 1
+        competition: $compet
         members:
           - lastName: BEGHDADI
             firstName: Houssein
@@ -248,9 +233,8 @@ fixtures:
             password: $2b$10$oLn9MtyKvRcnmCwnfNe5GucadZrqjc0aqQ2eagKTwxVSE8tbGWvfC
     
     - Team:
-        id: 9
         name: Les codeurs fous
-        competition: 1
+        competition: $compet
         members:
           - lastName: Moreau
             firstName: terry
@@ -274,9 +258,8 @@ fixtures:
             password: $2b$10$Nv3zwvrBr2fvQw6g55Hip.vpTl5Vb9DKV2ineUtG9iMR0B51X69VG
     
     - Team:
-        id: 10
         name: Les derniers
-        competition: 1
+        competition: $compet
         members:
           - lastName: Spinat
             firstName: Quentin
@@ -300,9 +283,8 @@ fixtures:
             password: $2b$10$mvm3NcO3TftrxQ5G5/QXuOzyTmxQ2iEon//6cbDOL1mXhTAldhh/a
     
     - Team:
-        id: 11
-        name: MAF assure 
-        competition: 1
+        name: MAF assure
+        competition: $compet
         members:
           - lastName: Moreau
             firstName: Matthieu
@@ -326,9 +308,8 @@ fixtures:
             password: $2b$10$cj1hzkEuJ/XOEnhDbv1oqOFmYYmlzerRYxnJGB66UdSg0zudu0JL6
     
     - Team:
-        id: 12
         name: magie.monasse
-        competition: 1
+        competition: $compet
         members:
           - lastName: Campo
             firstName: Yannis
@@ -352,9 +333,8 @@ fixtures:
             password: $2b$10$USOlerptIiQ.cNcKJSUlfePFdV1uDPp68qHxRj1rt8dIjnI5RMHgC
     
     - Team:
-        id: 13
         name: The zeROs Guillotine Cutter
-        competition: 1
+        competition: $compet
         members:
           - lastName: Andres
             firstName: Hervé
@@ -378,9 +358,8 @@ fixtures:
             password: $2b$10$LShxv49bOdSOee4iISMDqudzBlW4G.iSWthJfCNn6eMTJZgA77lJC
     
     - Team:
-        id: 14
         name: Turtle on the Chaussée !
-        competition: 1
+        competition: $compet
         members:
           - lastName: Khalil
             firstName: Iyes
@@ -404,9 +383,8 @@ fixtures:
             password: $2b$10$yZ9WxVlFiYE970qIq2QVJOA7glyFe74nEfOj.d9he5err9/RKvzP6
     
     - Team:
-        id: 15
         name: VicTeam
-        competition: 1
+        competition: $compet
         members:
           - lastName: Bodor
             firstName: Hamza
@@ -429,3 +407,20 @@ fixtures:
             category: 1a
             password: $2b$10$GoYHu6TqQ5iFJ0Yh3hcEpuHWzT6Q4bxJgRgUXbt7lvrRwo2sqIGDu
 
+    - Team:
+        name: Admins
+        competition: $compet
+        members:
+          - lastName: Desforges
+            firstName: Guillaume
+            email: guillaume.desforges@eleves.enpc.fr
+            plainpassword: jprfxq8Ouo
+            category: 2a
+            password: $2a$10$DzIjCaawDNGWketY5VAt7.oMGDoLMnbTvpBqp2JhovV2sYlJ9rGuO
+
+          - lastName: Trezzini
+            firstName: Louis
+            email: louis.trezzini@eleves.enpc.fr
+            plainpassword: MqGOiLhAf9
+            category: 2a
+            password: $2a$10$u.9JPJlwgRSS8YJrH.nfLeMQRknzd2KpymLNhneMLg1zF2YCkTN/6

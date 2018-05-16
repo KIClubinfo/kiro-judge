@@ -81,6 +81,6 @@ export class AuthService {
   }
 
   getCurrentTeamId(): number {
-    return this.jwtPayload.competitionId;
+    return this.jwtPayload.teamId;
   }
 }
