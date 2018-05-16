@@ -10,9 +10,9 @@ export class KiroInstance {
     legs: number[][];
     correspondences: number[][];
 
-    constructor(instanceId: number) {
+    constructor(instancePath: string) {
         // Read data
-        const content = fs.readFileSync(__dirname + `/instances/instance_${instanceId}.in`, 'utf8').toString();
+        const content = fs.readFileSync(__dirname + '/instances/' + instancePath, 'utf8').toString();
         const lines = content.split('\n');
 
         // First line is metadata
@@ -33,11 +33,16 @@ export class KiroInstance {
             // leg id
             // let v = datas[1];
             // leg cost for each plane
-            const c = datas.slice(3).map(Number);
-            if (c.length !== this.P) {
+            const costs = datas.slice(3).map(Number);
+            if (costs.length !== this.P) {
+                console.debug(`Instance ${instancePath} with line ${line} : costs per leg len != P`);
                 throw new Error('Leg needs to have exactly one cost per plane.');
             }
-            return c;
+            if (costs.some(isNaN)) {
+                console.debug(`Instance ${instancePath} with line ${line} : NaN value caught`);
+                throw new Error('NaN value caught.');
+            }
+            return costs;
         });
 
         // [1+V, 1+V+A[ are correspondences (=arcs)
@@ -58,7 +63,13 @@ export class KiroInstance {
             // time
             const n = Number(datas[9]);
 
-            return [o, d, t, n];
+            const correspondence = [o, d, t, n];
+            if (correspondence.some(isNaN)) {
+                console.debug(`Instance ${instancePath} with line ${line} : NaN value caught`);
+                throw new Error('NaN value caught.');
+            }
+
+            return correspondence;
         }).filter((c) => c.length === 4);
         // NOTE : j'avoue qu'on pourrait faire mieux et plus de checks, mais on
         // va supposer que les instances ont été générées correctement

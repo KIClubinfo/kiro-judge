@@ -26,7 +26,7 @@ export class SubmissionService {
     submission.instance = instance;
     submission.team = await this.teamRepository.findOneOrFail(teamId);
 
-    const kiroInstance = new KiroInstance(instance.id);
+    const kiroInstance = new KiroInstance(`instance_${instance.id}.in`);
     const kiroSolution = new KiroSolution(solutionString);
 
     let lastException: Error;
