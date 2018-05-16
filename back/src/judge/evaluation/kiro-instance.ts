@@ -1,4 +1,5 @@
 import * as fs from 'fs';
+import { Loader } from './loader';
 
 export class KiroInstance {
     V: number;
@@ -12,7 +13,7 @@ export class KiroInstance {
 
     constructor(instancePath: string) {
         // Read data
-        const content = fs.readFileSync(__dirname + '/instances/' + instancePath, 'utf8').toString();
+        const content = fs.readFileSync(Loader.getInstancePath(instancePath), 'utf8').toString();
         const lines = content.split('\n');
 
         // First line is metadata

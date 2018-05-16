@@ -5,23 +5,8 @@ import { IInstance } from '../../interfaces/instance.interface';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 import { SubmissionService } from '../../services/submission.service';
 import { AuthService } from '../../services/auth.service';
-import { finalize } from 'rxjs/operators';
 import { ISubmission } from '../../interfaces/submission.interface';
-
-function forceDownload(href) {
-  const filename = href.substring(href.lastIndexOf('/') + 1);
-
-  const anchorElement = document.createElement('a');
-  anchorElement.setAttribute('href', href);
-  anchorElement.setAttribute('download', filename);
-  anchorElement.setAttribute('target', '_blank');
-  anchorElement.style.display = 'none';
-  document.body.appendChild(anchorElement);
-  anchorElement.click();
-  document.body.removeChild(anchorElement);
-
-  // window.open(href, '_blank');
-}
+import { DownloadService } from '../../services/download.service';
 
 
 @Component({
@@ -85,6 +70,7 @@ export class CompetitionDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private dialog: MatDialog,
+    private downloadService: DownloadService,
   ) {}
 
   ngOnInit() {
@@ -92,11 +78,11 @@ export class CompetitionDetailsComponent implements OnInit {
   }
 
   downloadSubject() {
-    forceDownload(this.competition.subjectUrl);
+    this.downloadService.downloadSubject(this.competition);
   }
 
   downloadInstanceInput(instance: IInstance) {
-    forceDownload(instance.inputUrl);
+    this.downloadService.downloadInstanceInput(instance);
   }
 
   uploadInstanceSolution(instance: IInstance) {

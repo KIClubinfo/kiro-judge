@@ -16,8 +16,6 @@ export class Instance {
 
   @Column('text') description: string;
 
-  @Column() inputUrl: string;
-
   @ManyToOne((type) => Competition, { nullable: false })
   competition: Competition;
 }
