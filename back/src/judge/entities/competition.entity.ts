@@ -16,7 +16,11 @@ export class Competition {
 
   @Column('text') description: string;
 
-  @Column() subjectUrl: string;
+  @Column('datetime') startDate: Date;
+
+  @Column('datetime') freezeDate: Date;
+
+  @Column('datetime') endDate: Date;
 
   @OneToMany((type) => Instance, (instance) => instance.competition)
   instances: Instance[];

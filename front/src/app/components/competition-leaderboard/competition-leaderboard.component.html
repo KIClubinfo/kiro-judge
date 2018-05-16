@@ -2,6 +2,10 @@
   Leaderboard
 </h1>
 
+<p *ngIf="isFrozen">
+  The leaderboard is now frozen. Come back here at {{ competition.endDate | date:'medium' }} to see the results!
+</p>
+
 <div class="container mat-elevation-z8">
   <div class="example-header">
     <mat-form-field>

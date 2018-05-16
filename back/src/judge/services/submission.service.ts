@@ -19,12 +19,10 @@ export class SubmissionService {
     private readonly submissionRepository: Repository<Submission>,
   ) {}
 
-  async create(instanceId: number, teamId: number, solutionString: string): Promise<Submission> {
-    const instance = await this.instanceRepository.findOneOrFail(instanceId);
-
+  async create(instance: Instance, team: Team, solutionString: string): Promise<Submission> {
     let submission = new Submission();
     submission.instance = instance;
-    submission.team = await this.teamRepository.findOneOrFail(teamId);
+    submission.team = team;
 
     const kiroInstance = new KiroInstance(`instance_${instance.id}.in`);
     const kiroSolution = new KiroSolution(solutionString);

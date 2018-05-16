@@ -31,7 +31,6 @@ function getOrmConfig() {
       logging: true,
       maxQueryExecutionTime: 1000,
       charset: 'utf8mb4_unicode_ci',
-      timezone: 'Z',
     },
     settings,
   );

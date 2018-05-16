@@ -2,7 +2,7 @@ fixtures:
     - Competition:
         id: 2
         name: 'KIRO 2018'
-        description: "Bienvenue sur le Judge System du KIRO 2018 ! Vous trouverez ici le sujet et les instances de cette session à télécharger. C'est également ici que vous pourrez envoyer vos solutions et consulter le scoreboard de la compétition."
+        description: "Bienvenue sur le Judge System du KIRO 2018 ! Vous trouverez ici le sujet et les instances de cette session à télécharger. C'est également ici que vous pourrez envoyer vos solutions et consulter le leaderboard de la compétition."
 
     - Instance:
         id: 11
