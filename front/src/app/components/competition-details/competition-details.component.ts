@@ -53,7 +53,7 @@ export class UploadInstanceSolutionDialogComponent {
 
     const fileReader = new FileReader();
     fileReader.readAsText(this.file, 'UTF-8');
-    fileReader.onload = (evt) => {
+    fileReader.onload = (evt: any) => {
       this.submissionService.create(
         this.data.instance.id,
         this.authService.getCurrentTeamId(),
