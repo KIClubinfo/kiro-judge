@@ -34,12 +34,12 @@ export class CompetitionService {
           .from(Submission, 'submission')
           .select('submission.team.id', 'subTeamId')
           .addSelect('submission.instance.id', 'instanceId')
-          .addSelect('MAX(score)', 'score')
+          .addSelect('MIN(score)', 'score')
           .groupBy('instanceId');
       }, 'teamsScores', 'team.id = subTeamId')
       .where('team.competitionId = :id', { id })
       .groupBy('team.id')
-      .orderBy('bestScore', 'DESC')
+      .orderBy('bestScore', 'ASC')
       .getRawMany();
 
     return teamRankings.map((team: {name, bestScore}, index) => ({
