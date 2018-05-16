@@ -110,7 +110,10 @@ export function evaluateSolution(
     const doneLegs = rotations.reduce((acc, val) => acc.concat(val));
     const singleDoneLegs = new Set(doneLegs);
     const notDoneLegsCost = Math.abs(singleDoneLegs.size - V) * B;
-    const repeatedLegsCost = [...singleDoneLegs].map(leg => doneLegs.filter(x => x == leg).length - 1).reduce((acc, val) => acc + val) * B;
+    let repeatedLegsCost = 0; 
+    if (doneLegs.length > 0) {
+        repeatedLegsCost = [...singleDoneLegs].map(leg => doneLegs.filter(x => x == leg).length - 1).reduce((acc, val) => acc + val) * B;
+    }
 
     // total cost
     const cost = legsCost + unmaintainedCost + notDoneLegsCost + repeatedLegsCost;

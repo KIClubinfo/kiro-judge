@@ -4,33 +4,44 @@ fixtures:
         name: 'KIRO 2018'
         description: "Bienvenue sur le Judge System du KIRO 2018 ! Vous trouverez ici le sujet et les instances de cette session à télécharger. C'est également ici que vous pourrez envoyer vos solutions et consulter le leaderboard de la compétition."
         startDate: '2018-05-16T21:00:00.000Z'
-        freezeDate: '2018-05-16T21:11:00.000Z'
-        endDate: '2018-05-16T21:15:00.000Z'
+        freezeDate: '2018-05-17T21:11:00.000Z'
+        endDate: '2018-05-17T21:15:00.000Z'
         filename: kiro2018.pdf
 
     - Instance:
         name: Exemple
         description: Toute petite instance pour prendre en main le sujet.
         competition: $compet
-        filename: instance_S.in
+        filename: instance_exemple.in
+        startScore: 70000
 
     - Instance:
         name: Aéroports régionaux
         description: Une petite instance pour tester les algorithmes.
         competition: $compet
-        filename: instance_M.in
+        filename: instance_S.in
+        startScore: 121000
 
     - Instance:
         name: Aéroports nationaux
         description: Une instance de taille moyenne.
         competition: $compet
+        filename: instance_M.in
+        startScore: 286000
+
+    - Instance:
+        name: Aéroports continentaux
+        description: Une grosse instance qui vaut plus de points.
+        competition: $compet
         filename: instance_L.in
+        startScore: 816000
 
     - Instance:
         name: Aéroports internationaux
-        description: Une très très grosse instance !
+        description: Une très très grosse instance !!!
         competition: $compet
         filename: instance_XXL.in
+        startScore: 4207000
 
     - Team:
         name: Centaure
