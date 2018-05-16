@@ -1,8 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import * as jwt from 'jsonwebtoken';
-import { UserService } from './user.service';
-import { IJWTPayload } from '../interfaces/jwt-payload.interface';
 import { User } from '../entities/user.entity';
+import { IJWTPayload } from '../interfaces/jwt-payload.interface';
+import { UserService } from './user.service';
+
+export const SECRET_KEY = 'mBg1om2DAtElIpM8p8BcEZCruThktpOW';
+
 
 @Injectable()
 export class AuthService {
@@ -13,7 +16,7 @@ export class AuthService {
       ...extraClaims,
       email: user.email,
     };
-    return jwt.sign(payload, 'secretKey', { expiresIn: 3600 });
+    return jwt.sign(payload, SECRET_KEY, { expiresIn: 5 * 3600 });
   }
 
   async validateUser(payload: IJWTPayload): Promise<User> {
