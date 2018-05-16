@@ -21,15 +21,31 @@ export async function loadFixtures(
 
   const connection = getConnection();
 
+  const refs = {};
+
   for (const item of items) {
-    await loadItem(connection, item);
+    await loadItem(connection, item, refs);
   }
 }
 
-async function loadItem(connection, item: any) {
+async function loadItem(connection, item: any, refs: any) {
   const entityName = Object.keys(item)[0];
-  const data = item[entityName];
+  const { $ref, ...data } = item[entityName];
   const entity = connection.getRepository(entityName).create(data);
-  // console.log(entity);
-  return connection.manager.save(entity);
+
+  console.log(refs);
+  for (const key in data) {
+    if (refs[data[key]] !== undefined) {
+      entity[key] = refs[data[key]];
+    }
+  }
+
+  const persistedEntity = await connection.manager.save(entity);
+
+  if ($ref !== undefined) {
+    if (refs[$ref] !== undefined) {
+      throw new Error('duplicate $ref');
+    }
+    refs[$ref] = persistedEntity.id;
+  }
 }

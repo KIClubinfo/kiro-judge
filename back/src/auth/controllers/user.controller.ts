@@ -1,17 +1,6 @@
-import {
-  BadRequestException,
-  Body,
-  Controller,
-  Get,
-  NotFoundException,
-  Param,
-  Post,
-  UnauthorizedException,
-  UseGuards,
-} from '@nestjs/common';
-import { UserService } from '../services/user.service';
-import { AuthGuard } from '@nestjs/passport';
+import { BadRequestException, Body, Controller, Post, UnauthorizedException } from '@nestjs/common';
 import { AuthService } from '../services/auth.service';
+import { UserService } from '../services/user.service';
 
 import * as bcrypt from 'bcrypt';
 
@@ -22,21 +11,21 @@ export class UserController {
     private readonly authService: AuthService,
   ) {}
 
-  @Get()
-  // FIXME remove
-  async findAll() {
-    return this.userService.findAll();
-  }
-
-  @Get(':id')
-  @UseGuards(AuthGuard('jwt'))
-  async findOne(@Param('id') id) {
-    try {
-      return await this.userService.findOne(id);
-    } catch (e) {
-      throw new NotFoundException(e);
-    }
-  }
+  // @Get()
+  // // FIXME remove
+  // async findAll() {
+  //   return this.userService.findAll();
+  // }
+  //
+  // @Get(':id')
+  // @UseGuards(AuthGuard('jwt'))
+  // async findOne(@Param('id') id) {
+  //   try {
+  //     return await this.userService.findOne(id);
+  //   } catch (e) {
+  //     throw new NotFoundException(e);
+  //   }
+  // }
 
   @Post('login')
   async login(@Body('email') email, @Body('password') password) {

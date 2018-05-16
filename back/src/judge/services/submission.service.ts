@@ -24,7 +24,7 @@ export class SubmissionService {
     submission.instance = instance;
     submission.team = team;
 
-    const kiroInstance = new KiroInstance(`instance_${instance.id}.in`);
+    const kiroInstance = new KiroInstance(instance.filename);
     const kiroSolution = new KiroSolution(solutionString);
 
     let lastException: Error;

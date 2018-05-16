@@ -45,6 +45,6 @@ export class CompetitionController {
       throw new ForbiddenException();
     }
 
-    response.download(Loader.getSubjectPath(`subject_${competition.id}.pdf`));
+    response.download(Loader.getSubjectPath(competition.filename));
   }
 }

@@ -22,6 +22,6 @@ export class InstanceController {
       throw new ForbiddenException();
     }
 
-    response.download(Loader.getInstancePath(`instance_${instance.id}.in`));
+    response.download(Loader.getInstancePath(instance.filename));
   }
 }

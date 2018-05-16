@@ -16,6 +16,8 @@ export class Competition {
 
   @Column('text') description: string;
 
+  @Column() filename: string;
+
   @Column('datetime') startDate: Date;
 
   @Column('datetime') freezeDate: Date;
