@@ -3,9 +3,9 @@ fixtures:
         $ref: $compet
         name: 'KIRO 2018'
         description: "Bienvenue sur le Judge System du KIRO 2018 ! Vous trouverez ici le sujet et les instances de cette session à télécharger. C'est également ici que vous pourrez envoyer vos solutions et consulter le leaderboard de la compétition."
-        startDate: '2018-05-17T21:12:30.000Z'
-        freezeDate: '2018-05-17T21:17:30.000Z'
-        endDate: '2018-05-17T21:18:30.000Z'
+        startDate: '2018-05-17T12:30:00.000Z'
+        freezeDate: '2018-05-17T17:30:00.000Z'
+        endDate: '2018-05-17T18:30:00.000Z'
         filename: kiro2018.pdf
 
     - Instance:

@@ -18,6 +18,8 @@ export class Instance {
 
   @Column() filename: string;
 
+  @Column({ type: 'float', nullable: true, default: null }) startScore: number;
+
   @ManyToOne((type) => Competition, { nullable: false })
   competition: Competition;
 }
