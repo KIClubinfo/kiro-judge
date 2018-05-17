@@ -9,6 +9,7 @@ fixtures:
         filename: kiro2018.pdf
 
     - Instance:
+        $ref: $instanceExemple
         name: Exemple
         description: Toute petite instance pour prendre en main le sujet.
         competition: $compet
@@ -16,6 +17,7 @@ fixtures:
         startScore: 70000
 
     - Instance:
+        $ref: $instanceS
         name: Aéroports régionaux
         description: Une petite instance pour tester les algorithmes.
         competition: $compet
@@ -23,6 +25,7 @@ fixtures:
         startScore: 121000
 
     - Instance:
+        $ref: $instanceM
         name: Aéroports nationaux
         description: Une instance de taille moyenne.
         competition: $compet
@@ -30,6 +33,7 @@ fixtures:
         startScore: 286000
 
     - Instance:
+        $ref: $instanceL
         name: Aéroports continentaux
         description: Une grosse instance qui vaut plus de points.
         competition: $compet
@@ -37,6 +41,7 @@ fixtures:
         startScore: 816000
 
     - Instance:
+        $ref: $instanceXXL
         name: Aéroports internationaux
         description: Une très très grosse instance !!!
         competition: $compet
@@ -44,6 +49,7 @@ fixtures:
         startScore: 4207000
 
     - Team:
+        $ref: $team1
         name: Centaure
         competition: $compet
         members:
@@ -52,23 +58,24 @@ fixtures:
             email: thomas.bernhard@eleves.enpc.fr
             plainpassword: 6YMwFpPdrZ
             category: 1a
-            password: $2b$10$2AskvZzm73EJXOeZLM310uYkpoNNEJH4kZgvOQhvNvscZSxTVARpm
+            password: $2b$10$yAdqitPGLZryx/8cyLaK3uTBD0OuadtI51uD0Iihd4irvqkBHYflG
     
           - lastName: Perez
             firstName: Alexandre
             email: alexandre.perez@eleves.enpc.fr
             plainpassword: sMf0sepbnZ
             category: 1a
-            password: $2b$10$rjZzapx2mSM/g2Ukg/dWuOh7fFoCISm2yWgrcTinpH6ijB/8b5II2
+            password: $2b$10$U3Vo0NfpwWxTqHV.fneK8uJGGMHsRxJLVK8pJsNBy/Mfwu8tLRTTG
     
           - lastName: Eudes
             firstName: Antoine
             email: antoine.eudes@gmail.com
             plainpassword: 5vXb15Wr9J
             category: 1a
-            password: $2b$10$NEy1mpg/ucg7.zTGBmu3Z.cWsE3gGupsMS5KEEwidwVQPb2/kNPfS
+            password: $2b$10$Q30TtRSxsFeDsWk0gNszau2ZPjVPSrDKiTg0ByEvkkSzwuf.hmd3a
     
     - Team:
+        $ref: $team2
         name: CMD
         competition: $compet
         members:
@@ -77,23 +84,24 @@ fixtures:
             email: paul.martin@eleves.enpc.fr
             plainpassword: oNV4GIWMy2
             category: 1a
-            password: $2b$10$dg0B3ElE929ssKUpgngWLuf8d.Od5aZEiy2HXpMWfdYyANmz.HYfa
+            password: $2b$10$xivkpFMKfKOp2Y7wMawETucPNiPsrP8TZXLQA0KnMioKNq0KE5NJ2
     
           - lastName: Collin
             firstName: Sasha
             email: sasha.collin@eleves.enpc.fr
             plainpassword: xgtZGu9oio
             category: 1a
-            password: $2b$10$1JDsIpGOM/SqvpjEWRIGx.lron834SC41NeIcjyFiKjGBfHlOp1lm
+            password: $2b$10$iQu/cuE2dz69q8NT60uD.uqNrJB6ER576E0m3yPzTx5GKDPD91vJW
     
           - lastName: Diai
             firstName: Samuel
             email: samuel.diai@eleves.enpc.fr
             plainpassword: 7SXFSKCJcm
             category: 1a
-            password: $2b$10$xIqkpMBpvVzGa0Dg/bW80eybiBtKNdTVuWlt1AbqxP6VqNOlPAitC
+            password: $2b$10$6OqiGGYN6PAXYuIMJrEpAeO5xTbZycfNT3KEaHJxpyfhFBRaLn8nG
     
     - Team:
+        $ref: $team3
         name: Eastern Dragon
         competition: $compet
         members:
@@ -102,23 +110,24 @@ fixtures:
             email: kang.liu@eleves.enpc.fr
             plainpassword: LzWB8SjDq4
             category: 2a
-            password: $2b$10$gbUoeYiPO2uOK3v8oVgX9OoiZO6K.ZNP96duV.g7VD8P.QXvANxZ.
+            password: $2b$10$WaMuv9RwIxdPCOBoaRyibu1KatuRPJmBGUMkejdwQohExNDxs2xL.
     
           - lastName: Wu
             firstName: Jiabin
             email: jiabin.wu@eleves.enpc.fr
             plainpassword: tQ9Dm9ZXXP
             category: 2a
-            password: $2b$10$gHhMe9rELy6mg64sTo.TyO.NMPVkroRSrFerhdLk3HM8RAL4SeQSG
+            password: $2b$10$Ns62NRNeV2XhhpikiicINu0Mp4L9FgmLbZvcsLplVKJPJscEkeJYm
     
           - lastName: Li
             firstName: Zijie
             email: zijie.liu@eleves.enpc.fr
             plainpassword: q1wYaZzYZW
             category: 2a
-            password: $2b$10$k9N1zkYSo6jfdamAaTLLju0NQz5tofs5AhVIOLwffdFKgWO7TMQVy
+            password: $2b$10$.L5Rilr2ibQrumXUsMxGv..GWl82kAVvGOiMcq8PuJ6S.95csG33.
     
     - Team:
+        $ref: $team4
         name: ExtensionsGaloisiennes
         competition: $compet
         members:
@@ -127,23 +136,24 @@ fixtures:
             email: youval@vanlaer.fr
             plainpassword: xUUSCT5JwX
             category: 1a
-            password: $2b$10$czig6tKrwX6f3oaKmZxehuCuNgAvRPbsAp6MzfAYsX.p6rmdNA.gu
+            password: $2b$10$dRyyI9dFPUgHUc.w4AddfOjFc6ExXR12EYWaFeibnGOb4ROAwZs/S
     
           - lastName: Grellier
             firstName: Léonard
             email: leonard.grellier@eleves.enpc.fr
             plainpassword: jmhyEhLkoi
             category: 1a
-            password: $2b$10$5vZLXHrBybq6Ddb2HYyuOuUrw3aCS.xUQP.pE7xqfrxtlQZXbOZ5.
+            password: $2b$10$roxgaYgiR0xaHoZlibz.je9vZkSh4d9Kif91mwqWbrCiBid5vmRKO
     
           - lastName: Graive
             firstName: Martin
             email: martin.graive@eleves.enpc.fr
             plainpassword: 6sRp0uNljM
             category: 1a
-            password: $2b$10$UfF.DluW0MUlUgqKwvLcR.BwwNebqjMWX40kVKJ1xTyNVscrpEkpu
+            password: $2b$10$6mrb1s9S5QXTxpog7YUcI.1/mR406Gofdc5LjdDIIn3xoLQWzaRzG
     
     - Team:
+        $ref: $team5
         name: G.O.D.
         competition: $compet
         members:
@@ -152,23 +162,24 @@ fixtures:
             email: maxime.duval@eleves.enpc.fr
             plainpassword: qI7T4dhrik
             category: 2a
-            password: $2b$10$4/L5goGRnO7GBTCyVTWkZuT.zkLU2oh36HIG9ojhIN36ngKATUGMW
+            password: $2b$10$QmU763tD0/7DtmyN5Kimiequ2c9XekBOvmkjUDjUEp5NBB4efIncy
     
           - lastName: Orhan
             firstName: Mathieu
             email: mathieu.orhan@eleves.enpc.fr
             plainpassword: v762UHVM2c
             category: 2a
-            password: $2b$10$S9aywf7xwvUSnjaN2HcGc.2N8pVBBYcbKQ3fNOeTMpeb0DVLiHDz.
+            password: $2b$10$FjK1rwz.aItNsYDGw66WoeeImFSyaO0jgKVo1LbM0Id9OfP1Ii3Bm
     
           - lastName: Ginoulhac
             firstName: Raphael
             email: raphael.ginoulhac@eleves.enpc.fr
             plainpassword: MNCdfNSdl2
             category: 2a
-            password: $2b$10$Mxkbb1XvU9PDD5DTllhwF.Vutw92zsvGrugz9DSOgH87ZHBNvljh6
+            password: $2b$10$z/IOJVBJikRZuPntdR86xOUMx.sV4vzQiTOa25ijCJ8grKb7S4jqy
     
     - Team:
+        $ref: $team6
         name: GI is the new IMI
         competition: $compet
         members:
@@ -177,23 +188,24 @@ fixtures:
             email: theo.viel@eleves.enpc.fr
             plainpassword: DFcgCPmSsr
             category: 2a
-            password: $2b$10$aKjrLDymecCbLwBic36.COLcMQH0zEoW2K5aic7ouAhIdf8MiXMOi
+            password: $2b$10$TQrGYuTf6jzZtSiCDdxXwewUX3aDPxKTrQxUb.32XYlOYhqbOxSce
     
           - lastName: Déchamps
             firstName: Bastien
             email: bastien.dechamps@eleves.enpc.fr
             plainpassword: UeFSPEOoNR
             category: 2a
-            password: $2b$10$zbWFZt8kPxraf2XlyDz7f.GIYPi1/ceYDvDVYdGVfKDwb..bkcwam
+            password: $2b$10$yvBbXP7h2dhGSakqLI0WceKySA6JDTycsqnrhnk/.thE8g0hGyUkm
     
           - lastName: Villard
             firstName: Pierre-François
             email: pierre-francois.villard@eleves.enpc.fr
             plainpassword: kris2wEpqq
             category: 2a
-            password: $2b$10$RhCZwbC4iraznPkjnaul1Oj1vDQJ8aAFQq9NOEj.6XC/F9uaruuXi
+            password: $2b$10$Svzdt.97YzboQkucTCxwY.f9cyNNUu3oZY27bFY3Am4IUSb9gKXs2
     
     - Team:
+        $ref: $team7
         name: Hugo
         competition: $compet
         members:
@@ -202,23 +214,24 @@ fixtures:
             email: gaspard.alimov@eleves.enpc.fr
             plainpassword: 1CulzF1H6U
             category: 1a
-            password: $2b$10$tGqu5oc3YGMev08WDIWQmuIPKTcTygPpUez4/6aT2b5s0zeUDK.bG
+            password: $2b$10$rEMQorxF8DenAMg9cE6rU.eOYH6YUyzissJflq2InKr2PCnGWetsq
     
           - lastName: De Roux
             firstName: Nicolas
             email: nicolas.de-roux@eleves.enpc.fr
             plainpassword: IK87lNlrAO
             category: 1a
-            password: $2b$10$CnAY3ikopF9G.X8x.Y5tCe7y5V6VLeVoGmj1MU9KJMsrpps9flT52
+            password: $2b$10$5aGProzYO3uiuvXoL2Xr2OVglc4XpypA7LMr8iRey.yiuRLcm6ajO
     
           - lastName: Le Magueresse
             firstName: Malo
             email: malo.le-magueresse@eleves.enpc.fr
             plainpassword: MRSqeDbjMT
             category: 1a
-            password: $2b$10$kasSOHH2Q6gx0F1h5p.KruQtldr0qNVB9I7v/X4YxmeDasTAXFdIu
+            password: $2b$10$7vFRKgz3/Ho8qM2i310XmuUUt9BhI93UzACWdaGRNUXEVQTTtGl7S
     
     - Team:
+        $ref: $team8
         name: Krypton
         competition: $compet
         members:
@@ -227,23 +240,24 @@ fixtures:
             email: elhoussein1998@gmail.com
             plainpassword: hhntUeNSu9
             category: 1a
-            password: $2b$10$AkRBOacj/SINfPKIyxOYBew8m4MBXR2i7Sls/bcpRXZDZK9GWgi86
+            password: $2b$10$KUQ22N2A13z8ItJXZt0zw.baFlfokTOeFcfHVZlllmoasAIfq/kUO
     
           - lastName: LAFARGUE
             firstName: Arnaud
             email: arnaud.lafargue@eleves.enpc.fr
             plainpassword: CtUTFd8pvl
             category: 1a
-            password: $2b$10$0k3.fN8KYY3WbxO9.WpFteje2ZBTS9ZSsGSdtoyZOLE7EMbVf/rTm
+            password: $2b$10$hfM4oeSZSP532sHxVG7aLOGyIS8DYuhP1Cwx2w0BnVBFBni8rwikK
     
           - lastName: DUONG
             firstName: Song
             email: song-phuc.duong@eleves.enpc.fr
             plainpassword: FWyW3o9mtF
             category: 1a
-            password: $2b$10$oLn9MtyKvRcnmCwnfNe5GucadZrqjc0aqQ2eagKTwxVSE8tbGWvfC
+            password: $2b$10$ck50KPitloIsMx3jO2lV7O/YNGwH6QTnSGaO/EdcGTHF8cxtafSva
     
     - Team:
+        $ref: $team9
         name: Les codeurs fous
         competition: $compet
         members:
@@ -252,23 +266,24 @@ fixtures:
             email: terry.moreau@ensg.eu
             plainpassword: hfxP6t2cJi
             category: ext
-            password: $2b$10$ZS1LfxyB4QCtZxu30VCf0uTQa.nQsnaf29i/.heWrobCGZlC56f0u
+            password: $2b$10$evO.PY27yQM.bNqO1Brs/e.y02OEqPIi84umaTbmdjbgDqNep8fXi
     
           - lastName: Chen-yen-su
             firstName: Eva
             email: eva.chen-yen-su@ensg.eu
             plainpassword: UZODRzr03o
             category: ext
-            password: $2b$10$OGOumnllU5GkkKV4t6V5yu2bgNQN2PSFg8.ukpOO7CYfIB48Xr4da
+            password: $2b$10$m1LwimVxlR2c4ToZrvmKJOozEqblEMacuUTDQkahZG26OEj0gYAB6
     
           - lastName: Coatseliou
             firstName: Alexis
             email: alexis.coatseliou@ensg.eu
             plainpassword: nrX7RLqG48
             category: ext
-            password: $2b$10$Nv3zwvrBr2fvQw6g55Hip.vpTl5Vb9DKV2ineUtG9iMR0B51X69VG
+            password: $2b$10$9RYTKQEGGMyCoMIx./SqT.gGv2IXk5zCAx5Y0W7CEXUv0QTKq0Vqa
     
     - Team:
+        $ref: $team10
         name: Les derniers
         competition: $compet
         members:
@@ -277,24 +292,25 @@ fixtures:
             email: quentin.spinat@eleves.enpc.fr
             plainpassword: WHSkAsyhpr
             category: 1a
-            password: $2b$10$aYIY.0bfyHeBGXhvsvUxlOyjBb0lkN6p/2TE9pvqiHKeIwaF1k14W
+            password: $2b$10$enakR1pfCUKSo2pW2bJBEOh/TMWGnAdDRsaZxmGcbz9l7FUD3fpyi
     
           - lastName: Lasuen
             firstName: Clément
             email: clement.lasuen@eleves.enpc.fr
             plainpassword: yFOj8Uzn9U
             category: 1a
-            password: $2b$10$d6oxQ80jWvRbApmWIAQuNeDpv2XYqQ5uSSGA.Jin7fumbN4shaJvK
+            password: $2b$10$diljww6OOyfRY0Aw5JsKb.GxANserxHD1Uc35btf0TszlCIBG9TTi
     
           - lastName: Schmitt
             firstName: Jean-Christophe
             email: jean-christophe.schmitt@eleves.enpc.fr
             plainpassword: ykfS2Vxmwu
             category: 1a
-            password: $2b$10$mvm3NcO3TftrxQ5G5/QXuOzyTmxQ2iEon//6cbDOL1mXhTAldhh/a
+            password: $2b$10$kOkfLYGLrpJNz2PAGLEWf./60r6I29.hXCt1n9Sbko5zEwrE7xiAS
     
     - Team:
-        name: MAF assure
+        $ref: $team11
+        name: MAF assure 
         competition: $compet
         members:
           - lastName: Moreau
@@ -302,23 +318,24 @@ fixtures:
             email: matthieu.moreau@eleves.enpc.fr
             plainpassword: moObkHJNBg
             category: 2a
-            password: $2b$10$XvJwpOyZINoleVqQO1rSH.MhHfuOZs8YUfZvhy.wAo7rXMm8MzC3q
+            password: $2b$10$EM5WkBWluCunClwRArg22enlKLvniYvcq/i9vk0PDeMME4C3Ylf1u
     
           - lastName: De Reviers
             firstName: Antoine
             email: antoine.de-reviers-de-mauny@eleves.enpc.fr
             plainpassword: 56yNslviiC
             category: 2a
-            password: $2b$10$dtOBW3JSO7SD82PRCxnOt.IiD3zjndueABtj17kVbQMz7xyChtww2
+            password: $2b$10$neiJvifrXzrTaDx8gtVPP.8wmZBOh0sRXFuHqEshrPVZr0rqqOgvK
     
           - lastName: Lespagnol
             firstName: Fabien
             email: fabien.lespagnol@eleves.enpc.fr
             plainpassword: Qv1yS5lFFw
             category: 2a
-            password: $2b$10$cj1hzkEuJ/XOEnhDbv1oqOFmYYmlzerRYxnJGB66UdSg0zudu0JL6
+            password: $2b$10$WFz4d/YgBK6YbsW92DBXLe2grGMNz29zLBMkKFqKfjUQT/7bxw.fe
     
     - Team:
+        $ref: $team12
         name: magie.monasse
         competition: $compet
         members:
@@ -327,23 +344,24 @@ fixtures:
             email: campo.yannis@gmail.com
             plainpassword: kGkCkNbXz4
             category: 1a
-            password: $2b$10$VC/z/G1fcgtLe.PupAN5VuSbBluAU7ra54LzmuwKoX8HEhcIQzMvK
+            password: $2b$10$gD5pbxGjGD1WxQg5BiHbT.CyxE.zLRcJjLoUuTNSJIGF7.dmaZCKa
     
           - lastName: Brunod Indrigo
             firstName: Luca
             email: luca.brunod.indrigo@gmail.com
             plainpassword: d4J032YH56
             category: 1a
-            password: $2b$10$pGpXxPmWf/O.H1vZftuBMOW8Cce/idLcpeVCkY9kxa48o5VHXz22m
+            password: $2b$10$ueB3P9APGXZobT6pR4l5Ou1bh6h2ZZqRVbCQr8mc5/vW1MOh14AA.
     
           - lastName: Baty
             firstName: Léo
             email: leo.baty@laposte.net
             plainpassword: Ks9jd41u69
             category: 1a
-            password: $2b$10$USOlerptIiQ.cNcKJSUlfePFdV1uDPp68qHxRj1rt8dIjnI5RMHgC
+            password: $2b$10$d6WQ2lalDYMig3ikotlBvu54H4u0qTIOe3cGWFVRoPlc1Toq9m98G
     
     - Team:
+        $ref: $team13
         name: The zeROs Guillotine Cutter
         competition: $compet
         members:
@@ -352,23 +370,24 @@ fixtures:
             email: herve.andres@eleves.enpc.fr
             plainpassword: 1OoRGq5jCy
             category: 2a
-            password: $2b$10$fCYQgeh4QD3E4M8ZSh5rFOqV2zjXdSd3OSyJLkVevejgMEQq7NciS
+            password: $2b$10$kkts0qaBu4bGvBvGzmhIXOFhilsXHidPFVL7PXscNEZjC5rYMQRwi
     
           - lastName: Roux
             firstName: Matthieu
             email: matthieu.roux@eleves.enpc.fr
             plainpassword: T09I5jDyTH
             category: 2a
-            password: $2b$10$.hlZAq7jzagQUBzNh37Z6e2AO9jNzXDyL9svM5Oa9lS7wdSnjhZYm
+            password: $2b$10$96xHFl7icsc4uNfr6SDw9esMhj2JOy283rsahDuCXZ0SlZgFedze6
     
           - lastName: Augé
             firstName: Marc-Antoine
             email: marc-antoine.auge@eleves.enpc.fr
             plainpassword: KwY8Wbxck4
             category: 2a
-            password: $2b$10$LShxv49bOdSOee4iISMDqudzBlW4G.iSWthJfCNn6eMTJZgA77lJC
+            password: $2b$10$.RpQfSwahOz7AkWd8xAwC.5X5KXJly0KhGFbnr5KwLZW3scTEf7Ya
     
     - Team:
+        $ref: $team14
         name: Turtle on the Chaussée !
         competition: $compet
         members:
@@ -377,23 +396,24 @@ fixtures:
             email: iyes.khalil@eleves.enpc.fr
             plainpassword: 3TKWqbAzSQ
             category: 1a
-            password: $2b$10$GDbW8DKiRC1An/c0bL3bqepoLdunjQ7t4uKvHto4mbNAppL4EtTiK
+            password: $2b$10$.qXbIpxwbHOAU0J0ej19pOfWXJ27FRWu6gf7.bbF6Hak1KH6kvwWa
     
           - lastName: Lauréat
             firstName: Jérémy
             email: jeremy.lauret@eleves.enpc.fr
             plainpassword: MtHCFD7Eu6
             category: 1a
-            password: $2b$10$gKf9lTRwiqYGXF/iklS/auVc/WGzx6B8gNlYpsW8CnkoFL11gn4Ha
+            password: $2b$10$.ER63h8VWjG6fc9fY4.8denlrWZUTCXMxMO8pSnNq7EL302ZZxkR6
     
           - lastName: Segerie
             firstName: Charbel-raphaël
             email: charbel-raphael.segerie@enpc.fr
             plainpassword: DATzLJh9QH
             category: 1a
-            password: $2b$10$yZ9WxVlFiYE970qIq2QVJOA7glyFe74nEfOj.d9he5err9/RKvzP6
+            password: $2b$10$LVXYlp.kBerThn8.NG0mN.io8d9DWES92NOrhI.Ntd3NWbwjdgK12
     
     - Team:
+        $ref: $team15
         name: VicTeam
         competition: $compet
         members:
@@ -402,36 +422,373 @@ fixtures:
             email: hamza.bodor@eleves.enpc.fr
             plainpassword: xuSY0IUMUd
             category: 1a
-            password: $2b$10$ofIIxkszcqm2fCsTtTlGOeHswXDxS/nuqnxDhampM2IyZSIkgEOAa
+            password: $2b$10$N5BbcSPtHVyDO2crD6XKWeYu0XfbWQ21MLATNEK18j5da2.exHnRa
     
           - lastName: MARRAKCHI BENAZZOUZ
             firstName: Mouad
             email: mouad.marrakchi-benazzouz@eleves.enpc.fr
             plainpassword: F6IrcO28KN
             category: 1a
-            password: $2b$10$FD1PIxftBD2PflK8GyYvCuyDyEULNFA22TcRpVnYdhJcnpLnSq/8C
+            password: $2b$10$JBkU34TNt7y2HejFzKGpnO2QKoL4nhEksr5lQdoThF42EUQUR4n6W
     
           - lastName: ALAMI MESSAOUDI
             firstName: Wissam
             email: wissam.alami-messaoudi@eleves.enpc.fr
             plainpassword: 1wT1sqGj2w
             category: 1a
-            password: $2b$10$GoYHu6TqQ5iFJ0Yh3hcEpuHWzT6Q4bxJgRgUXbt7lvrRwo2sqIGDu
-
+            password: $2b$10$P5JWeeu5OnoMggY7zQ5V0OXLOBD.D0sedjIbd3VZSa3owWnaz2TR.
+    
     - Team:
-        name: Admins
+        $ref: $team16
+        name: Admin
         competition: $compet
         members:
           - lastName: Desforges
             firstName: Guillaume
             email: guillaume.desforges@eleves.enpc.fr
-            plainpassword: jprfxq8Ouo
-            category: 2a
-            password: $2a$10$DzIjCaawDNGWketY5VAt7.oMGDoLMnbTvpBqp2JhovV2sYlJ9rGuO
-
+            plainpassword: n00bpower
+            category: admin
+            password: $2b$10$b/d6nY.Roml4KOkJPs/f0ufCpV2kYfRnelYbog/HlhyeQ10AxPoeO
+    
           - lastName: Trezzini
             firstName: Louis
             email: louis.trezzini@eleves.enpc.fr
-            plainpassword: MqGOiLhAf9
-            category: 2a
-            password: $2a$10$u.9JPJlwgRSS8YJrH.nfLeMQRknzd2KpymLNhneMLg1zF2YCkTN/6
+            plainpassword: nestjsctrobien
+            category: admin
+            password: $2b$10$Z13dCkYpasIc2v9AyfZB0.qi4ZzKVgng6q4nDLOkrCVsHjhwEJylC
+    
+          - lastName: Parmentier
+            firstName: Axel
+            email: axel.parmentier@enpc.fr
+            plainpassword: larocestbon
+            category: admin
+            password: $2b$10$zaVfGj.B8SERVMFZN89zp..NPdzLBr2uMOrdPSk1WiKL5jYDp..1i
+    
+          - lastName: Richard
+            firstName: Solene
+            email: sorichard2@airfrance.fr
+            plainpassword: airfrancepgm
+            category: admin
+            password: $2b$10$uPKhcD/SDL4Le9bInIZ9u./TWMaB6wj0aVwmgnTZVwXZAU0eZfmou
+
+
+    - Submission:
+        instance: $instanceExemple
+        team: $team1
+        score: 3501
+    - Submission:
+        instance: $instanceS
+        team: $team1
+        score: 121001
+    - Submission:
+        instance: $instanceM
+        team: $team1
+        score: 286001
+    - Submission:
+        instance: $instanceL
+        team: $team1
+        score: 816001
+    - Submission:
+        instance: $instanceXXL
+        team: $team1
+        score: 4207001
+    - Submission:
+        instance: $instanceExemple
+        team: $team2
+        score: 3501
+    - Submission:
+        instance: $instanceS
+        team: $team2
+        score: 121001
+    - Submission:
+        instance: $instanceM
+        team: $team2
+        score: 286001
+    - Submission:
+        instance: $instanceL
+        team: $team2
+        score: 816001
+    - Submission:
+        instance: $instanceXXL
+        team: $team2
+        score: 4207001
+    - Submission:
+        instance: $instanceExemple
+        team: $team3
+        score: 3501
+    - Submission:
+        instance: $instanceS
+        team: $team3
+        score: 121001
+    - Submission:
+        instance: $instanceM
+        team: $team3
+        score: 286001
+    - Submission:
+        instance: $instanceL
+        team: $team3
+        score: 816001
+    - Submission:
+        instance: $instanceXXL
+        team: $team3
+        score: 4207001
+    - Submission:
+        instance: $instanceExemple
+        team: $team4
+        score: 3501
+    - Submission:
+        instance: $instanceS
+        team: $team4
+        score: 121001
+    - Submission:
+        instance: $instanceM
+        team: $team4
+        score: 286001
+    - Submission:
+        instance: $instanceL
+        team: $team4
+        score: 816001
+    - Submission:
+        instance: $instanceXXL
+        team: $team4
+        score: 4207001
+    - Submission:
+        instance: $instanceExemple
+        team: $team5
+        score: 3501
+    - Submission:
+        instance: $instanceS
+        team: $team5
+        score: 121001
+    - Submission:
+        instance: $instanceM
+        team: $team5
+        score: 286001
+    - Submission:
+        instance: $instanceL
+        team: $team5
+        score: 816001
+    - Submission:
+        instance: $instanceXXL
+        team: $team5
+        score: 4207001
+    - Submission:
+        instance: $instanceExemple
+        team: $team6
+        score: 3501
+    - Submission:
+        instance: $instanceS
+        team: $team6
+        score: 121001
+    - Submission:
+        instance: $instanceM
+        team: $team6
+        score: 286001
+    - Submission:
+        instance: $instanceL
+        team: $team6
+        score: 816001
+    - Submission:
+        instance: $instanceXXL
+        team: $team6
+        score: 4207001
+    - Submission:
+        instance: $instanceExemple
+        team: $team7
+        score: 3501
+    - Submission:
+        instance: $instanceS
+        team: $team7
+        score: 121001
+    - Submission:
+        instance: $instanceM
+        team: $team7
+        score: 286001
+    - Submission:
+        instance: $instanceL
+        team: $team7
+        score: 816001
+    - Submission:
+        instance: $instanceXXL
+        team: $team7
+        score: 4207001
+    - Submission:
+        instance: $instanceExemple
+        team: $team8
+        score: 3501
+    - Submission:
+        instance: $instanceS
+        team: $team8
+        score: 121001
+    - Submission:
+        instance: $instanceM
+        team: $team8
+        score: 286001
+    - Submission:
+        instance: $instanceL
+        team: $team8
+        score: 816001
+    - Submission:
+        instance: $instanceXXL
+        team: $team8
+        score: 4207001
+    - Submission:
+        instance: $instanceExemple
+        team: $team9
+        score: 3501
+    - Submission:
+        instance: $instanceS
+        team: $team9
+        score: 121001
+    - Submission:
+        instance: $instanceM
+        team: $team9
+        score: 286001
+    - Submission:
+        instance: $instanceL
+        team: $team9
+        score: 816001
+    - Submission:
+        instance: $instanceXXL
+        team: $team9
+        score: 4207001
+    - Submission:
+        instance: $instanceExemple
+        team: $team10
+        score: 3501
+    - Submission:
+        instance: $instanceS
+        team: $team10
+        score: 121001
+    - Submission:
+        instance: $instanceM
+        team: $team10
+        score: 286001
+    - Submission:
+        instance: $instanceL
+        team: $team10
+        score: 816001
+    - Submission:
+        instance: $instanceXXL
+        team: $team10
+        score: 4207001
+    - Submission:
+        instance: $instanceExemple
+        team: $team11
+        score: 3501
+    - Submission:
+        instance: $instanceS
+        team: $team11
+        score: 121001
+    - Submission:
+        instance: $instanceM
+        team: $team11
+        score: 286001
+    - Submission:
+        instance: $instanceL
+        team: $team11
+        score: 816001
+    - Submission:
+        instance: $instanceXXL
+        team: $team11
+        score: 4207001
+    - Submission:
+        instance: $instanceExemple
+        team: $team12
+        score: 3501
+    - Submission:
+        instance: $instanceS
+        team: $team12
+        score: 121001
+    - Submission:
+        instance: $instanceM
+        team: $team12
+        score: 286001
+    - Submission:
+        instance: $instanceL
+        team: $team12
+        score: 816001
+    - Submission:
+        instance: $instanceXXL
+        team: $team12
+        score: 4207001
+    - Submission:
+        instance: $instanceExemple
+        team: $team13
+        score: 3501
+    - Submission:
+        instance: $instanceS
+        team: $team13
+        score: 121001
+    - Submission:
+        instance: $instanceM
+        team: $team13
+        score: 286001
+    - Submission:
+        instance: $instanceL
+        team: $team13
+        score: 816001
+    - Submission:
+        instance: $instanceXXL
+        team: $team13
+        score: 4207001
+    - Submission:
+        instance: $instanceExemple
+        team: $team14
+        score: 3501
+    - Submission:
+        instance: $instanceS
+        team: $team14
+        score: 121001
+    - Submission:
+        instance: $instanceM
+        team: $team14
+        score: 286001
+    - Submission:
+        instance: $instanceL
+        team: $team14
+        score: 816001
+    - Submission:
+        instance: $instanceXXL
+        team: $team14
+        score: 4207001
+    - Submission:
+        instance: $instanceExemple
+        team: $team15
+        score: 3501
+    - Submission:
+        instance: $instanceS
+        team: $team15
+        score: 121001
+    - Submission:
+        instance: $instanceM
+        team: $team15
+        score: 286001
+    - Submission:
+        instance: $instanceL
+        team: $team15
+        score: 816001
+    - Submission:
+        instance: $instanceXXL
+        team: $team15
+        score: 4207001
+    - Submission:
+        instance: $instanceExemple
+        team: $team16
+        score: 3501
+    - Submission:
+        instance: $instanceS
+        team: $team16
+        score: 121001
+    - Submission:
+        instance: $instanceM
+        team: $team16
+        score: 286001
+    - Submission:
+        instance: $instanceL
+        team: $team16
+        score: 816001
+    - Submission:
+        instance: $instanceXXL
+        team: $team16
+        score: 4207001
