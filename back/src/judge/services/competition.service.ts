@@ -40,7 +40,8 @@ export class CompetitionService {
           .select('submission.team.id', 'subTeamId')
           .addSelect('submission.instance.id', 'instanceId')
           .addSelect('MIN(score)', 'score')
-          .groupBy('instanceId');
+          .groupBy('instanceId')
+          .addGroupBy('subTeamId');
 
         if (isFrozen) {
           return subquery.where('submission.createdAt < :freezeDate', {
