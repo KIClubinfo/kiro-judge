@@ -472,6 +472,13 @@ fixtures:
             category: admin
             password: $2b$10$uPKhcD/SDL4Le9bInIZ9u./TWMaB6wj0aVwmgnTZVwXZAU0eZfmou
 
+          - lastName: Robillard
+            firstName: Benoit
+            email: berobillard@airfrance.fr
+            plainpassword: 42isNaA
+            category: admin
+            password: $2b$10$NREFqwxfD34X7amTW0j4bOG/AJ3Ruh2zSajt/9l/VjCXH/P162NE.
+
 
     - Submission:
         instance: $instanceExemple
