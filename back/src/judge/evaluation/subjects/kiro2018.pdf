@@ -1,0 +1,250 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[frenchb]{babel}
+
+\usepackage{amssymb,amsmath,amsthm}
+
+\theoremstyle{remark}
+\newtheorem{rem}{Remarque}
+
+% margins
+\usepackage[a4paper, top=2cm, right=3cm, bottom=3cm, left=3cm]{geometry}
+
+% no indent
+\setlength\parindent{0pt}
+
+% paragraph vertical space
+\setlength{\parskip}{0.5\baselineskip}
+
+% for source codes
+\usepackage{listings}
+
+% custom shortcuts
+\newcommand{\calR}{\mathcal{R}}
+
+% meta infos
+\title{KIRO - 1ère Edition}
+\author{G. \bsc{Desforges} \and A. \bsc{Parmentier} \and S. \bsc{Richard}}
+\date{\today}
+
+
+\begin{document}
+\maketitle
+
+
+Air France est un acteur international de premier plan du transport aérien.
+Ses activités couvrent le transport de personne, le fret et la maintenance aéronautique.
+Depuis ses hubs aux aéroports de Paris-Orly et Paris-Charles de Gaulle, la compagnie opère des vols vers \emph{plus de 320 destinations et 118 pays}.
+
+Compte tenu de la taille des réseaux opérés par les compagnies aériennes, 
+celles-ci ont été pionnières dans le développement de la recherche opéra\-tionnelle, et le bon usage des outils de cette discipline est aujourd'hui incontournable pour la performance de ces compagnies.
+Les deux domaines principaux d'application de la recherche opérationnelle pour une compagnie aérienne sont la gestion de la demande et la gestion des opérations.
+
+Ce Hackathon porte sur une des principales problématiques de gestion des opérations : la construction des séquences de vols opérées par les avions.
+% De manière très simplifiée, la contribution de la recherche opérationnelle aux opérations aériennes peut être décrites par quatre problèmes d'optimisation successifs :
+% \begin{enumerate}
+%     \item le choix des vols opérés par la compagnie ou \emph{schedule planning},
+%     \item le choix du type d'avion qui réalisera chaque vol (Airbus A320, Boeing 737, etc.) ou \emph{fleet assignment}
+%     \item la construction des séquences de vols opérées par chaque avion ou \emph{aircraft routing}
+%     \item la construction des séquences de vols opérées par chaque équipage ou \emph{crew pairing}
+% \end{enumerate}
+
+% Ce Hackathon porte sur la troisième de ces grandes parties : l'\emph{aircraft routing}.
+
+% \begin{enumerate}
+%     \item le choix des vols opérés par la compagnie ou \emph{schedule planning},
+%     \item le choix du type d'avion qui réalisera chaque vol (Airbus A320, Boeing 737, etc.) ou \emph{fleet assignment}
+%     \item la construction des séquences de vols opérées par chaque avion ou \emph{aircraft routing}
+%     \item la construction des séquences de vols opérées par chaque équipage ou \emph{crew pairing}
+% \end{enumerate}
+
+% Ce Hackathon porte sur la troisième de ces grandes parties : l'\emph{aircraft routing}.
+
+\newpage
+\section{Description du problème}
+
+L'objectif du problème est de construire les séquences de vols ou \emph{rotations} opérées par les avions de la compagnie aérienne.
+
+Soit $V$ \emph{l'ensemble de vols} $v \in V$ opérés par une flotte d'avions de la compagnie aérienne sur un horizon temporel donné.
+
+Soit $P$ \emph{l'ensemble des avions} disponibles pour opérer ces vols.
+
+Pour chaque vol $v \in V$ et avion $p \in P$, soit $c_{v,p}$ le coût d'opération du vol $v$ avec l'avion $p$. Ce coût modélise notamment la consommation de carburant.
+
+Une \emph{correspondance} $a$ est une paire de vols $(v_1,v_2)$ qui peuvent être opérés successivement par le même avion.
+Pour qu'une paire de vols $(v_1,v_2)$ soit une correspondance, certaines contraintes doivent être satisfaites. Par exemple, $v_2$ doit partir de l'aéroport où $v_1$ arrive après le départ de $v_1$.
+Ces contraintes étant fastidieuses à vérifier du fait de la gestion des fuseaux horaires, nous vous fournissons directement l'ensemble $A$ des correspondances qui peuvent être réalisées.
+
+Le \emph{graphe des vols} est le graphe orienté acircuitique $D=(V,A)$.
+
+Une \emph{rotation} est un chemin dans le graphe des vols, c'est à dire une séquence de vols $(v_0,\ldots,v_k)$ telle que $(v_{i-1},v_{i})$ appartient à $A$ pour tout~$i$ dans $\{1,\ldots,k\}$. 
+Les rotations sont opérées par les avions $p \in P$.
+
+Certaines opérations de maintenances doivent être réalisées sur les avions au minimum tous les $\kappa$ jours.
+Ces opérations requièrent des équipements qui ne sont présents que dans certains aéroports appelés \emph{bases de maintenance}.
+Une opération de maintenance est réalisable sur une correspondance uniquement si l'avion est dans une base de maintenance et si la durée de la correspondance est suffisante pour permettre de réaliser une opération de maintenance.
+Nous notons $A^{\mathrm{m}}$ l'ensemble des correspondances sur lesquelles une opération de maintenance peut être réalisée.
+Nous notons $A^{\mathrm{m}}$ l'ensemble des correspondances sur lesquelles une opération de maintenance peut être réalisée.
+On a $A^{\mathrm{m}} \subsetneq A$.
+Nous notons $t_a$ le nombre de jours entre le début du premier vol de $a$ et le début du second vol de $a$ pour toute correspondance.
+Nous affectons un coût $\gamma$ à la réalisation d'un vol $v$ par un avion qui n'a pas visité une maintenance depuis $\kappa$ jours.
+
+Nous faisons les hypothèses simplificatrices suivantes :
+\begin{itemize}
+     \item chaque avion peut commencer sa rotation par n'importe quel vol (en pratique, l'avion est dans un aéroport et ne peut commencer que par vol depuis cet aéroport).
+     \item chaque avion sort de maintenance lorsqu'il commence son premier vol (en pratique, ce n'est pas le cas si l'avion n'est pas dans une base).
+ \end{itemize} 
+Nous notons $v\in r$ l'appartenance du vol $v$ à la rotation $r$.
+
+Soit $V^{\mathrm{m}}(r)$ l'ensemble des vols de $r$ tels que l'avion réalisant $r$ n'a pas visité un arc de maintenance depuis $\kappa$ jours. Si $r = (v_0,\ldots,v_m)$, on a
+$$V^{\mathrm{m}}(r) = \left\{v \in r \colon \exists i,k  \text{ tels que } \left
+|
+\begin{array}{l}
+0 \leq i < k \leq m \\
+v= v_k \\
+\forall j \text{ tel que }i\leq j <k\text{, on a  } (v_{j},v_{j+1})\text{, on a  }\notin A^{\mathrm{m}}\\
+\text{ et } \sum_{i\leq j < k} t_j \geq \kappa  
+\end{array}
+\right.\right\}.$$
+
+Le coût d'opération de la rotation $r$ par l'avion $ p$ est
+\begin{equation*}
+    c^{\mathrm{r}}(r,p) = \gamma |V^{\mathrm{m}}(r)| + \sum_{v \in r} c_{v,p}. %+ \sum_{v \in V^{\mathrm{m}}(r)} c_m
+\end{equation*}
+
+Une \emph{solution} est une collection de rotations $\calR = (r_p)_{p \in \{1,\ldots,P\}}$ affectées à chaque avion. 
+Nous notons $n(v,\calR)$ le nombre d'avion réalisant le vol $v$ dans la solution $\calR$.
+Chaque vol doit-être couvert par un et un seul avion.
+Nous affectons un coût $\beta$ à chaque avion manquant ou en trop réalisant un vol $v$.
+
+
+Le coût d'une solution $(r_p)_{p \in \{1,\ldots,P\}}$ est donc
+\begin{equation*}
+    c(\mathcal{R}) = \sum_{p=1}^Pc^{\mathrm{r}}(r_p,p) + \beta \sum_v|n(v,\calR)-1| \quad \text{où} \quad \calR = (r_p)_{p \in \{1,\ldots,P\}}.
+\end{equation*}
+
+\emph{L'objectif est de construire une solution $\calR$ de coût $c(\calR)$ minimum.}
+
+\begin{rem}
+Du point de vue de la compagnie aérienne, si deux rotations passent par le même vol, cela veut dire qu'un avion réalise un vol sans passagers, ce qui coûte très cher. Si aucune rotation ne passe par un vol, cela veut dire qu'un autre avion devra être mobilisé spécialement pour ce vol, ce qui coûte aussi très cher et doit être évité.
+\end{rem}
+
+
+\newpage
+\section{Format des instances}
+
+Chaque instance est contenue dans un fichier texte.
+Ce fichier texte suit une structure précise pour décrire les paramètres et le graphe des vols.
+
+ Problème de ponctuation dans les items suivants. Certaines lignes ont de la ponctuation, d'autres non. (Voir note au début).
+\begin{itemize}
+    \item La première ligne contient les paramètres du problème.
+    \begin{itemize}
+        \item \texttt{V}: le nombre $|V|$ de vols, donc de n\oe{}uds du graphe de vols
+        \item \texttt{A}: le nombre $|A|$ d'arcs du graphe de vols
+        \item \texttt{P}: la taille $|P|$ de la flotte, soit le nombre d'avions disponibles
+        \item \texttt{B}: le coût $\beta$ par vol réalisé en trop ou non réalisé
+        \item \texttt{K}: la fréquence $\kappa$ à laquelle il faut retourner à une base
+        \item \texttt{G}: le coût $\gamma$ à réaliser un vol sans avoir fait la maintenance requise.
+        % \item \texttt{M}: la liste des niveaux de maintenance au départ de la semaine pour chaque avion.
+    \end{itemize}
+    \item Les $|V|$ lignes suivantes décrivent un vol $v \in V$ chacune. Elles commencent par \texttt{v}, suivi de l'index du vol, suivi de \texttt{c}, suivi du coût d'opération du vol par chacun des $|P|$ avions. 
+    \item Les $|A|$ lignes suivantes décrivent un arc $a \in A$ du graphe de vols (une correspondance) chacune. Elles contiennent 
+    \begin{itemize}
+        \item \texttt{a}: index de la correspondance $a = (v_1,v_2)$
+        \item \texttt{o}: index du vol $v_1$
+        \item \texttt{d}: index du vol $v_2$
+        \item \texttt{t}: un booléen égal à 1 si $a \in A^{\mathrm{m}}$
+        \item \texttt{n}: le nombre de jour $t_a$ entre le début et la fin de la correspondance $a$
+    \end{itemize}
+\end{itemize}
+
+Les paramètres donnés sur chaque ligne sont séparés par des espaces.
+
+\begin{rem}
+ Les sommets sont fournis selon un ordre topologique : s'il existe un chemin du sommet $v_1$ au sommet $v_2$, alors l'index de $v_1$ est plus petit que l'index de $v_2$.
+ \end{rem} 
+
+Voici un exemple d'instance:
+
+\lstinputlisting[frame=single]{instance_example.in}
+
+Dans cet exemple :
+\begin{itemize}
+    \item Il y a 3 avions dans la flotte.
+    \item Il y a 7 vols à réaliser. Le vol 1 a par exemple un coût de 12 si l'avion 1 le fait, un coût de 15 si l'avion 2 le fait ou un coût de 10 si l'avion 3 le fait.
+    \item Il y a 14 décisions possibles. Par exemple la décision 1 consiste à faire suivre à un avion le vol 3 après le vol 1, ce qui le fait rester au sol 5 jours et compte comme un arrêt à une base.
+    \item Un avion doit faire une pause à une base avant 5 jours.
+    \item Ne pas faire un vol coûte 100000.
+    \item Avoir un avion ne passant pas par une base en 5 jours coûte 10000.
+    \item L'avion 1 a un niveau de maintenance de 0 au départ du planning : il sort tout juste d'une maintenance. L'avion 2 a quand a un niveau de maintenance de 4 : cela fait 4 jours qu'il n'a pas eu de maintenance.
+\end{itemize}
+
+% TODO : visualisation de l'instance par une image
+
+
+\section{Format des solutions}
+
+Les solutions doivent être postées sur le scoreboard au format suivant. 
+
+Le ficher contient une ligne par avion, décrit de cette façon
+\begin{itemize}
+    \item \texttt{p}: index de l'avion (de $1$ à $|P|$)
+    \item \texttt{v}: séquence des indices des vols opérés par l'avion
+\end{itemize}
+\vspace{1em}
+
+Vous trouverez ci-dessous un exemple de fichier solution pour l'instance ci-dessus
+
+\lstinputlisting[frame=single]{solution_example.out}
+
+Dans cette solution, l'avion 1 réalise les vols 2, 4 et 7, l'avion 2 réalise les vol 1 et 3 et l'avion 3 réalise le vol 5 et 6.
+
+L'avion 1 réalise donc des vols aux coûts 8, 2 et 1, pour un coût total de 11. L'avion 2 vol pour un coût total de 21, l'avion 3 pour un coût total de 15.
+
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Comment sera établi le classement}
+% \label{sec:comment_sera_établi_le_classement}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Il y a quatre instances :
+\begin{itemize}
+    \item \texttt{S.in} une instance d'exemple
+    \item \texttt{M.in} une petite instance
+    \item \texttt{L.in} une instance plus grande
+    \item \texttt{XXL.in} une très grande instance
+\end{itemize}
+
+\vspace{1em}
+% TODO check avec axel
+Au départ, toutes les instances pour lesquelles vous n'aurez pas envoyé de solution auront un coût pour votre équipe.
+
+Pour chaque taille d'instance, seule la meilleure solution (celle au coût minimal) que votre équipe aura soumise sera comptabilisée.
+
+Le score de votre équipe sera la somme des meilleurs coûts obtenus.
+
+L'équipe ayant le score final le plus faible remportera le Hackathon.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Quelques conseils}
+\label{sec:quelques_conseils}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Six heures, c'est très court. L'équipe qui gagnera sera celle qui arrivera à produire le plus vite des solutions décentes.
+
+\begin{enumerate}
+    \item Partagez vous les tâches 
+    \item Commencez immédiatement à coder les outils pour parser un fichier d'entrée et créer un fichier de sortie
+    \item Comparez $\beta,\gamma$ et les $c_{v,p}$ : n'hésitez pas à négliger certains aspects de la fonction de coût qui sont difficiles à coder et ont relativement peu d'impact. Les prendre en compte sera la cerise sur le gâteau s'il vous reste du temps à la fin.
+\end{enumerate}
+% \textbf{Bonne courage !}
+
+\end{document}
