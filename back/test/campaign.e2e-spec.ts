@@ -2,7 +2,7 @@ import { INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import request from 'supertest';
 import { AppModule } from '../src/app.module';
-import { loadFixtures } from './fixtures/loader';
+import { loadFixtures } from '../src/scripts/fixtures-loader';
 
 describe('CampaignController (e2e)', () => {
   let app: INestApplication;

@@ -1,4 +1,4 @@
-function getOrmConfig() {
+export default function getOrmConfig() {
   let settings;
   if (process.env.NODE_ENV !== 'test') {
     settings = {
@@ -24,9 +24,9 @@ function getOrmConfig() {
   return Object.assign(
     {
       type: 'mysql',
-      entities: [__dirname + '/src/**/**.entity.ts'],
-      migrations: [__dirname + '/src/migrations/**/*.ts'],
-      subscribers: [__dirname + '/src/**/**.subscriber.ts'],
+      entities: [__dirname + '/**/**.entity.{ts,js}'],
+      migrations: [__dirname + '/migrations/**/*.{ts,js}'],
+      subscribers: [__dirname + '/**/**.subscriber.{ts,js}'],
       synchronize: false,
       logging: true,
       maxQueryExecutionTime: 1000,
@@ -35,5 +35,3 @@ function getOrmConfig() {
     settings,
   );
 }
-
-module.exports = getOrmConfig();

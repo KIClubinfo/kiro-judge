@@ -3,19 +3,19 @@ import * as yaml from 'js-yaml';
 import { getConnection } from 'typeorm';
 
 export async function loadFixtures(
-  name: string,
+  fixturesPath: string,
 ): Promise<any> {
   let items: any[] = [];
   try {
-    const file: any = yaml.safeLoad(
-      fs.readFileSync(`./test/fixtures/${name}.yml`, 'utf8'),
-    );
+    console.log(`Loading fixtures from ${fixturesPath}`);
+    const file: any = yaml.safeLoad(fs.readFileSync(fixturesPath, 'utf8'));
     items = file['fixtures'];
   } catch (e) {
     console.log('fixtures error', e);
   }
 
   if (!items) {
+    console.log('No fixtures found');
     return;
   }
 
@@ -33,7 +33,6 @@ async function loadItem(connection, item: any, refs: any) {
   const { $ref, ...data } = item[entityName];
   const entity = connection.getRepository(entityName).create(data);
 
-  console.log(refs);
   for (const key in data) {
     if (refs[data[key]] !== undefined) {
       entity[key] = refs[data[key]];
