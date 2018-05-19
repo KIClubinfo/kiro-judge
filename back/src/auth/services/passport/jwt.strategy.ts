@@ -4,7 +4,6 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 import { IJWTPayload } from '../../interfaces/jwt-payload.interface';
 import { AuthService, SECRET_KEY } from '../auth.service';
 
-
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(private readonly authService: AuthService) {
@@ -17,7 +16,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  async validate(payload: IJWTPayload, done: Function) {
+  async validate(payload: IJWTPayload, done) {
     const user = await this.authService.validateUser(payload);
     if (!user) {
       return done(new UnauthorizedException(), false);

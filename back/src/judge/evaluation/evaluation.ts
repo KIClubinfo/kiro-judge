@@ -31,12 +31,12 @@ export function checkSolution(
         throw new Error('A leg has a index that is not an integer !');
     }
     //   b. bounds
-    if (rotations.some((rotation) => rotation.length != 0 && rotation.some((leg) => leg <= 0 || leg > V))) {
+    if (rotations.some((rotation) => rotation.length !== 0 && rotation.some((leg) => leg <= 0 || leg > V))) {
         throw new Error('A leg has an index out of bounds ! (0 < v <= V)');
     }
     //   c. legs in a rotation must follow in the graph
     for (const rotation of rotations) {
-        for (const k in rotation) {
+        for (const k of rotation) {
             const i = Number(k);
             if (i + 1 === rotation.length) {
                 break;
@@ -74,27 +74,27 @@ export function evaluateSolution(
     // per leg cost with planned plane
     let legsCost = 0;
     let unmaintainedCost = 0;
-    for (const i in planes) {
+    for (const i of planes) {
         const p = Number(i);
         const plane = planes[p];
         const planeArrayId = plane - 1;
         const rotation = rotations[p];
         let state = 0;
-        for (const j in rotation) {
+        for (const j of rotation) {
             const l = Number(j);
             const leg = rotation[l];
             const legArrayId = leg - 1;
-            
+
             const legCost = legsPlanesCosts[legArrayId][planeArrayId];
             legsCost += legCost;
 
             // if not the first leg
             if (l > 0) {
-                const previousLeg = rotation[l-1];
-                const correspondence = instance.correspondences.find(x => x[0] == previousLeg && x[1] == leg);
+                const previousLeg = rotation[l - 1];
+                const correspondence = instance.correspondences.find((x) => x[0] === previousLeg && x[1] === leg);
                 const night = correspondence[2];
                 const time = correspondence[3];
-                if (night == 1) {
+                if (night === 1) {
                     state = 0;
                 } else {
                     state += time;
@@ -110,9 +110,11 @@ export function evaluateSolution(
     const doneLegs = rotations.reduce((acc, val) => acc.concat(val));
     const singleDoneLegs = new Set(doneLegs);
     const notDoneLegsCost = Math.abs(singleDoneLegs.size - V) * B;
-    let repeatedLegsCost = 0; 
+    let repeatedLegsCost = 0;
     if (doneLegs.length > 0) {
-        repeatedLegsCost = [...singleDoneLegs].map(leg => doneLegs.filter(x => x == leg).length - 1).reduce((acc, val) => acc + val) * B;
+        repeatedLegsCost = [...singleDoneLegs].map((leg) => {
+          return doneLegs.filter((x) => x === leg).length - 1;
+        }).reduce((acc, val) => acc + val) * B;
     }
 
     // total cost

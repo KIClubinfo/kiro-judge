@@ -1,3 +1,4 @@
+import { Logger } from '@nestjs/common';
 import * as fs from 'fs';
 import { Loader } from './loader';
 
@@ -36,11 +37,11 @@ export class KiroInstance {
             // leg cost for each plane
             const costs = datas.slice(3).map(Number);
             if (costs.length !== this.P) {
-                console.debug(`Instance ${instancePath} with line ${line} : costs per leg len != P`);
+                Logger.log(`Instance ${instancePath} with line ${line} : costs per leg len != P`);
                 throw new Error('Leg needs to have exactly one cost per plane.');
             }
             if (costs.some(isNaN)) {
-                console.debug(`Instance ${instancePath} with line ${line} : NaN value caught`);
+                Logger.log(`Instance ${instancePath} with line ${line} : NaN value caught`);
                 throw new Error('NaN value caught.');
             }
             return costs;
@@ -66,7 +67,7 @@ export class KiroInstance {
 
             const correspondence = [o, d, t, n];
             if (correspondence.some(isNaN)) {
-                console.debug(`Instance ${instancePath} with line ${line} : NaN value caught`);
+                Logger.log(`Instance ${instancePath} with line ${line} : NaN value caught`);
                 throw new Error('NaN value caught.');
             }
 

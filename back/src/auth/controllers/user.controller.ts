@@ -11,22 +11,6 @@ export class UserController {
     private readonly authService: AuthService,
   ) {}
 
-  // @Get()
-  // // FIXME remove
-  // async findAll() {
-  //   return this.userService.findAll();
-  // }
-  //
-  // @Get(':id')
-  // @UseGuards(AuthGuard('jwt'))
-  // async findOne(@Param('id') id) {
-  //   try {
-  //     return await this.userService.findOne(id);
-  //   } catch (e) {
-  //     throw new NotFoundException(e);
-  //   }
-  // }
-
   @Post('login')
   async login(@Body('email') email, @Body('password') password) {
     let user;

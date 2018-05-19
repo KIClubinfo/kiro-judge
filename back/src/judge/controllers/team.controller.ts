@@ -1,6 +1,6 @@
 import { Controller, Get, NotFoundException, Param, UseGuards } from '@nestjs/common';
-import { TeamService } from '../services/team.service';
 import { AuthGuard } from '@nestjs/passport';
+import { TeamService } from '../services/team.service';
 
 @Controller('teams')
 @UseGuards(AuthGuard('jwt'))

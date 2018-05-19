@@ -1,8 +1,8 @@
 import { Controller, ForbiddenException, Get, NotFoundException, Param, Response, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Instance } from '../entities/instance.entity';
-import { InstanceService } from '../services/instance.service';
 import { Loader } from '../evaluation/loader';
+import { InstanceService } from '../services/instance.service';
 
 @Controller('instances')
 @UseGuards(AuthGuard('jwt'))

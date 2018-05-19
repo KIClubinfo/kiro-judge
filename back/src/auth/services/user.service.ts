@@ -10,14 +10,6 @@ export class UserService {
     private readonly userRepository: Repository<User>,
   ) {}
 
-  async findAll(): Promise<User[]> {
-    return this.userRepository.find();
-  }
-
-  async findOne(id): Promise<User> {
-    return this.userRepository.findOneOrFail(id);
-  }
-
   async findOneByEmail(email): Promise<User> {
     return this.userRepository.findOneOrFail({ email }, { relations: ['teams', 'teams.competition']});
   }

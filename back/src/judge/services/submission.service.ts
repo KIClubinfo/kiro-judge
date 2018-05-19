@@ -3,10 +3,10 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Instance } from '../entities/instance.entity';
 import { Submission } from '../entities/submission.entity';
+import { Team } from '../entities/team.entity';
 import { checkSolution, evaluateSolution } from '../evaluation/evaluation';
 import { KiroInstance } from '../evaluation/kiro-instance';
 import { KiroSolution } from '../evaluation/kiro-solution';
-import { Team } from '../entities/team.entity';
 
 @Injectable()
 export class SubmissionService {

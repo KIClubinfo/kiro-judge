@@ -6,7 +6,6 @@ import { Submission } from '../entities/submission.entity';
 import { Team } from '../entities/team.entity';
 import { ITeamRanking } from '../interfaces/team-ranking.interface';
 
-
 @Injectable()
 export class CompetitionService {
   constructor(

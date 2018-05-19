@@ -6,7 +6,6 @@ import { UserService } from './user.service';
 
 export const SECRET_KEY = 'mBg1om2DAtElIpM8p8BcEZCruThktpOW';
 
-
 @Injectable()
 export class AuthService {
   constructor(private readonly userService: UserService) {}
