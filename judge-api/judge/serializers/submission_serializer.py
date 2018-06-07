@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from judge.models import Instance, Submission, Team
+from judge.tasks import evaluate_solution_task
 
 
 class SubmissionSerializer(serializers.ModelSerializer):
@@ -17,6 +18,9 @@ class SubmissionSerializer(serializers.ModelSerializer):
         team = Team.objects.get(pk=team_id)
         instance = Instance.objects.get(pk=instance_id)
         submission = Submission.objects.create(instance=instance, team=team, **validated_data)
+
+        evaluate_solution_task.delay(submission.id, solution)
+
         return submission
 
     def to_internal_value(self, data):

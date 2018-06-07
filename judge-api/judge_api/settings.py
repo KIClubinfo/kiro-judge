@@ -157,3 +157,7 @@ APPEND_SLASH = False
 
 MEDIA_URL = '/uploads/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+
+# Celery
+
+CELERY_BROKER_URL = 'amqp://localhost'

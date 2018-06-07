@@ -8,3 +8,8 @@ pip install -r requirements.txt
 ```bash
 python manage.py runserver
 ```
+
+## Run worker
+```bash
+celery -A judge_api worker -l info
+```
