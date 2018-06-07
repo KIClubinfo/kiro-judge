@@ -36,13 +36,13 @@
 
 <mat-list class="instance-list">
   <mat-list-item *ngFor="let submission of team.submissions; let last = last">
-    <mat-icon mat-list-icon *ngIf="submission.score !== null && submission.error === null">
+    <mat-icon mat-list-icon *ngIf="submission.score !== null && !hasError(submission)">
       done
     </mat-icon>
-    <mat-icon mat-list-icon *ngIf="submission.error !== null">
+    <mat-icon mat-list-icon *ngIf="hasError(submission)">
       error_outline
     </mat-icon>
-    <mat-icon mat-list-icon *ngIf="submission.score === null && submission.error === null">
+    <mat-icon mat-list-icon *ngIf="submission.score === null && !hasError(submission)">
       autorenew
     </mat-icon>
     <h3 matLine>

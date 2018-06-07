@@ -41,3 +41,7 @@ mat-sidenav .mat-nav-list .mat-list-item .mat-icon {
 mat-sidenav-container {
   min-height: calc(100% - 64px);
 }
+
+.sidenav-button {
+  margin-right: 12px;
+}

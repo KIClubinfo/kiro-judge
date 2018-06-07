@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { ActivatedRoute } from '@angular/router';
+import { IUser } from '../../interfaces/user.interface';
 
 @Component({
   selector: 'app-layout',
@@ -7,19 +9,32 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./layout.component.css']
 })
 export class LayoutComponent implements OnInit {
-  competitionId: number;
-  teamId: number;
+  currentUser: IUser;
+
+  sideNavOpened = true;
 
   constructor(
+    private readonly route: ActivatedRoute,
     private authService: AuthService,
   ) { }
 
   ngOnInit() {
-    this.competitionId = this.authService.getCurrentCompetitionId();
-    this.teamId = this.authService.getCurrentTeamId();
+    this.currentUser = this.route.snapshot.data.currentUser;
   }
 
   logout() {
     this.authService.logout();
+  }
+
+  toggleSidenav() {
+    this.sideNavOpened = !this.sideNavOpened;
+  }
+
+  get competitionId() {
+    return this.currentUser.teams[0].competition;
+  }
+
+  get teamId() {
+    return this.currentUser.teams[0].id;
   }
 }

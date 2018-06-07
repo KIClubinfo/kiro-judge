@@ -1,21 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { IUser } from '../interfaces/user.interface';
-import { IJWTPayload } from '../../../../back/src/auth/interfaces/jwt-payload.interface';
 import { UserService } from './user.service';
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-const STORAGE_KEY = 'judge_jwt';
+const STORAGE_KEY = 'master_imi_token';
 
 @Injectable()
 export class AuthService {
   private currentUser: IUser;
   private accessToken: string;
-  private jwtPayload: IJWTPayload = null;
-
-  private jwtHelper = new JwtHelperService();
 
   constructor(
     private readonly router: Router,
@@ -26,9 +21,9 @@ export class AuthService {
     this.loadToken(savedToken);
   }
 
-  login(email: string, password: string): Observable<string> {
-    return this.userService.login(email, password).pipe(
-      tap(jwtToken => this.loadToken(jwtToken)),
+  login(username: string, password: string): Observable<string> {
+    return this.userService.login(username, password).pipe(
+      tap(accessToken => this.loadToken(accessToken)),
     );
   }
 
@@ -37,50 +32,26 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
-  private loadToken(encodedToken: string): IJWTPayload {
-    if (encodedToken == null) {
+  private loadToken(accessToken: string): void {
+    if (accessToken == null) {
       return;
     }
 
-    let decodedToken;
-    try {
-      decodedToken = this.jwtHelper.decodeToken(encodedToken);
-    } catch (e) {
-      this.cleanStorage();
-      return;
-    }
-
-    localStorage.setItem(STORAGE_KEY, encodedToken);
-    this.accessToken = encodedToken;
-    this.jwtPayload = decodedToken;
-
-    return this.jwtPayload;
+    localStorage.setItem(STORAGE_KEY, accessToken);
+    this.accessToken = accessToken;
   }
 
   private cleanStorage(): void {
     localStorage.removeItem(STORAGE_KEY);
     this.accessToken = null;
-    this.jwtPayload = null;
     this.currentUser = null;
   }
 
   isLoggedIn(): boolean {
-    return this.jwtPayload !== null && Date.now() < this.jwtPayload.exp * 1000;
+    return this.accessToken != null;
   }
 
   getAccessToken(): string {
     return this.accessToken;
-  }
-
-  getCurrentUser(): IUser {
-    return this.currentUser;
-  }
-
-  getCurrentCompetitionId(): number {
-    return this.jwtPayload.competitionId;
-  }
-
-  getCurrentTeamId(): number {
-    return this.jwtPayload.teamId;
   }
 }

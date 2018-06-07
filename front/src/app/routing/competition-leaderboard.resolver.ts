@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CompetitionService } from '../services/competition.service';
-import { ITeamRanking } from '../../../../back/src/judge/interfaces/team-ranking.interface';
+import { ITeamRanking } from '../interfaces/team-ranking.interface';
 
 
 @Injectable()

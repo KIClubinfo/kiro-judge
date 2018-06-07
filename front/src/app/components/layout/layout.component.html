@@ -1,4 +1,7 @@
 <mat-toolbar color="primary">
+  <button mat-icon-button color="white" class="sidenav-button" (click)="toggleSidenav()">
+    <mat-icon>menu</mat-icon>
+  </button>
   <span>Online Judge</span>
 
   <!-- This fills the remaining space of the current row -->
@@ -13,7 +16,7 @@
 
 
 <mat-sidenav-container>
-  <mat-sidenav mode="side" opened="true">
+  <mat-sidenav mode="side" [opened]="sideNavOpened">
     <mat-nav-list>
       <a mat-list-item routerLink="/" routerLinkActive>
         <mat-icon>home</mat-icon>

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ICompetition } from '../interfaces/competition.interface';
-import { ITeamRanking } from '../../../../back/src/judge/interfaces/team-ranking.interface';
+import { ITeamRanking } from '../interfaces/team-ranking.interface';
 
 @Injectable({ providedIn: 'root' })
 export class CompetitionService {

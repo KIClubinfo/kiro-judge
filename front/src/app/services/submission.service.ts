@@ -11,8 +11,8 @@ export class SubmissionService {
 
   create(instanceId: number, teamId: number, solution: any): Observable<ISubmission> {
     return this.http.post<ISubmission>('/submissions', {
-      teamId,
-      instanceId,
+      team: teamId,
+      instance: instanceId,
       solution,
     });
   }

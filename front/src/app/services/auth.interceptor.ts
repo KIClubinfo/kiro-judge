@@ -21,8 +21,14 @@ export class AuthInterceptor implements HttpInterceptor {
     if (req.url.startsWith('/')) {
       req = req.clone({
         url: baseUrl + req.url,
-        headers: req.headers.set('Authorization', 'bearer ' + this.authService.getAccessToken())
       });
+
+      const accessToken = this.authService.getAccessToken();
+      if (accessToken) {
+        req = req.clone({
+          headers: req.headers.set('Authorization', `Token ${accessToken}`)
+        });
+      }
     }
 
     return next.handle(req);

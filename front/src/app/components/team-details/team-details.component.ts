@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ITeam } from '../../interfaces/team.interface';
+import { ISubmission } from '../../interfaces/submission.interface';
 
 @Component({
   selector: 'app-team-details',
@@ -16,5 +17,9 @@ export class TeamDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.team = this.route.snapshot.data.team;
+  }
+
+  hasError(submission: ISubmission) {
+    return submission.error !== null && submission.error !== '';
   }
 }

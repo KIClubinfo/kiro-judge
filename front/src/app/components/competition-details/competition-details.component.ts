@@ -4,9 +4,9 @@ import { ICompetition } from '../../interfaces/competition.interface';
 import { IInstance } from '../../interfaces/instance.interface';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 import { SubmissionService } from '../../services/submission.service';
-import { AuthService } from '../../services/auth.service';
 import { ISubmission } from '../../interfaces/submission.interface';
 import { DownloadService } from '../../services/download.service';
+import { IUser } from '../../interfaces/user.interface';
 
 
 @Component({
@@ -21,11 +21,11 @@ export class UploadInstanceSolutionDialogComponent {
 
   constructor(
     private submissionService: SubmissionService,
-    private authService: AuthService,
     public snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<UploadInstanceSolutionDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-  ) {}
+  ) {
+  }
 
   onFileSelected() {
     this.file = this.fileInput.nativeElement.files[0];
@@ -41,10 +41,10 @@ export class UploadInstanceSolutionDialogComponent {
     fileReader.onload = (evt: any) => {
       this.submissionService.create(
         this.data.instance.id,
-        this.authService.getCurrentTeamId(),
+        this.data.teamId,
         evt.target.result,
       ).subscribe((submission: ISubmission) => {
-        this.snackBar.open(`Score: ${submission.score}`, null, {
+        this.snackBar.open(`Évaluation en cours...`, null, {
           duration: 3000,
         });
         return this.dialogRef.close();
@@ -66,15 +66,18 @@ export class UploadInstanceSolutionDialogComponent {
 })
 export class CompetitionDetailsComponent implements OnInit {
   competition: ICompetition;
+  currentUser: IUser;
 
   constructor(
     private route: ActivatedRoute,
     private dialog: MatDialog,
     private downloadService: DownloadService,
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.competition = this.route.snapshot.data.competition;
+    this.currentUser = this.route.snapshot.data.currentUser;
   }
 
   downloadSubject() {
@@ -90,8 +93,9 @@ export class CompetitionDetailsComponent implements OnInit {
       width: '300px',
       data: {
         instance,
+        teamId: this.currentUser.teams[0].id,
         solution: null,
-      }
+      },
     });
   }
 }

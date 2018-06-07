@@ -10,6 +10,7 @@ import { CompetitionLeaderboardComponent } from '../components/competition-leade
 import { AuthGuard } from '../services/auth.guard';
 import { LoginComponent } from '../components/login/login.component';
 import { CompetitionLeaderboardResolver } from './competition-leaderboard.resolver';
+import { CurrentUserResolver } from './current-user.resolver';
 
 
 const routes = [
@@ -23,6 +24,9 @@ const routes = [
     canActivate: [
       AuthGuard,
     ],
+    resolve: {
+      currentUser: CurrentUserResolver,
+    },
     children: [
       {
         path: '',
@@ -55,13 +59,6 @@ const routes = [
       {
         path: 'teams',
         children: [
-          // {
-          //   path: 'me',
-          //   component: TeamComponent,
-          //   resolve: {
-          //     teams: MyTeamsResolver,
-          //   }
-          // },
           {
             path: ':id',
             component: TeamDetailsComponent,
@@ -77,9 +74,14 @@ const routes = [
 
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
+  imports: [
+    RouterModule.forRoot(routes, {
+      paramsInheritanceStrategy: 'always',
+    }),
+  ],
   exports: [ RouterModule ],
   providers: [
+    CurrentUserResolver,
     CompetitionResolver,
     CompetitionLeaderboardResolver,
     TeamResolver,
