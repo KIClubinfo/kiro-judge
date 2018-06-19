@@ -5,10 +5,10 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from querybuilder.fields import MinField, SimpleField, SumField
 from querybuilder.query import Query
-from querybuilder.tables import TableFactory
-from rest_framework import mixins, viewsets
+from rest_framework import mixins, permissions, viewsets
 from rest_framework.decorators import action
 from rest_framework.exceptions import NotAuthenticated, NotFound, PermissionDenied
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from judge.models import Competition, Instance, Submission, Team
@@ -17,10 +17,27 @@ from judge.serializers import (
 )
 
 
-def download_competition_file(competition, user, file, mimetype=None):
-    if competition.id not in [competition.id for competition in user.competitions.all()]:
-        raise PermissionDenied()
+class IsCompetitionParticipant(permissions.BasePermission):
+    message = 'Not a participant of this competition'
 
+    def has_object_permission(self, request, view, obj):
+        if isinstance(obj, Competition):
+            return self.is_competition_participant(obj, request.user)
+        if isinstance(obj, Instance):
+            return self.is_competition_participant(obj.competition, request.user)
+
+        return False
+
+    @staticmethod
+    def is_competition_participant(competition, user):
+        for team in user.teams.all():
+            if competition.id == team.competition.id:
+                return True
+
+        return False
+
+
+def download_competition_file(competition, file, mimetype=None):
     print(datetime.now(tz=timezone.utc))
     print(competition.start_date)
     if datetime.now(tz=timezone.utc) < competition.start_date:
@@ -47,12 +64,13 @@ def download_competition_file(competition, user, file, mimetype=None):
 class CompetitionViewSet(mixins.RetrieveModelMixin, viewsets.GenericViewSet):
     queryset = Competition.objects.all()
     serializer_class = CompetitionSerializer
+    permission_classes = (IsAuthenticated, IsCompetitionParticipant)
 
     @action(methods=['get'], detail=True)
     def download(self, request, pk=None):
         competition = self.get_object()
 
-        return download_competition_file(competition, self.request.user, competition.subject)
+        return download_competition_file(competition, competition.subject)
 
     @action(methods=['get'], detail=True)
     def leaderboard(self, request, pk=None):
@@ -73,35 +91,47 @@ class CompetitionViewSet(mixins.RetrieveModelMixin, viewsets.GenericViewSet):
         if is_frozen:
             team_scores_subquery.where(created_at__lt=competition.freeze_date)
 
-        team_scores_table = TableFactory(team_scores_subquery)
-        print(team_scores_table.__dict__)
-
         query = Query().from_table(Team, [
-            SimpleField('name' 'team'),
-            SumField('min_score', alias='best_score')
+            SimpleField('name'),
         ])
-        query.join(team_scores_table, condition='id = sub_team_id', join_type='LEFT JOIN')
+        query.with_query(team_scores_subquery, alias='team_scores')
+        query.join(
+            'team_scores',
+            condition='id = sub_team_id', join_type='LEFT JOIN',
+            fields=[
+                SumField('min_score', alias='best_score'),
+            ],
+        )
         query.where(competition_id=competition.id)
         query.group_by('id')
         query.order_by('best_score', desc=False)
 
-        print(query.get_sql())
+        results = query.select()
 
-        return Response(query.select())
+        leaderboard = [
+            dict(
+                res,
+                rank=rank,
+            )
+            for rank, res in enumerate(sorted(results, key=lambda x: x['best_score']), 1)
+        ]
+
+        return Response(leaderboard)
 
 
 class InstanceViewSet(mixins.RetrieveModelMixin, viewsets.GenericViewSet):
     queryset = Instance.objects.all()
     serializer_class = InstanceSerializer
+    permission_classes = (IsAuthenticated, IsCompetitionParticipant)
 
     @action(methods=['get'], detail=True)
     def download(self, request, pk=None):
         instance = self.get_object()
 
-        return download_competition_file(instance.competition, self.request.user, instance.input_file)
+        return download_competition_file(instance.competition, instance.input_file)
 
 
-class SubmissionViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
+class SubmissionViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
     serializer_class = SubmissionSerializer
     queryset = Submission.objects.all()
 
