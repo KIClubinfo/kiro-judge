@@ -35,12 +35,14 @@ class Instance(models.Model):
     description = models.TextField()
 
     input_file = models.FileField(upload_to=competition_instance_path)
-    initial_score = models.FloatField()
 
     competition = models.ForeignKey(Competition, on_delete=models.CASCADE, related_name='instances')
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        ordering = ('id',)
 
 
 class Team(models.Model):

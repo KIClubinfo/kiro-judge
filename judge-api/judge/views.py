@@ -3,7 +3,7 @@ import os
 from datetime import datetime, timezone
 from django.contrib.auth.models import User
 from django.http import HttpResponse
-from querybuilder.fields import MinField, SimpleField, SumField
+from querybuilder.fields import MaxField, SimpleField, SumField
 from querybuilder.query import Query
 from rest_framework import mixins, permissions, viewsets
 from rest_framework.decorators import action
@@ -61,6 +61,18 @@ def download_competition_file(competition, file, mimetype=None):
         return response
 
 
+class CoalescedSumField(SumField):
+
+    def get_sql(self):
+        sql = 'COALESCE({0}, 0)'.format(self.get_select_sql())
+
+        alias = self.get_alias()
+        if alias:
+            return '{0} AS "{1}"'.format(sql, alias)
+
+        return sql
+
+
 class CompetitionViewSet(mixins.RetrieveModelMixin, viewsets.GenericViewSet):
     queryset = Competition.objects.all()
     serializer_class = CompetitionSerializer
@@ -82,7 +94,7 @@ class CompetitionViewSet(mixins.RetrieveModelMixin, viewsets.GenericViewSet):
         team_scores_subquery = Query().from_table(Submission, [
             SimpleField('team_id', alias='sub_team_id'),
             SimpleField('instance_id', alias='instance_id'),
-            MinField('score', alias='min_score'),
+            MaxField('score', alias='max_score'),
 
         ])
         team_scores_subquery.group_by('instance_id')
@@ -99,12 +111,12 @@ class CompetitionViewSet(mixins.RetrieveModelMixin, viewsets.GenericViewSet):
             'team_scores',
             condition='id = sub_team_id', join_type='LEFT JOIN',
             fields=[
-                SumField('min_score', alias='best_score'),
+                CoalescedSumField('max_score', alias='best_score'),
             ],
         )
         query.where(competition_id=competition.id)
         query.group_by('id')
-        query.order_by('best_score', desc=False)
+        query.order_by('best_score', desc=True)
 
         results = query.select()
 
@@ -113,8 +125,10 @@ class CompetitionViewSet(mixins.RetrieveModelMixin, viewsets.GenericViewSet):
                 res,
                 rank=rank,
             )
-            for rank, res in enumerate(sorted(results, key=lambda x: x['best_score']), 1)
+            for rank, res in enumerate(results, 1)
         ]
+
+        print(results)
 
         return Response(leaderboard)
 
