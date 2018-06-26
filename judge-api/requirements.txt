@@ -9,3 +9,4 @@ djangorestframework-camel-case
 django-query-builder
 psycopg2
 celery
+mysqlclient
