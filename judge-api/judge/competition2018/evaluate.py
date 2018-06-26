@@ -1,10 +1,11 @@
 from typing import Tuple
 
+from django.db.models.fields.files import FieldFile
+
 
 class Instance:
-    def __init__(self, file_path: str):
-        with open(file_path, 'r') as f:
-            lines = f.readlines()
+    def __init__(self, file: FieldFile):
+        lines = file.readlines()
 
         # first line is meta data
         metadata = lines[0].split(' ')
@@ -58,8 +59,8 @@ class Solution:
         self.rotations = [[int(x) for x in split_line[3:] if x != ''] for split_line in split_lines]
 
 
-def prepare_evaluation(instance_path: str, solution_str: str) -> Tuple[Instance, Solution]:
-    return Instance(instance_path), Solution(solution_str)
+def prepare_eval_data(instance_file: FieldFile, solution_str: str) -> Tuple[Instance, Solution]:
+    return Instance(instance_file), Solution(solution_str)
 
 
 def check_solution(instance: Instance, solution: Solution) -> bool:
