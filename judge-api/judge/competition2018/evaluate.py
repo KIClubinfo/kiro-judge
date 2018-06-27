@@ -1,10 +1,8 @@
-from typing import Tuple
-
-from django.db.models.fields.files import FieldFile
+from typing import Tuple, TextIO
 
 
 class Instance:
-    def __init__(self, file: FieldFile):
+    def __init__(self, file: TextIO):
         lines = file.readlines()
 
         # first line is meta data
@@ -59,7 +57,7 @@ class Solution:
         self.rotations = [[int(x) for x in split_line[3:] if x != ''] for split_line in split_lines]
 
 
-def prepare_eval_data(instance_file: FieldFile, solution_str: str) -> Tuple[Instance, Solution]:
+def prepare_eval_data(instance_file: TextIO, solution_str: str) -> Tuple[Instance, Solution]:
     return Instance(instance_file), Solution(solution_str)
 
 
