@@ -10,22 +10,21 @@ def prepare_eval_data(instance: Instance, solution_str: str):
     return evaluate2018.prepare_eval_data(instance_file, solution_str)
 
 
-def check_solution(eval_data):
-    evaluate2018.check_solution(*eval_data)
+def check_solution(instance, solution):
+    evaluate2018.check_solution(instance, solution)
 
 
-def evaluate_solution(eval_data) -> float:
-    return evaluate2018.evaluate_solution(*eval_data)
+def evaluate_solution(instance, solution) -> float:
+    return evaluate2018.evaluate_solution(instance, solution)
 
 
 @shared_task
-def evaluate_solution_task(submission_id: int, solution: str):
+def evaluate_solution_task(submission_id: int, solution_str: str):
     submission = Submission.objects.get(pk=submission_id)
-    instance = submission.instance
     try:
-        eval_data = prepare_eval_data(instance, solution)
-        check_solution(eval_data)
-        submission.score = evaluate_solution(eval_data)
+        instance, solution = prepare_eval_data(submission.instance, solution_str)
+        check_solution(instance, solution)
+        submission.score = evaluate_solution(instance, solution)
     except Exception as ex:
         submission.error = str(ex)
     finally:
