@@ -1,7 +1,7 @@
 import unittest
 import os
 
-from judge.competition2018.evaluate import Instance, Solution
+from judge.competition2018.evaluate import Instance, Solution, check_solution
 
 
 class TestInstance(unittest.TestCase):
@@ -44,3 +44,45 @@ class TestSolution(unittest.TestCase):
         self.assertListEqual(solution1.rotations[0], [1, 4, 6])
         self.assertListEqual(solution1.rotations[1], [2, 3])
         self.assertListEqual(solution1.rotations[2], [5, 7])
+
+
+class TestCheckSolution(unittest.TestCase):
+    def setUp(self):
+        file_path = os.path.join('fixtures', 'instance.in')
+        with open(file_path, 'r') as file:
+            self.instance = Instance(file)
+
+    # no error
+    def test_check_fine(self):
+        solution = Solution("p 1 v 1 4 6\np 2 v 2 3\np 3 v 5 7")
+        check_solution(self.instance, solution)
+
+    # no duplicated planes
+    def test_plane_duplicate(self):
+        with self.assertRaises(Exception):
+            solution = Solution("p 1 v 1 4 6\np 1 v 2 3")
+            check_solution(self.instance, solution)
+
+    # no duplicated planes
+    def test_plane_bound(self):
+        with self.assertRaises(Exception):
+            solution = Solution("p 0 v 1 4 6")
+            check_solution(self.instance, solution)
+
+    # leg bounds
+    def test_leg_bounds(self):
+        with self.assertRaises(Exception):
+            solution = Solution("p 1 v 0")
+            check_solution(self.instance, solution)
+        with self.assertRaises(Exception):
+            solution = Solution("p 1 v 8")
+            check_solution(self.instance, solution)
+
+    # legs must follow the graph
+    def test_leg_graph(self):
+        with self.assertRaises(Exception):
+            solution = Solution("p 1 v 1 2")
+            check_solution(self.instance, solution)
+        with self.assertRaises(Exception):
+            solution = Solution("p 1 v 1 3 4")
+            check_solution(self.instance, solution)

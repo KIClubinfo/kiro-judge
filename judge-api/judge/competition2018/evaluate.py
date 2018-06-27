@@ -69,10 +69,15 @@ def check_solution(instance: Instance, solution: Solution) -> bool:
     planes = solution.planes
     rotations = solution.rotations
 
+    # 0. (just in case) planes and rotations must have same length
+    if len(planes) != len(rotations):
+        raise Exception("Weird error : planes and rotations must have same length, please contact an admin.")
+
     # 1. check declared planes
     #   a. no duplicates
     if len(set(planes)) != len(planes):
         raise Exception("A plane has more than one rotation defined !")
+
     #   b. bounds
     if any(map(lambda x: x <= 0 or x > P, planes)):
         raise Exception("A plane has an index out of range !")
@@ -81,9 +86,9 @@ def check_solution(instance: Instance, solution: Solution) -> bool:
     #   a. bounds
     def has_leg_out_of_bounds(rotation):
         return any([leg <= 0 or leg > V for leg in rotation])
-
     if any(map(lambda x: has_leg_out_of_bounds(x), rotations)):
         raise Exception("A plane has an index out of range !")
+
     #   b. legs in a rotation must follow the graph
     for rotation in rotations:
         for i, leg in enumerate(rotation[:-1]):
@@ -91,11 +96,6 @@ def check_solution(instance: Instance, solution: Solution) -> bool:
             correspondence_exists = any([o == leg and d == leg_after for (o, d, t, n) in correspondences])
             if not correspondence_exists:
                 raise Exception('A rotation has two legs following one each other that are not supposed to !')
-
-    # 3. planes and rotations must have same length
-    # (just in case)
-    if len(planes) != len(rotations):
-        raise Exception("Weird error : planes and rotations must have same length, please contact an admin.")
 
     return True
 
