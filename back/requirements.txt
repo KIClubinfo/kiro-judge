@@ -8,4 +8,6 @@ django-cors-headers
 djangorestframework-camel-case
 django-query-builder
 celery
-mysqlclient
+psycopg2
+django-environ
+uwsgi
