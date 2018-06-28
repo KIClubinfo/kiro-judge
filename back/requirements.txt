@@ -1,0 +1,11 @@
+django
+djangorestframework
+markdown
+django-filter
+pygments
+coreapi
+django-cors-headers
+djangorestframework-camel-case
+django-query-builder
+celery
+mysqlclient

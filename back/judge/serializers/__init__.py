@@ -1,0 +1,5 @@
+from .competition_serializer import CompetitionSerializer
+from .instance_serializer import InstanceSerializer
+from .submission_serializer import SubmissionSerializer
+from .user_serializer import UserSerializer
+from .team_serializer import TeamSerializer
