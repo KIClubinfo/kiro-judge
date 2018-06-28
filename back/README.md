@@ -1,47 +1,29 @@
-## Installation
+## Third party requiements
+`mysql` needs to run at localhost on port 3306, with database 'judge' accessible from user 'judge' with password 'judge'.
 
+## Install
+Use virtualenv :
 ```bash
-npm install
+virtualenv venv/
+pip install -r requirements.txt
 ```
 
-## Running the app
-
+later, load virtualenv with :
 ```bash
-# development
-npm run start
-
-# watch mode
-npm run start:dev
-
-# production mode
-npm run start:prod
+source venv/bin/activate
 ```
 
-## Test
-
+## Migrate
 ```bash
-# unit tests
-npm run test
-
-# e2e tests
-npm run test:e2e
-
-# test coverage
-npm run test:cov
+python manage.py migrate
 ```
 
-## Migrations
-
-### Running migrations
+## Run
 ```bash
-npm run typeorm -- migration:run
+python manage.py runserver
 ```
 
-### Creating a migration
+## Run worker
 ```bash
-npm run typeorm -- migration:generate -n add_super_table
+celery -A judge_api worker -l info
 ```
-
-### Documentation
-- TypeORM documentation : http://typeorm.io/#/
-- TypeORM migration documentation : http://typeorm.io/#/migrations
