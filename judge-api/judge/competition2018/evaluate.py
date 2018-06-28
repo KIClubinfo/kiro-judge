@@ -106,6 +106,7 @@ def evaluate_solution(instance: Instance, solution: Solution) -> int:
     K = instance.K
     G = instance.G
     legs_planes_costs = instance.legs
+    correspondences = instance.correspondences
     planes = solution.planes
     rotations = solution.rotations
 
@@ -122,8 +123,8 @@ def evaluate_solution(instance: Instance, solution: Solution) -> int:
 
             if l > 0:
                 leg_before = rotation[l-1]
-                night, time = next(((n, t) for (o, d, n, t) in rotations if o == leg_before and d == leg))
-                if night:
+                night, time = next(((n, t) for (o, d, n, t) in correspondences if o == leg_before and d == leg))
+                if night == 1:
                     state = 0
                 else:
                     state += time
@@ -140,8 +141,8 @@ def evaluate_solution(instance: Instance, solution: Solution) -> int:
     # repeated legs
     repeated_legs_cost = 0
     for leg in done_legs_set:
-        leg_count = len([x == leg for x in done_legs])
-        repeated_legs_cost += leg_count * B
+        repeated_leg_count = len(list(filter(lambda x: x == leg, done_legs))) - 1
+        repeated_legs_cost += repeated_leg_count * B
 
     # total cost
     cost = legs_cost + unmaintained_cost + not_done_legs_cost + repeated_legs_cost
