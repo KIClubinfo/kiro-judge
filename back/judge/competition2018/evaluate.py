@@ -86,7 +86,8 @@ def check_solution(instance: Instance, solution: Solution) -> bool:
     #   a. bounds
     def has_leg_out_of_bounds(rotation):
         return any([leg <= 0 or leg > V for leg in rotation])
-    if any(map(lambda x: has_leg_out_of_bounds(x), rotations)):
+
+    if any(map(has_leg_out_of_bounds, rotations)):
         raise Exception("A plane has an index out of range !")
 
     #   b. legs in a rotation must follow the graph

@@ -7,6 +7,5 @@ coreapi
 django-cors-headers
 djangorestframework-camel-case
 django-query-builder
-psycopg2
 celery
 mysqlclient

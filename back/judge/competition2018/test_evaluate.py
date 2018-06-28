@@ -7,8 +7,8 @@ from judge.competition2018.evaluate import Instance, Solution, check_solution, e
 class TestInstance(unittest.TestCase):
     def test_class(self):
         file_path = os.path.join('fixtures', 'instance.in')
-        with open(file_path, 'r') as file:
-            instance = Instance(file)
+        with open(file_path, 'r') as f:
+            instance = Instance(f)
 
         self.assertEqual(7, instance.V)
         self.assertEqual(8, instance.A)
@@ -49,8 +49,8 @@ class TestSolution(unittest.TestCase):
 class TestCheckSolution(unittest.TestCase):
     def setUp(self):
         file_path = os.path.join('fixtures', 'instance.in')
-        with open(file_path, 'r') as file:
-            self.instance = Instance(file)
+        with open(file_path, 'r') as f:
+            self.instance = Instance(f)
 
     # no error
     def test_check_fine(self):
@@ -91,8 +91,8 @@ class TestCheckSolution(unittest.TestCase):
 class TestEvaluateSolution(unittest.TestCase):
     def setUp(self):
         file_path = os.path.join('fixtures', 'instance.in')
-        with open(file_path, 'r') as file:
-            self.instance = Instance(file)
+        with open(file_path, 'r') as f:
+            self.instance = Instance(f)
 
     def test_case0(self):
         solution = Solution("p 1 v 1")
