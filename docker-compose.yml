@@ -1,0 +1,46 @@
+version: '2'
+
+services:
+  db:
+    image: postgres:9.6
+    restart: always
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: judge
+      POSTGRES_USER: judge
+      POSTGRES_PASSWORD: judge
+
+  celery_broker:
+    image: rabbitmq:3.7
+    restart: always
+    volumes:
+      - celery_broker-data:/var/lib/rabbitmq
+
+  back:
+    build:
+      context: back
+    volumes:
+      - back-uploads:/app/uploads
+    environment:
+      DEBUG: 0
+      DATABASE_URL: postgres://judge:judge@db/judge
+      CELERY_BROKER_URL: amqp://celery_broker
+      DJANGO_MANAGEPY_MIGRATE: 1
+      DJANGO_MANAGEPY_COLLECTSTATIC: 1
+    depends_on:
+      - db
+      - celery_broker
+
+  front:
+    build:
+      context: front
+    ports:
+      - "8000:80"
+    depends_on:
+      - back
+
+volumes:
+  db-data:
+  celery_broker-data:
+  back-uploads:

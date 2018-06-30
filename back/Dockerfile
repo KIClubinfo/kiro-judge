@@ -1,5 +1,10 @@
 FROM python:3.5-alpine
 
+RUN addgroup -S python && adduser -S -G python python
+
+RUN mkdir /app && chown python:python /app && chmod 700 /app
+RUN mkdir /app/uploads && chown python:python /app/uploads && chmod 700 /app/uploads
+
 # Copy in your requirements file
 ADD requirements.txt /requirements.txt
 
@@ -28,16 +33,12 @@ RUN set -ex \
     && apk del .build-deps
 
 # Copy your application code to the container (make sure you create a .dockerignore file if any large files or directories should be excluded)
-RUN mkdir /code/
-WORKDIR /code/
-ADD . /code/
+WORKDIR /app/
+COPY . /app/
 
-# uWSGI will listen on this port
-EXPOSE 8000
-
-# uWSGI configuration (customize as needed):
-ENV UWSGI_VIRTUALENV=/venv UWSGI_WSGI_FILE=judge_api/wsgi.py UWSGI_HTTP=:8000 UWSGI_MASTER=1 UWSGI_WORKERS=2 UWSGI_THREADS=8 UWSGI_UID=1000 UWSGI_GID=2000 UWSGI_LAZY_APPS=1 UWSGI_WSGI_ENV_BEHAVIOR=holy UWSGI_STATIC_MAP="/static=/static"
+USER python
 
 # Start uWSGI
-ENTRYPOINT ["/code/docker-entrypoint.sh"]
-CMD ["/venv/bin/uwsgi", "--http-auto-chunked", "--http-keepalive"]
+EXPOSE 8000
+ENTRYPOINT ["/app/docker-entrypoint.sh"]
+CMD ["/venv/bin/uwsgi", "--http-auto-chunked", "--http-keepalive", "--ini", "/app/uwsgi.ini"]

@@ -32,7 +32,9 @@ SECRET_KEY = env('SECRET_KEY', default='-fuknloe3!gj$p=fia@y=-byvr4=v0tr905(0gvk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'back',
+]
 
 # Application definition
 
@@ -142,7 +144,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-STATIC_ROOT = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
 # CORS
@@ -163,3 +165,56 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 # Celery
 
 CELERY_BROKER_URL = 'amqp://localhost'
+
+# Logging
+LOGGING = {
+	'version': 1,
+	'disable_existing_loggers': False,
+	'filters': {
+		'require_debug_false': {
+			'()': 'django.utils.log.RequireDebugFalse',
+		},
+		'require_debug_true': {
+			'()': 'django.utils.log.RequireDebugTrue',
+		},
+	},
+	'formatters': {
+		'django.server': {
+			'()': 'django.utils.log.ServerFormatter',
+			'format': '[%(server_time)s] %(message)s',
+		}
+	},
+	'handlers': {
+		'console': {
+			'level': 'INFO',
+			'filters': ['require_debug_true'],
+			'class': 'logging.StreamHandler',
+		},
+		'console_prod': {
+			'level': 'ERROR',
+			'filters': ['require_debug_false'],
+			'class': 'logging.StreamHandler',
+		},
+		'django.server': {
+			'level': 'INFO',
+			'class': 'logging.StreamHandler',
+			'formatter': 'django.server',
+		},
+		'mail_admins': {
+			'level': 'ERROR',
+			'filters': ['require_debug_false'],
+			'class': 'django.utils.log.AdminEmailHandler'
+		}
+	},
+	'loggers': {
+		'django': {
+			'handlers': ['console', 'console_prod', 'mail_admins'],
+			'level': 'INFO',
+		},
+		'django.server': {
+			'handlers': ['django.server'],
+			'level': 'INFO',
+			'propagate': False,
+		}
+	}
+}
