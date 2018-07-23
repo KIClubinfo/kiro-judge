@@ -1,4 +1,4 @@
-FROM python:3.5-alpine
+FROM ltrezzini/python:3.5-alpine
 
 RUN addgroup -S python && adduser -S -G python python
 
