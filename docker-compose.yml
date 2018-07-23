@@ -17,9 +17,19 @@ services:
     volumes:
       - celery_broker-data:/var/lib/rabbitmq
 
+  back_worker:
+    build:
+      context: back
+    restart: always
+    command: ['/venv/bin/celery', '-A', 'judge_api', 'worker', '-l', 'info']
+    environment:
+      DATABASE_URL: postgres://judge:judge@db/judge
+      CELERY_BROKER_URL: amqp://celery_broker
+
   back:
     build:
       context: back
+    restart: always
     volumes:
       - back-uploads:/app/uploads
     environment:
@@ -35,6 +45,7 @@ services:
   front:
     build:
       context: front
+    restart: always
     ports:
       - "8000:80"
     depends_on:
