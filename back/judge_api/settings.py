@@ -33,6 +33,8 @@ SECRET_KEY = env('SECRET_KEY', default='-fuknloe3!gj$p=fia@y=-byvr4=v0tr905(0gvk
 DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
     'back',
 ]
 
