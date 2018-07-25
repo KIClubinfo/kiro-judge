@@ -30,11 +30,11 @@ export class DownloadService {
 
   downloadSubject(competition: ICompetition) {
     const accessToken = this.authService.getAccessToken();
-    forceDownload(environment.baseUrl + `/competitions/${competition.id}/download?token=${accessToken}`);
+    forceDownload(environment.baseUrl + `/competitions/${competition.id}/download?authorization=${accessToken}`);
   }
 
   downloadInstanceInput(instance: IInstance) {
     const accessToken = this.authService.getAccessToken();
-    forceDownload(environment.baseUrl + `/instances/${instance.id}/download?token=${accessToken}`);
+    forceDownload(environment.baseUrl + `/instances/${instance.id}/download?authorization=${accessToken}`);
   }
 }
