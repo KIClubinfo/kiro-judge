@@ -23,7 +23,7 @@ class IsCompetitionParticipant(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
         if isinstance(obj, Competition):
             return self.is_competition_participant(obj, request.user)
-        if isinstance(obj, Instance):
+        if isinstance(obj, Instance) or isinstance(obj, Submission):
             return self.is_competition_participant(obj.competition, request.user)
 
         return False
