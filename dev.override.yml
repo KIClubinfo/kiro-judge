@@ -8,3 +8,7 @@ services:
   back:
     environment:
       DEBUG: 1
+
+  back_worker:
+    environment:
+      DEBUG: 1

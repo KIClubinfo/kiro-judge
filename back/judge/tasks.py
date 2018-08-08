@@ -1,3 +1,4 @@
+import traceback, sys
 from celery import shared_task
 
 from judge.models import Submission, Instance
@@ -26,6 +27,7 @@ def evaluate_solution_task(submission_id: int, solution_str: str):
         check_solution(instance, solution)
         submission.score = evaluate_solution(instance, solution)
     except Exception as ex:
+        traceback.print_exc(file=sys.stdout)
         submission.error = str(ex)
     finally:
         submission.save()
