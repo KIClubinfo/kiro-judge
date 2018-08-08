@@ -21,6 +21,8 @@ services:
     build:
       context: back
     restart: always
+    volumes:
+      - back-uploads:/app/uploads
     command: ['/venv/bin/celery', '-A', 'judge_api', 'worker', '-l', 'info']
     environment:
       DATABASE_URL: postgres://judge:judge@db/judge

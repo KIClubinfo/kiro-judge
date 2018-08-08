@@ -4,6 +4,7 @@ from typing import Tuple, TextIO
 class Instance:
     def __init__(self, file: TextIO):
         lines = file.readlines()
+        lines = [line.decode().rstrip() for line in lines]
 
         # first line is meta data
         metadata = lines[0].split(' ')
@@ -51,7 +52,7 @@ class Instance:
 class Solution:
     def __init__(self, solution: str):
         lines = solution.split('\n')
-        split_lines = [line.split(' ') for line in lines]
+        split_lines = [line.split(' ') for line in lines if len(line) > 0]
 
         self.planes = [int(split_line[1]) for split_line in split_lines]
         self.rotations = [[int(x) for x in split_line[3:] if x != ''] for split_line in split_lines]
@@ -148,4 +149,7 @@ def evaluate_solution(instance: Instance, solution: Solution) -> int:
     # total cost
     cost = legs_cost + unmaintained_cost + not_done_legs_cost + repeated_legs_cost
 
-    return cost
+    # worst cost
+    worst_score = V*B
+
+    return worst_cost - cost
