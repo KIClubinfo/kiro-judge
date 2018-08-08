@@ -148,6 +148,7 @@ class InstanceViewSet(mixins.RetrieveModelMixin, viewsets.GenericViewSet):
 class SubmissionViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
     serializer_class = SubmissionSerializer
     queryset = Submission.objects.all()
+    permission_classes = (IsAuthenticated, IsCompetitionParticipant)
 
     def create(self, request, *args, **kwargs):
         team_id = self.request.data['team']
