@@ -25,6 +25,7 @@ Build the application
 ```bash
 docker-compose build
 ```
+this will take a while.
 
 This previous step might fail if you :
 * do not have the `docker` daemon running (then start docker service)
@@ -68,6 +69,8 @@ To setup a competition you need to :
 3. Create teams
 
 Simply click on "Add" for each element and fill the information as suggested.
+
+**Be careful, all users must have their first name, last name and email specified for everything to work !**
 
 ## Deploy
 
