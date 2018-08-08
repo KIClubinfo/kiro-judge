@@ -149,4 +149,7 @@ def evaluate_solution(instance: Instance, solution: Solution) -> int:
     # total cost
     cost = legs_cost + unmaintained_cost + not_done_legs_cost + repeated_legs_cost
 
-    return cost
+    # worst cost
+    worst_score = V*B
+
+    return worst_cost - cost
