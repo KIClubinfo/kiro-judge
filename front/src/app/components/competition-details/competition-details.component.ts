@@ -49,7 +49,7 @@ export class UploadInstanceSolutionDialogComponent {
         });
         return this.dialogRef.close();
       }, (response) => {
-        this.snackBar.open(response.error.message, null, {
+        this.snackBar.open(response.error[0], null, {
           duration: 3000,
         });
         return this.dialogRef.close();

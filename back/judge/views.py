@@ -7,7 +7,7 @@ from querybuilder.fields import MaxField, SimpleField, SumField
 from querybuilder.query import Query
 from rest_framework import mixins, permissions, viewsets
 from rest_framework.decorators import action
-from rest_framework.exceptions import NotAuthenticated, NotFound, PermissionDenied
+from rest_framework.exceptions import NotAuthenticated, NotFound, ValidationError
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
@@ -41,7 +41,7 @@ def download_competition_file(competition, file, mimetype=None):
     print(datetime.now(tz=timezone.utc))
     print(competition.start_date)
     if datetime.now(tz=timezone.utc) < competition.start_date:
-        raise PermissionDenied()
+        raise ValidationError()
 
     file_path = file.path
     if not os.path.exists(file_path):
@@ -154,15 +154,15 @@ class SubmissionViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
         team_id = self.request.data['team']
         team = Team.objects.get(pk=team_id)
         if team.id not in [team.id for team in self.request.user.teams.all()]:
-            raise PermissionDenied('Not part of this team')
+            raise ValidationError('Not part of this team')
 
         instance_id = self.request.data['instance']
         instance = Instance.objects.get(pk=instance_id)
         if datetime.now(tz=timezone.utc) < instance.competition.start_date:
-            raise PermissionDenied('Competition has not started')
+            raise ValidationError('Competition has not started')
 
         if instance.competition.end_date <= datetime.now(tz=timezone.utc):
-            raise PermissionDenied('Competition has ended')
+            raise ValidationError('Competition has ended')
 
         return super().create(request, *args, **kwargs)
 
