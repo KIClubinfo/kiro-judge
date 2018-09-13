@@ -35,13 +35,15 @@ This previous step might fail if you :
 
 Start the application
 ```bash
-docker-compose -d up
+docker-compose up
 ```
 
 Stop the application
 ```bash
 docker-compose down
 ```
+
+(Again, you might want to use `sudo`)
 
 ## Configure
 
