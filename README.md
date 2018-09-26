@@ -53,7 +53,7 @@ In order to setup the competitions, you will need to log in the admin panel than
 
 To create a super user :
 ```bash
-docker-compose exec back python manage.py createsuperuser
+docker-compose exec back /venv/bin/python manage.py createsuperuser
 ```
 and follow the steps asked.
 
