@@ -35,7 +35,7 @@ This previous step might fail if you :
 
 Start the application
 ```bash
-docker-compose up
+docker-compose up -d
 ```
 
 Stop the application
