@@ -1,4 +1,4 @@
-import pandas as pd
+import csv
 from judge.models import Team
 from judge.models import Competition
 from django.contrib.auth import get_user_model
@@ -12,34 +12,35 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         filename = kwargs['csv_file']
         User = get_user_model()
-        dataUsers = pd.read_csv(filename)
 
         competition = Competition.objects.get(name="KIRO 2018")
-
         users = []
-        for i in range(len(dataUsers)):
-            try:
-                user = User.objects.get(username=dataUsers['Adresse e-mail'][i])
-                user.email = dataUsers['Adresse e-mail'][i]
-                user.set_password(dataUsers['Mot de passe'][i])
-                user.save()
-            except User.DoesNotExist:
-                user = User.objects.create_user(
-                    dataUsers['Adresse e-mail'][i],
-                    dataUsers['Adresse e-mail'][i],
-                    dataUsers['Mot de passe'][i],
-                )
 
-            users.append(user)
-
-            if i % 3 == 2:
-                print(dataUsers['Nom de votre équipe'][i])
-
+        with open(filename, newline='') as csvfile:
+            reader = csv.DictReader(csvfile)
+            for i, row in enumerate(reader):
                 try:
-                    team = Team.objects.get(name=dataUsers['Nom de votre équipe'][i], competition=competition)
-                except Team.DoesNotExist:
-                    team = Team.objects.create(name=dataUsers['Nom de votre équipe'][i], competition=competition)
+                    user = User.objects.get(username=row['Adresse e-mail'])
+                    user.email = row['Adresse e-mail']
+                    user.set_password(row['Mot de passe'])
+                    user.save()
+                except User.DoesNotExist:
+                    user = User.objects.create_user(
+                        row['Adresse e-mail'],
+                        row['Adresse e-mail'],
+                        row['Mot de passe'],
+                    )
 
-                team.members.set(users[-3:])
-                print(team.members.all())
+                users.append(user)
+
+                if i % 3 == 2:
+                    print(row['Nom de votre équipe'])
+
+                    try:
+                        team = Team.objects.get(name=row['Nom de votre équipe'], competition=competition)
+                    except Team.DoesNotExist:
+                        team = Team.objects.create(name=row['Nom de votre équipe'], competition=competition)
+
+                    team.members.set(users[-3:])
+                    print(team.members.all())
 
