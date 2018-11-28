@@ -72,6 +72,5 @@ class Submission(models.Model):
     def __str__(self):
         return "{} - {} - {}".format(self.instance.competition.name, self.team.name, self.created_at)
 
-
-
-
+    class Meta:
+       ordering = ('-created_at',)
