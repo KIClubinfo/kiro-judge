@@ -35,6 +35,7 @@ class Instance(models.Model):
     description = models.TextField()
 
     input_file = models.FileField(upload_to=competition_instance_path)
+    base_score = models.FloatField(blank=True, null=True)
 
     competition = models.ForeignKey(Competition, on_delete=models.CASCADE, related_name='instances')
 
