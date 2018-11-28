@@ -11,3 +11,5 @@ celery
 psycopg2
 django-environ
 uwsgi
+pandas
+django_extensions
